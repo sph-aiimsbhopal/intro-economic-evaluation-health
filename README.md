@@ -1,7 +1,7 @@
 # Economic Evaluation in Health
 
 **A one-day workshop at AIIMS Bhopal, Wednesday 23 September 2026, 09:30 to 16:30**
-Samvad (Board Room), AIIMS Bhopal, Saket Nagar
+SAMVAD (Board Room, First Floor, Medical College Building), AIIMS Bhopal, Saket Nagar
 School of Public Health, with the Regional Resource Centre for Health Technology Assessment
 Open to faculty, senior and junior residents, and research project staff, across departments.
 Enquiries: hta@aiimsbhopal.edu.in

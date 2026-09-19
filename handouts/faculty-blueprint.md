@@ -1,7 +1,8 @@
 # Economic Evaluation in Health: faculty workshop blueprint
 
 **Wednesday 23 September 2026, 09:30 to 16:30**
-Samvad (Board Room), AIIMS Bhopal, Saket Nagar. Enquiries: hta@aiimsbhopal.edu.in
+SAMVAD (Board Room, First Floor, Medical College Building), AIIMS Bhopal, Saket Nagar.
+Enquiries: hta@aiimsbhopal.edu.in
 School of Public Health, with the Regional Resource Centre for HTA
 About 25 participants: faculty, senior and junior residents, and research project staff, from mixed
 departments.
@@ -166,7 +167,7 @@ key says how to handle the question honestly.
 
 ## 6. Open items
 
-1. ~~Venue room and contact e-mail~~. Settled: **Samvad (Board Room)** and
+1. ~~Venue room and contact e-mail~~. Settled: **SAMVAD (Board Room, First Floor, Medical College Building)** and
    **hta@aiimsbhopal.edu.in**. Both are on the rebuilt brochure and agenda.
 2. **Lunch**: confirm; it is on the agenda and the registration panel but not the details bar.
 3. **The close**: the brochure promises participants will "take part in producing" HTA evidence. The
