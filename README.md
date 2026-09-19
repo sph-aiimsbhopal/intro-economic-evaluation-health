@@ -60,6 +60,11 @@ on a phone. Five of them appear during the day.
 All eight decks are in [`slides/`](slides/) and open in any browser, with no internet needed. Arrow
 keys move, **Esc** shows the overview.
 
+Each deck also downloads as an **editable PowerPoint file** (`slides/<deck>.pptx`), linked from the
+[workshop page](https://sph-aiimsbhopal.github.io/intro-economic-evaluation-health/). The text is real
+text you can rewrite, the speaker notes travel with it, and the layout matches the browser version.
+Diagrams, equations and the embedded widgets arrive as pictures, since PowerPoint has no equivalent.
+
 | Handout | What it is |
 |---|---|
 | [Appraisal checklist](handouts/appraisal-checklist.html) | the eleven principles of the Indian Reference Case, as a form to fill in |
@@ -103,6 +108,17 @@ python3 build_polls.py        # poll-bank.html + poll-bank.xlsx
 
 The brochure and agenda are rebuilt from `src/` (see `src/README.md`). PDFs are printed from the HTML
 at A4; every sheet is sized to one page, so check nothing has spilled off the bottom before printing.
+
+The PowerPoint files are generated, not hand-made. After editing a deck, rebuild them:
+
+```bash
+cd src && ./pptx-all.sh
+```
+
+`pptx-extract.mjs` measures every block in the rendered deck (position, size, font, colour) and
+screenshots only what cannot be text; `pptx-build.py` writes those measurements out as native
+PowerPoint text boxes, shapes and tables. Check the result before shipping: the fastest way is
+`soffice --headless --convert-to pdf slides/<deck>.pptx` and a look at the pages.
 
 **House conventions.** Decks are 1280 x 720 with a 14 pt floor: a slide that does not fit is split or
 shortened, never scaled down. No em dashes in slides or widgets. Every published study cited is

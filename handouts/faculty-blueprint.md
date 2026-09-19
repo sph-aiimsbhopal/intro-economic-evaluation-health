@@ -155,6 +155,10 @@ Group 8's paper also has a published Comment (PMID 39228042); print it for the f
 - Assign participants to groups from the registration responses the evening before, and put the
   group number on each name badge.
 
+**PowerPoint copies.** Every deck is also in `slides/` as a `.pptx`, linked from the workshop page, for
+anyone who asks for the slides or wants to reuse a few. They are generated from the HTML decks, so if
+you edit a deck, rebuild them with `src/pptx-all.sh` rather than editing the PowerPoint by hand.
+
 **Publish the site.** The decks and the widget slides print the address
 `sph-aiimsbhopal.github.io/intro-economic-evaluation-health`, and Session 1 shows a QR code for it. Push
 this repository to that GitHub repository and turn Pages on (Settings, Pages, Source: GitHub Actions;

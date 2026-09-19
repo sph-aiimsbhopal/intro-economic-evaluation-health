@@ -13,6 +13,9 @@
   .day td:first-child{white-space:nowrap;font-weight:700;color:var(--band);width:1%;font-variant-numeric:tabular-nums}
   .day tr.brk td{color:var(--ink-faint);font-style:italic}
   .day a{font-weight:700}
+  .day td.dl{width:1%;white-space:nowrap;text-align:right}
+  .day td.dl a{font-size:.78rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    border:1px solid var(--line);border-radius:3px;padding:2px 7px;text-decoration:none}
   .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:12px 0}
   .tile{border:1px solid var(--line);border-left:4px solid var(--band);padding:10px 13px}
   .tile a{font-weight:700} .tile p{margin:.25em 0 0;font-size:.9rem;color:var(--ink-dim)}
@@ -37,22 +40,24 @@
 
   <h2>The day, session by session</h2>
   <table class="day">
-    <tr><td>1</td><td><a href="slides/opening.html">Where economic evidence enters health policy</a></td></tr>
-    <tr><td>2</td><td><a href="slides/block1.html">What economic evaluation is, and what it is not</a></td></tr>
-    <tr><td>3</td><td><a href="slides/block2.html">Thresholds, opportunity cost and budget impact</a></td></tr>
-    <tr class="brk"><td></td><td>Tea</td></tr>
-    <tr><td>4</td><td><a href="slides/costing.html">Costing your own service</a>, with the worksheet</td></tr>
-    <tr><td>5</td><td><a href="slides/block3a.html">Framing the question</a></td></tr>
-    <tr class="brk"><td></td><td>Lunch</td></tr>
-    <tr><td>6</td><td><a href="slides/block3b.html">Outcomes, discounting and the ICER</a></td></tr>
-    <tr><td>7</td><td><a href="slides/modelling.html">Modelling in half an hour</a></td></tr>
-    <tr class="brk"><td></td><td>Tea</td></tr>
-    <tr><td>8</td><td><a href="slides/block3c.html">Handling uncertainty</a></td></tr>
-    <tr><td>9</td><td>Group appraisal report-back, in pairs of groups</td></tr>
-    <tr><td>10</td><td>Close and feedback</td></tr>
+    <tr><td>1</td><td><a href="slides/opening.html">Where economic evidence enters health policy</a></td><td class="dl"><a href="slides/opening.pptx" title="Download as PowerPoint">PPTX</a></td></tr>
+    <tr><td>2</td><td><a href="slides/block1.html">What economic evaluation is, and what it is not</a></td><td class="dl"><a href="slides/block1.pptx" title="Download as PowerPoint">PPTX</a></td></tr>
+    <tr><td>3</td><td><a href="slides/block2.html">Thresholds, opportunity cost and budget impact</a></td><td class="dl"><a href="slides/block2.pptx" title="Download as PowerPoint">PPTX</a></td></tr>
+    <tr class="brk"><td></td><td colspan="2">Tea</td></tr>
+    <tr><td>4</td><td><a href="slides/costing.html">Costing your own service</a>, with the worksheet</td><td class="dl"><a href="slides/costing.pptx" title="Download as PowerPoint">PPTX</a></td></tr>
+    <tr><td>5</td><td><a href="slides/block3a.html">Framing the question</a></td><td class="dl"><a href="slides/block3a.pptx" title="Download as PowerPoint">PPTX</a></td></tr>
+    <tr class="brk"><td></td><td colspan="2">Lunch</td></tr>
+    <tr><td>6</td><td><a href="slides/block3b.html">Outcomes, discounting and the ICER</a></td><td class="dl"><a href="slides/block3b.pptx" title="Download as PowerPoint">PPTX</a></td></tr>
+    <tr><td>7</td><td><a href="slides/modelling.html">Modelling in half an hour</a></td><td class="dl"><a href="slides/modelling.pptx" title="Download as PowerPoint">PPTX</a></td></tr>
+    <tr class="brk"><td></td><td colspan="2">Tea</td></tr>
+    <tr><td>8</td><td><a href="slides/block3c.html">Handling uncertainty</a></td><td class="dl"><a href="slides/block3c.pptx" title="Download as PowerPoint">PPTX</a></td></tr>
+    <tr><td>9</td><td colspan="2">Group appraisal report-back, in pairs of groups</td></tr>
+    <tr><td>10</td><td colspan="2">Close and feedback</td></tr>
   </table>
   <p class="small dim">Decks run in any browser with no internet: reveal.js is included in this folder.
-  Arrow keys to move, <strong>Esc</strong> for the slide overview.</p>
+  Arrow keys to move, <strong>Esc</strong> for the slide overview. <strong>PPTX</strong> downloads the same
+  deck as an editable PowerPoint file: the text is real text you can change, and the speaker notes come
+  with it. Diagrams, equations and the interactive widgets arrive as pictures.</p>
 
   <h2>Programme</h2>
   <div class="tiles">
