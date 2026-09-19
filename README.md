@@ -67,6 +67,16 @@ keys move, **Esc** shows the overview.
 | [Costing worksheet](handouts/costing-worksheet.pdf) | two pages of A4 for the Session 4 exercise |
 | [Reading list](handouts/reading-list.html) | every citation used in the day, annotated |
 
+## Use of AI
+
+These slides, widgets and handouts were developed with **Claude** (Anthropic), which compressed months
+of drafting into days: building the decks and the interactive widgets, assembling the paper pack, and
+turning the Indian Reference Case into an appraisal form.
+
+The teaching judgements are human: what to cover, what to cut, which papers to set, and what each
+session should leave people able to do. **Every citation, figure and PMID was verified against the
+primary source**, and the organising team is responsible for the content.
+
 ## After the day
 
 The slides, handouts and widgets stay at this address, so you can reuse them when you teach, or send

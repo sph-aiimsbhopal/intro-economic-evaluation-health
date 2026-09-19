@@ -4,7 +4,6 @@
 **Date:** Wednesday, 23 September 2026, 09:30–16:30
 **Host:** School of Public Health, AIIMS Bhopal, with the Regional Resource Centre for HTA, AIIMS Bhopal
 **Audience:** ~25 faculty and senior residents, mixed departments
-**Convener:** Dr Abhijit P. Pakhare
 
 This file exists so a fresh session can pick the work up without the previous
 conversation. Everything below was decided or verified in that conversation and
@@ -33,8 +32,8 @@ short link.
 1. **Venue room** (brochure details bar says only "AIIMS Bhopal, Saket Nagar")
 2. **Contact e-mail** (currently `hta@aiimsbhopal.edu.in` — confirm it is right
    for a School of Public Health event)
-3. **Facilitator column on the agenda** — deliberately left empty; the convener
-   fills the names
+3. **Facilitator column on the agenda** — deliberately left empty; the names are
+   filled in by the organising team
 
 **19 Sep 2026: this folder is now a standalone git repository.** The workshop no longer lives inside
 the PG course repo, which is a different course. This folder holds everything needed to run the day and
@@ -65,8 +64,8 @@ short link.
 1. **Venue room** (brochure details bar says only "AIIMS Bhopal, Saket Nagar")
 2. **Contact e-mail** (currently `hta@aiimsbhopal.edu.in` — confirm it is right
    for a School of Public Health event)
-3. **Facilitator column on the agenda** — deliberately left empty; the convener
-   fills the names
+3. **Facilitator column on the agenda** — deliberately left empty; the names are
+   filled in by the organising team
 
 **Built 18 Sep 2026 (second session):** all seven items in §4, in the repo clone, not yet committed
 to git. Start from `handouts/faculty-blueprint.md`, which is the run sheet and lists every new file.
@@ -331,7 +330,7 @@ that group compare their own appraisal against a peer-reviewed one.
 
 ---
 
-## 7. Open questions for the convener
+## 7. Open questions for the organising team
 
 1. Venue room, and confirmed contact e-mail.
 2. Facilitator allocation across the six resource persons.

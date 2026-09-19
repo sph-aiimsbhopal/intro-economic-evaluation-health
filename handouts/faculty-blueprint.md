@@ -69,7 +69,7 @@ The decks and the participant handouts name **sessions by number**, never by clo
 slip without contradicting anything in a participant's hand. This clock column is for facilitators, and
 matches the printed agenda.
 
-Fill in the **Lead** column; the agenda's facilitator column was deliberately left for the convener.
+Fill in the **Lead** column; the agenda's facilitator column was deliberately left blank.
 
 ### Why these skips
 
@@ -110,11 +110,11 @@ the facilitator, on what the contrast shows. **Cut groups off at two minutes.** 
 
 ## 4. Roles
 
-Six resource persons. Suggested split, names to be filled by the convener:
+Six resource persons. Suggested split, names to be filled in:
 
 | Role | Covers | Person |
 |---|---|---|
-| Convener and opening | 09:30 welcome, 09:40 opening, 16:20 close | |
+| Welcome, opening and close | 09:30 welcome, Session 1, Session 10 | |
 | Block 1 and Block 2 | 10:00, 10:40 | |
 | Costing | 11:40 slides and worksheet | |
 | Framing, outcomes | 12:35, 14:05 | |
@@ -164,7 +164,7 @@ not live, say so on the widget slide and demonstrate the widgets from the laptop
 Guleria's HTAIn status, Uy's sensitivity analysis, Kaur's open-access status, the Srinivasan Comment). Resolve them if you can; if not, the
 key says how to handle the question honestly.
 
-## 6. Open items for the convener
+## 6. Open items
 
 1. ~~Venue room and contact e-mail~~. Settled: **Samvad (Board Room)** and
    **hta@aiimsbhopal.edu.in**. Both are on the rebuilt brochure and agenda.
