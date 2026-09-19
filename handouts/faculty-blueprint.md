@@ -4,7 +4,7 @@
 Samvad (Board Room), AIIMS Bhopal, Saket Nagar. Enquiries: hta@aiimsbhopal.edu.in
 School of Public Health, with the Regional Resource Centre for HTA
 About 25 participants: faculty, senior and junior residents, and research project staff, from mixed
-departments. Convener: Dr Abhijit P. Pakhare
+departments.
 
 This is the run sheet for facilitators. Everything needed for the day is in this repository, which is
 self-contained and works offline. The five teaching blocks came from the postgraduate course
