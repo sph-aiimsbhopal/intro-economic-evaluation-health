@@ -3,7 +3,8 @@
 **Wednesday 23 September 2026, 09:30 to 16:30**
 Samvad (Board Room), AIIMS Bhopal, Saket Nagar. Enquiries: hta@aiimsbhopal.edu.in
 School of Public Health, with the Regional Resource Centre for HTA
-About 25 faculty and senior residents, mixed departments. Convener: Dr Abhijit P. Pakhare
+About 25 participants: faculty, senior and junior residents, and research project staff, from mixed
+departments. Convener: Dr Abhijit P. Pakhare
 
 This is the run sheet for facilitators. Everything needed for the day is in this repository, which is
 self-contained and works offline. The five teaching blocks came from the postgraduate course
@@ -23,6 +24,9 @@ specialty through the paper each group holds all day.
 
 - **8 groups of 3** (one group of 4 if 25 turn up), formed **by specialty cluster** from the
   department field on the registration form. Two groups per cluster.
+- **Mix levels within each group.** Put at least one faculty member or senior resident with the junior
+  residents and project staff in every group, so the reading is shared rather than left to whoever is
+  most junior. Sort the registration list by designation before you assign tables.
 - Each group gets **one paper at registration** (the paper pack), the **appraisal checklist**, and
   its paper's one-page sheet with a prompt for every session.
 - In the **last 3 minutes of each session**, groups apply what was just taught to their paper and
@@ -149,6 +153,12 @@ Group 8's paper also has a published Comment (PMID 39228042); print it for the f
 - Eight tables, labelled 1 to 8, with the cluster name.
 - Assign participants to groups from the registration responses the evening before, and put the
   group number on each name badge.
+
+**Publish the site.** The decks and the widget slides print the address
+`sph-aiimsbhopal.github.io/intro-economic-evaluation-health`, and Session 1 shows a QR code for it. Push
+this repository to that GitHub repository and turn Pages on (Settings, Pages, Source: GitHub Actions;
+the workflow is in `.github/workflows/pages.yml`). Open the address on a phone before the day. If it is
+not live, say so on the widget slide and demonstrate the widgets from the laptop instead.
 
 **Check in the facilitator key:** items flagged "Before the day" (Thiagarajan's ICER arithmetic,
 Guleria's HTAIn status, Uy's sensitivity analysis, Kaur's open-access status, the Srinivasan Comment). Resolve them if you can; if not, the

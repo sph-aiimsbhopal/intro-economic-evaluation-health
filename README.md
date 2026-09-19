@@ -1,7 +1,8 @@
 # Economic Evaluation in Health: faculty workshop, 23 September 2026
 
-One-day workshop for about 25 faculty and senior residents at **AIIMS Bhopal**, hosted by the School of
-Public Health with the Regional Resource Centre for Health Technology Assessment.
+One-day workshop for about 25 participants at **AIIMS Bhopal**: faculty, senior and junior residents, and
+research project staff. Hosted by the School of Public Health with the Regional Resource Centre for
+Health Technology Assessment.
 Convener: Dr Abhijit P. Pakhare.
 
 Everything needed to run the day is in this folder, and it works with **no internet**: reveal.js is
@@ -36,6 +37,18 @@ python3 build_polls.py        # poll-bank.html + poll-bank.xlsx
 
 The PDFs are printed from those HTML files at A4. Each sheet is sized to one page; if you edit the
 content, check that nothing has spilled off the bottom before printing.
+
+## Publishing
+
+The site is published to GitHub Pages from `.github/workflows/pages.yml` on every push to `main`:
+
+```
+https://sph-aiimsbhopal.github.io/intro-economic-evaluation-health/
+```
+
+That address is printed on the widget slides and encoded in the QR code on Session 1
+(`assets/img/site-qr.png`). If the repository is renamed, regenerate the QR and update those slides
+together, or the code will point at nothing.
 
 ## House conventions
 
