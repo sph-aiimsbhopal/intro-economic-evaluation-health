@@ -15,16 +15,16 @@ E = html.escape
 
 # (time, session, [ (question, [options], correct_index or None for opinion, explanation) ])
 BANK = [
-("09:40", "Where economic evidence enters health policy", [
+("Session 1", "Where economic evidence enters health policy", [
  ("Before today, how many published economic evaluations in your own field have you read closely?",
   ["None", "One", "Two to five", "More than five"], None,
-  "Baseline only. Re-ask at 16:20 in a different form (the confidence question)."),
+  "Baseline only. Re-ask at the close in a different form (the confidence question)."),
  ("Who starts an HTAIn assessment?",
   ["The HTAIn Secretariat, on its own initiative", "A programme, ministry department or state that nominates a topic",
    "The manufacturer of the technology", "A Regional Resource Centre that wants to publish"], 1,
   "The user nominates; the recommendation returns to the user, who decides. HTAIn advises, it does not command."),
 ]),
-("10:00", "What economic evaluation is, and is not", [
+("Session 2", "What economic evaluation is, and is not", [
  ("A study reports the cost of treating cervical cancer by stage, with no comparison of options. What is it?",
   ["A full economic evaluation", "A cost description", "A cost-effectiveness analysis", "A cost-minimisation analysis"], 1,
   "Costs only, no alternatives compared: Drummond's cost description box. Useful, but it cannot say what to fund."),
@@ -36,20 +36,20 @@ BANK = [
    "all costs are in rupees", "a decision model was used"], 1,
   "If outcomes differ, ignoring them is not minimising cost; it is ignoring the question."),
 ]),
-("10:40", "Thresholds, opportunity cost and budget impact", [
+("Session 3", "Thresholds, opportunity cost and budget impact", [
  ("The rule that cost per DALY below one to three times GDP per capita is cost-effective is:",
   ["India's official threshold", "WHO's current recommendation",
    "a heuristic that its own authors have argued should be retired", "derived from India's health budget"], 2,
   "Demand-side, not linked to any budget. Two papers in the pack still use it; ask whether it changes their verdict."),
  ("India's recent estimate of willingness to pay per QALY is closest to:",
   ["₹54,881", "₹2,12,307", "₹20,000", "₹10,00,000"], 1,
-  "Chugh et al. 2026. ₹54,881 is the ICER for VIA screening from Block 1, a distractor on purpose."),
+  "Chugh et al. 2026. ₹54,881 is the ICER for VIA screening from Session 2, a distractor on purpose."),
  ("An intervention is cost-effective. Which question does that leave unanswered?",
   ["Is it good value per QALY?", "Can we afford it for everyone this year?",
    "Is its ICER below the threshold?", "Does it produce health?"], 1,
   "Budget impact is a separate test. Cost-effective is not the same as funded."),
 ]),
-("11:40", "Costing your own service", [
+("Session 4", "Costing your own service", [
  ("A ₹5,00,000 machine will last ten years. What should one year of a costing study carry?",
   ["₹5,00,000", "₹50,000", "about ₹58,600, annuitised at 3%", "Nothing: it has already been bought"], 2,
   "5,00,000 ÷ 8.530. Straight-line ₹50,000 ignores discounting; zero ignores opportunity cost."),
@@ -60,7 +60,7 @@ BANK = [
   ["overheads", "variation between patients", "salaries", "the department's budget"], 1,
   "Top down sees every rupee but makes every patient average. Bottom up sees variation but misses what nobody counted."),
 ]),
-("12:35", "Framing the question", [
+("Session 5", "Framing the question", [
  ("The Indian Reference Case asks for which base-case perspective?",
   ["Provider", "Payer only", "Abridged societal", "Full societal, including productivity"], 2,
   "Payer and patient direct costs, including out-of-pocket. Payer perspective reported separately."),
@@ -71,16 +71,16 @@ BANK = [
   ["cost-effective", "like a waste of money", "unaffected by the horizon", "cost-saving"], 1,
   "All the cost falls in year one; the cancers prevented come decades later. The horizon decides the answer."),
 ]),
-("14:05", "Outcomes, discounting and the ICER", [
+("Session 6", "Outcomes, discounting and the ICER", [
  ("Two years lived at a utility of 0.5 are worth how many QALYs?",
   ["0.5", "1", "2", "2.5"], 1, "0.5 × 2. The QALY's power and its controversy in one line."),
  ("A programme costs ₹3,400 more than the comparator and gains 0.13 QALYs. What is the ICER?",
   ["₹204 per QALY", "₹26,154 per QALY", "₹4,420 per QALY", "₹442 per QALY"], 1,
-  "3,400 ÷ 0.13. ₹204 is the average ratio from Block 3B: total cost over total QALYs, meaningless for a decision."),
+  "3,400 ÷ 0.13. ₹204 is the average ratio from Session 6: total cost over total QALYs, meaningless for a decision."),
  ("India's discount rate for costs and outcomes is:",
   ["0%", "3%", "5%", "10%"], 1, "3%, varied from 0 to 5% in sensitivity analysis, with undiscounted results also reported."),
 ]),
-("14:45", "Modelling in half an hour", [
+("Session 7", "Modelling in half an hour", [
  ("Drug A costs ₹10,000 and cures 80%. Those not cured need second-line treatment costing ₹20,000. Expected cost per patient?",
   ["₹10,000", "₹12,000", "₹14,000", "₹30,000"], 2, "10,000 + 0.2 × 20,000. Roll back: multiply along each path, then add."),
  ("The Markov assumption means:",
@@ -88,7 +88,7 @@ BANK = [
    "every cycle is one year", "every patient has the same costs"], 1,
   "Memoryless. If time since surgery changes the risk, the model must be built to remember it."),
 ]),
-("15:25", "Handling uncertainty", [
+("Session 8", "Handling uncertainty", [
  ("Probabilistic sensitivity analysis deals with:",
   ["parameter uncertainty", "structural uncertainty", "heterogeneity between patients", "all three"], 0,
   "Only parameters. If the model is built wrong, all ten thousand simulations are wrong together."),
@@ -100,9 +100,9 @@ BANK = [
    "in 80% of simulations it was good value at that threshold, given the model", "we can be sure it is cost-effective"], 2,
   "And a one-in-five chance of being wrong. 'Probably', not 'yes'."),
 ]),
-("16:20", "Close", [
+("Close", "Close", [
  ("How confident are you now that you could appraise a published economic evaluation in your field?",
-  ["Not at all", "A little", "Fairly", "Very"], None, "Compare with the 09:40 baseline. Opinion; no right answer."),
+  ["Not at all", "A little", "Fairly", "Very"], None, "Compare with the Session 1 baseline. Opinion; no right answer."),
 ]),
 ]
 
@@ -134,7 +134,7 @@ distribution, then read the explanation. Where the room splits, that is the disc
 no right answer; they give a before-and-after on confidence.</p>"""]
     k = 0
     for t, sess, qs in BANK:
-        out.append(f"<h2>{t} &nbsp; {E(sess)}</h2>")
+        out.append(f"<h2>{t} &nbsp;·&nbsp; {E(sess)}</h2>")
         for q, opts, ok, why in qs:
             k += 1
             out.append(f'<div class="q"><p style="margin:0"><span class="n">Q{k}</span>{E(q)}'
@@ -149,7 +149,7 @@ def xlsx():
     from openpyxl import Workbook
     from openpyxl.styles import Font, Alignment
     wb = Workbook(); ws = wb.active; ws.title = "Questions"
-    hdr = ["#", "Session time", "Session", "Question type", "Question", "Answer A", "Answer B",
+    hdr = ["#", "Session", "Topic", "Question type", "Question", "Answer A", "Answer B",
            "Answer C", "Answer D", "Correct answer", "Explanation"]
     ws.append(hdr)
     for c in ws[1]: c.font = Font(bold=True)

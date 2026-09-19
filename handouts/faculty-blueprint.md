@@ -1,6 +1,7 @@
 # Economic Evaluation in Health: faculty workshop blueprint
 
-**Wednesday 23 September 2026, 09:30 to 16:30, AIIMS Bhopal**
+**Wednesday 23 September 2026, 09:30 to 16:30**
+Samvad (Board Room), AIIMS Bhopal, Saket Nagar. Enquiries: hta@aiimsbhopal.edu.in
 School of Public Health, with the Regional Resource Centre for HTA
 About 25 faculty and senior residents, mixed departments. Convener: Dr Abhijit P. Pakhare
 
@@ -26,7 +27,7 @@ specialty through the paper each group holds all day.
   its paper's one-page sheet with a prompt for every session.
 - In the **last 3 minutes of each session**, groups apply what was just taught to their paper and
   fill in the checklist rows. The facilitator says so; the last slide of each new deck prompts it.
-- By **15:55** the checklist is full. The report-back is in **four pairs, 6 minutes each**.
+- By **Session 9** the checklist is full. The report-back is in **four pairs, 6 minutes each**.
 
 | Cluster | Groups | Papers |
 |---|---|---|
@@ -43,22 +44,26 @@ matter more than the specialty match.
 "Skip" means advance past the slide without showing it. Nothing is deleted from the decks.
 Poll numbers refer to `poll-bank.html`.
 
-| Time | Min | Session | Deck | Skip | Polls | Lead |
-|---|---|---|---|---|---|---|
-| 09:30 | 10 | Registration and welcome | none | | | |
-| 09:40 | 20 | Where economic evidence enters health policy | `slides/opening.html` (10 slides) | | Q1, Q2 | |
-| 10:00 | 40 | What economic evaluation is, and what it is not | `slides/block1.html` | 12, 13, 21, 23; 14 optional | Q3 to Q5 | |
-| 10:40 | 40 | Thresholds, opportunity cost and budget impact | `slides/block2.html` | 11 brief (seen at 09:40); 12 and 13 optional | Q6 to Q8 | |
-| 11:20 | 20 | *Tea* | | | | |
-| 11:40 | 55 | Costing your own service | `slides/costing.html` (17 slides) + worksheet | | Q9 to Q11 | |
-| 12:35 | 40 | Framing the question | `slides/block3a.html` | 10 to 13 (costing, done at 11:40) | Q12 to Q14 | |
-| 13:15 | 50 | *Lunch* | | | | |
-| 14:05 | 40 | Outcomes, discounting and the ICER | `slides/block3b.html` | 8, 11, 17 | Q15 to Q17 | |
-| 14:45 | 25 | Modelling in half an hour | `slides/modelling.html` (15 slides) | | Q18, Q19 | |
-| 15:10 | 15 | *Tea* | | | | |
-| 15:25 | 30 | Handling uncertainty | `slides/block3c.html` | 18; 5 brief | Q20 to Q22 | |
-| 15:55 | 25 | Group appraisal report-back | none | | | |
-| 16:20 | 10 | Close and feedback | none | | Q23 | |
+| # | Clock | Min | Session | Deck | Skip | Polls | Lead |
+|---|---|---|---|---|---|---|---|
+| | 09:30 | 10 | Registration and welcome | none | | | |
+| **1** | 09:40 | 20 | Where economic evidence enters health policy | `slides/opening.html` (10 slides) | | Q1, Q2 | |
+| **2** | 10:00 | 40 | What economic evaluation is, and what it is not | `slides/block1.html` | 12, 13, 21, 23; 14 optional | Q3 to Q5 | |
+| **3** | 10:40 | 40 | Thresholds, opportunity cost and budget impact | `slides/block2.html` | 11 brief (seen in Session 1); 12 and 13 optional | Q6 to Q8 | |
+| | 11:20 | 20 | *Tea* | | | | |
+| **4** | 11:40 | 55 | Costing your own service | `slides/costing.html` (17 slides) + worksheet | | Q9 to Q11 | |
+| **5** | 12:35 | 40 | Framing the question | `slides/block3a.html` | 10 to 13 (costing, done in Session 4) | Q12 to Q14 | |
+| | 13:15 | 50 | *Lunch* | | | | |
+| **6** | 14:05 | 40 | Outcomes, discounting and the ICER | `slides/block3b.html` | 8, 11, 17 | Q15 to Q17 | |
+| **7** | 14:45 | 25 | Modelling in half an hour | `slides/modelling.html` (15 slides) | | Q18, Q19 | |
+| | 15:10 | 15 | *Tea* | | | | |
+| **8** | 15:25 | 30 | Handling uncertainty | `slides/block3c.html` | 18; 5 brief | Q20 to Q22 | |
+| **9** | 15:55 | 25 | Group appraisal report-back | none | | | |
+| **10** | 16:20 | 10 | Close and feedback | none | | Q23 | |
+
+The decks and the participant handouts name **sessions by number**, never by clock time, so the day can
+slip without contradicting anything in a participant's hand. This clock column is for facilitators, and
+matches the printed agenda.
 
 Fill in the **Lead** column; the agenda's facilitator column was deliberately left for the convener.
 
@@ -70,9 +75,9 @@ Fill in the **Lead** column; the agenda's facilitator column was deliberately le
 | Block 1, 14 | classifier widget | Keep if the room has phones out and time allows; otherwise skip |
 | Block 1, 21 | QALYs are not DALYs | Decided cut: the QALY versus DALY argument. Block 3B covers the distinction in one line |
 | Block 1, 23 | why this matters in your job | Rewritten for faculty (committees, supervised work), but it now overlaps the opening deck's "where you come in". Show it only if the opening was cut short |
-| Block 2, 11 | league tables | Its figures were shown at 09:40. Say "you saw these this morning" and move on |
+| Block 2, 11 | league tables | Its figures were shown in Session 1. Say "you saw these this morning" and move on |
 | Block 2, 12 and 13 | the NICE threshold change | Good material, but optional at 40 minutes |
-| Block 3A, 10 to 13 | costing: three steps, capital, cost classifier, Indian data | Taught in full at 11:40 |
+| Block 3A, 10 to 13 | costing: three steps, capital, cost classifier, Indian data | Taught in full in Session 4 |
 | Block 3B, 8 | QALYs are not DALYs | Decided cut |
 | Block 3B, 11 | why discounting health is contested | Decided cut: the discounting argument. Keep slide 9 (the rule) and 10 (the widget) |
 | Block 3B, 17 | extended dominance | Decided cut. On slide 15, reveal the cytology row as dominated; say in one sentence that VIA every 10 years is also never chosen, "for a subtler reason we will not go into today", then go to 18 |
@@ -80,12 +85,12 @@ Fill in the **Lead** column; the agenda's facilitator column was deliberately le
 
 ### Minute plan for the two hands-on sessions
 
-**11:40 Costing (55 min):** slides 20 minutes, stop at slide 15. Worksheet 30 minutes, same groups,
+**Session 4, costing (55 min):** slides 20 minutes, stop at slide 15. Worksheet 30 minutes, same groups,
 each group costs an episode from one member's department. Last 5 minutes: three groups give their
 total and their answer to question (b), the number they are least sure of. Slide 16 ("And your paper")
 is a 30-second reminder for lunch.
 
-**15:55 Report-back (25 min):** four pairs, six minutes each, one minute in hand.
+**Session 9, report-back (25 min):** four pairs, six minutes each, one minute in hand.
 
 | Pair | Groups | Contrast |
 |---|---|---|
@@ -151,7 +156,8 @@ key says how to handle the question honestly.
 
 ## 6. Open items for the convener
 
-1. **Venue room** and **contact e-mail**, still blank on the brochure.
+1. ~~Venue room and contact e-mail~~. Settled: **Samvad (Board Room)** and
+   **hta@aiimsbhopal.edu.in**. Both are on the rebuilt brochure and agenda.
 2. **Lunch**: confirm; it is on the agenda and the registration panel but not the details bar.
 3. **The close**: the brochure promises participants will "take part in producing" HTA evidence. The
    opening deck (slide 9) names four routes. The close needs one concrete next step with a name and a

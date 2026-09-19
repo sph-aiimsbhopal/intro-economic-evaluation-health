@@ -6,14 +6,14 @@ not be confirmed from those sources is marked as a check in the facilitator key,
 """
 
 SESSIONS = [
-    ("09:40", "Where economic evidence enters policy"),
-    ("10:00", "What economic evaluation is"),
-    ("10:40", "Thresholds, opportunity cost, budget impact"),
-    ("11:40", "Costing your own service"),
-    ("12:35", "Framing the question"),
-    ("14:05", "Outcomes, discounting and the ICER"),
-    ("14:45", "Modelling in half an hour"),
-    ("15:25", "Handling uncertainty"),
+    ("1", "Where economic evidence enters policy"),
+    ("2", "What economic evaluation is"),
+    ("3", "Thresholds, opportunity cost, budget impact"),
+    ("4", "Costing your own service"),
+    ("5", "Framing the question"),
+    ("6", "Outcomes, discounting and the ICER"),
+    ("7", "Modelling in half an hour"),
+    ("8", "Handling uncertainty"),
 ]
 
 PAIRS = [
@@ -52,7 +52,7 @@ dict(
  prompts=[
   Q_WHO + " The authors name a specific scheme: which, and what would it need besides this paper?",
   Q_BOX,
-  "They judge against <strong>one times GDP per capita</strong>. Would the verdict change against India's own estimate from Block 2?",
+  "They judge against <strong>one times GDP per capita</strong>. Would the verdict change against India's own estimate from Session 3?",
   "SLNB needs a gamma probe, a radiotracer and nuclear medicine time. Look for these in the costs. Were capital costs annuitised?",
   Q_FRAME,
   "Divide each incremental cost by its incremental QALYs. Do you get the ratios the paper reports? If not, find out why.",
@@ -71,7 +71,7 @@ dict(
  ],
  teach=[
   "<strong>The threshold rule is wrong in principle but harmless here.</strong> The ratios are a few thousand to under twenty thousand rupees per QALY, "
-  "far below GDP per capita and below India's willingness-to-pay estimate of ₹2,12,307 from Block 2. A good group says both things: "
+  "far below GDP per capita and below India's willingness-to-pay estimate of ₹2,12,307 from Session 3. A good group says both things: "
   "the rule is retired, and it does not change this verdict. That is the mature position; the lazy one is to discard the paper for using it.",
   "<strong>The abstract's arithmetic does not reproduce.</strong> 5,564 ÷ 0.31 is about 17,950 and 2,507 ÷ 0.33 is about 7,600, "
   "not 8,088 and 16,709. The ratios look swapped, or computed from differently discounted figures. Send the group to the results table. "
@@ -126,7 +126,7 @@ dict(
   "<strong>Outcome choice.</strong> Recurrence was primary and showed no difference; the ICER is built on a secondary outcome that did. "
   "Not necessarily wrong, but it must be justified, and the group should notice it.",
   "<strong>54% is a coin toss.</strong> 'Less likely to be cost-effective' is not what 54% says. The honest reading: the analysis cannot tell. "
-  "Which fits Block 3C's point that a probability of being cost-effective is not the probability of being right.",
+  "Which fits Session 8's point that a probability of being cost-effective is not the probability of being right.",
   "A rare published negative. Ask the room how many 'not cost-effective' Indian evaluations they have read. Publication bias exists here too.",
  ],
  check="The handover describes this as an HTAIn study. On our read the paper mentions HTAIn and one author is at the Department of Health Research, but we did not confirm it was commissioned through HTAIn. Say 'HTAIn-linked' only if the full text confirms it.",
@@ -154,7 +154,7 @@ dict(
  prompts=[
   Q_WHO + " Where are the authors based?",
   Q_BOX,
-  "Against what threshold is repair 'optimal' rather than bioprosthetic replacement? Try India's own estimate.",
+  "Against what threshold is repair 'optimal' rather than bioprosthetic replacement? Try India's own estimate from Session 3.",
   "Costs are in US dollars. What would you want to know about the conversion and the cost year?",
   Q_FRAME + " Is a 'standard-of-care mix' a real comparator?",
   "Put the four strategies in order of QALYs. Which are dominated? Recompute the bioprosthetic vs repair ratio.",
@@ -269,10 +269,10 @@ dict(
   ("Uncertainty", "No sensitivity analysis reported."),
  ],
  teach=[
-  "<strong>Not a cost-effectiveness analysis.</strong> With no health outcome in the ratio it is a cost analysis (Block 1, box 4). If the claim is 'same outcome, lower cost', "
+  "<strong>Not a cost-effectiveness analysis.</strong> With no health outcome in the ratio it is a cost analysis (Session 2, box 4). If the claim is 'same outcome, lower cost', "
   "it is a <strong>cost-minimisation</strong> argument, which is legitimate only if equivalence of outcomes is <em>demonstrated</em>. "
   "Ask what the paper shows about neonatal outcomes, and whether the trial was designed to show equivalence.",
-  "The title is the teaching point: a word in a title is not a method. Link to Block 1's 'three errors we will keep catching'.",
+  "The title is the teaching point: a word in a title is not a method. Link to Session 2's 'three errors we will keep catching'.",
   "Credit where due: a randomised design, and patient-side costs collected bottom up, which many better-known papers omit.",
   "Horizon at discharge misses readmission, growth and neurodevelopment; the outcomes that would matter over a lifetime are not in scope.",
  ],
@@ -318,10 +318,10 @@ dict(
  ],
  teach=[
   "<strong>Average versus incremental,</strong> live. The $78 and $75 figures are average cost-effectiveness ratios, total cost over total QALYs, "
-  "which Block 3B calls meaningless for a decision. The ICER is $101 ÷ 1.67 = about $61. Ask the group which number a decision-maker should read.",
+  "which Session 6 calls meaningless for a decision. The ICER is $101 ÷ 1.67 = about $61. Ask the group which number a decision-maker should read.",
   "<strong>Transferability.</strong> Every input is borrowed. NIV effectiveness on a general ward in an Indian district hospital, with its staffing, "
   "may be far from the trial settings. PSA varies parameters inside their borrowed ranges; it cannot test whether the ranges apply here. That is structural "
-  "and transferability uncertainty, which Block 3C says PSA does not handle.",
+  "and transferability uncertainty, which Session 8 says PSA does not handle.",
   "<strong>When the answer is obvious, the question moves.</strong> At $61 per QALY no threshold matters. The real barrier is feasibility: staff, masks, "
   "monitoring on a ward. The economics says 'yes'; implementation is the open question.",
   "2012 US dollars against 2012 GDP. Ask how they would update it for a decision today.",
@@ -373,7 +373,7 @@ dict(
   "A good group sees that the headline would be weaker under today's rules.",
   "<strong>A price, not a verdict.</strong> The threshold analysis tells a purchaser what to negotiate for. That is often the most useful output an "
   "economic evaluation can give, and it links to the costing session: prices are not costs, and prices can move.",
-  "<strong>Borrowed utilities.</strong> Thai tariff, because India had no EQ-5D value set at the time. Now it does (Block 3B). Legitimate then; a flaw if repeated now.",
+  "<strong>Borrowed utilities.</strong> Thai tariff, because India had no EQ-5D value set at the time. Now it does (Session 6). Legitimate then; a flaw if repeated now.",
   "Against Srinivasan: both are Indian, both real-world, but this one ends in a number a ministry can act on, the other in a cost per DALY that cannot be compared with anything else in the pack.",
  ],
  check="",

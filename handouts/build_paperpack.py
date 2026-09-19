@@ -103,7 +103,7 @@ def participant():
     out.append("""<h1>Your group has one paper, and it stays with you all day</h1>
 <p>Each group of three has been given one published economic evaluation from India. After each session,
 spend a few minutes applying what was just taught to <strong>your</strong> paper, using the prompts on its
-sheet and the <strong>appraisal checklist</strong>. By the report-back at 15:55 the checklist should be full
+sheet and the <strong>appraisal checklist</strong>. By the report-back the checklist should be full
 and you should be able to say, in one sentence, whether you believe the paper's conclusion.</p>
 <p>The eight papers were chosen to differ. Some are strong, some are not, and at least one calls itself
 something it is not. Do not assume that publication means quality, or that a paper from a well-known group is
@@ -114,7 +114,7 @@ right.</p>
         out.append(f"<tr><td><strong>{p['n']}</strong></td><td>{E(p['cluster'])}</td>"
                    f"<td>{E(p['short'])}</td><td>{'open' if p['oa'] else 'abstract only'}</td></tr>")
     out.append("</tbody></table>")
-    out.append("""<h2>Report-back, 15:55</h2>
+    out.append("""<h2>Report-back, the last session</h2>
 <p>Groups report in <strong>pairs</strong>, chosen so that the two papers contrast. Each pair has six minutes:
 <strong>two minutes per group</strong>, then two minutes on what the contrast shows.</p>
 <p>In your two minutes, give: (1) what the paper compared and what it concluded, in one sentence; (2) the one
@@ -141,10 +141,10 @@ changes the conclusion; (4) your verdict: <em>would you act on this paper?</em><
         out.append("</div>")
         out.append('<h2>Your prompts through the day</h2><table class="pr"><thead><tr><th>After</th><th>Ask of your paper</th></tr></thead><tbody>')
         for (t, s), q in zip(SESSIONS, p['prompts']):
-            out.append(f"<tr><td>{t}<span class=\"s\">{E(s)}</span></td><td>{q}</td></tr>")
+            out.append(f"<tr><td>Session {t}<span class=\"s\">{E(s)}</span></td><td>{q}</td></tr>")
         out.append("</tbody></table>")
         out.append('<p class="foot">The summary paraphrases the published abstract and is not a substitute for it. '
-                   'Citation checked against the MEDLINE record, September 2026. By 15:55: would you act on this paper, and why?</p>')
+                   'Citation checked against the MEDLINE record, September 2026. By the report-back: would you act on this paper, and why?</p>')
         out.append("</div>")
     out.append(TAIL)
     return "\n".join(out)
@@ -164,7 +164,7 @@ Only if they are still stuck after the session on that principle, name the issue
 <table class="ov"><thead><tr><th>Group</th><th>Paper</th><th>Its job in the pack</th></tr></thead><tbody>""")
     for p in PAPERS:
         out.append(f"<tr><td><strong>{p['n']}</strong></td><td>{E(p['short'])}</td><td>{p['job']}</td></tr>")
-    out.append("</tbody></table></div><div class=\"sheet\"><div class=\"top\"><div><p class=\"kick\">Facilitators only</p><p class=\"grp\">Report-back</p></div><div class=\"clu\">15:55 to 16:20</div></div><h2>Report-back pairs</h2>"
+    out.append("</tbody></table></div><div class=\"sheet\"><div class=\"top\"><div><p class=\"kick\">Facilitators only</p><p class=\"grp\">Report-back</p></div><div class=\"clu\">the last session</div></div><h2>Report-back pairs</h2>"
                '<table class="ov"><thead><tr><th>Pair</th><th>Groups</th><th>What the contrast should surface</th></tr></thead><tbody>')
     for i, (a, b, c) in enumerate(PAIRS, 1):
         out.append(f"<tr><td><strong>{i}</strong></td><td>{a} and {b}</td><td>{E(c)}</td></tr>")
