@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Block 3B: Outcomes, discounting and the ICER</title>
+<title>Session 5: Outcomes, discounting and the ICER</title>
 <link rel="stylesheet" href="../vendor/reveal.js/dist/reveal.css">
 <link rel="stylesheet" href="../assets/css/tokens.css">
 <link rel="stylesheet" href="../assets/css/slides.css">
@@ -12,19 +12,20 @@
 <div class="reveal"><div class="slides">
 
 <section class="cover">
-  <p class="kicker">Economic Evaluation in Health &nbsp;·&nbsp; Faculty workshop &nbsp;·&nbsp; Session 6</p>
+  <p class="kicker">Economic Evaluation in Health &nbsp;·&nbsp; Faculty workshop &nbsp;·&nbsp; Session 5</p>
   <h1>Outcomes, discounting<br>and the ICER</h1>
   <p class="lede dim">Drummond et al., <em>Methods for the Economic Evaluation of Health Care
   Programmes</em>, 4th ed., 2015.<br><strong>Chapter 4, pages 77 to 123.</strong></p>
   <p class="small faint" style="margin-top:1em">Faculty, residents and research project staff &nbsp;·&nbsp; AIIMS Bhopal, 23 September 2026</p>
   <aside class="notes">
-    3A built the numerator. This block builds the denominator, discounts both, and then does the only
-    arithmetic in the course they will be asked to reproduce by hand.
+    Sessions 3 and 4 built the numerator, in principle and then on their own ward. This session builds
+    the denominator, discounts both, and then does the only arithmetic in the day they will be asked to
+    reproduce by hand.
   </aside>
 </section>
 
 <section>
-  <h2>By the end of this block</h2>
+  <h2>By the end of this session</h2>
   <ol>
     <li>Explain what a <strong>QALY</strong> is, and where its weights come from</li>
     <li>Say why a QALY is not a DALY, and why that matters for a league table</li>
@@ -138,11 +139,12 @@
   </div>
   <p class="claim warn" style="margin-top:.5em">"ICER per DALY averted is not directly equivalent to ICER
   per QALY gained."</p>
-  <p class="small dim">Recall Block 2: the Indian league table mixed 70% DALY studies with 30% QALY
-  studies. Now you know why that table cannot be read straight down the column.</p>
+  <p class="small dim">Session 6 puts up an Indian league table that mixes 70% DALY studies with 30%
+  QALY studies. Remember this slide when you see it: that is why the table cannot be read straight down
+  the column.</p>
   <aside class="notes">
-    Third time you have raised this: Block 1, Block 2, now with the mechanism. That repetition is
-    deliberate. It is the most durable confusion in this subject for community medicine trainees.
+    Second time you have raised this: Session 2 warned about it, here is the mechanism, and Session 6
+    shows what it does to a published ranking. That repetition is deliberate. It is the most durable confusion in this subject for community medicine trainees.
   </aside>
 </section>
 
@@ -288,8 +290,8 @@
   <p class="small dim">Its ICER is not "very large". It is negative and meaningless, which is why the
   column shows a dash.</p>
   <aside class="notes">
-    Connect explicitly to the CE plane widget from Block 2. They have seen this quadrant interactively.
-    Here it is as a row in a table, which is how it appears in a real paper.
+    The cost-effectiveness plane widget is four slides ahead; say that they will see this quadrant
+    interactively then. Here it is as a row in a table, which is how it appears in a real paper.
   </aside>
 </section>
 
@@ -316,30 +318,32 @@
 <section>
   <h2>So what do we fund?</h2>
   <table>
-    <tr><th>Strategy</th><th>ICER vs the option below</th><th>At <span class="nocaps">λ</span> ≈ ₹2,12,307</th></tr>
+    <tr><th>Strategy</th><th>ICER vs the option below</th><th>At <span class="nocaps">λ</span> ≈ ₹2,12,307, for now</th></tr>
     <tr><td>VIA every 5 years</td><td class="num">₹26,154</td><td><span class="pill good">accept</span></td></tr>
     <tr><td>HPV DNA every 5 years</td><td class="num">₹1,50,000</td><td><span class="pill good">accept, and the last that qualifies</span></td></tr>
   </table>
   <p class="claim good" style="margin-top:.4em">Climb the frontier one step at a time, for as long as each
   step costs less than λ per QALY.</p>
-  <p class="small dim">At a lower threshold, say a supply-side estimate of ₹80,000, you would stop at VIA
-  every five years. The question is not "which is best" but "how far up can we afford to go". That is
-  incremental analysis in one sentence.</p>
+  <p class="small dim">Borrow λ for now: ₹2 lakh per QALY, near a published Indian estimate. At ₹80,000
+  instead you would stop at VIA every five years. The question is not "which is best" but "how far up
+  can we afford to go", and where that λ comes from is Session 6.</p>
   <p class="cite">Illustrative figures. Threshold from Chugh et al., <em>Value in Health</em>, 2026.</p>
   <aside class="notes">
-    Where Block 2 and Block 3 finally join. Change λ and the answer changes, not the analysis. Make
-    them say which strategy wins at ₹80,000 before you show it.
+    Be explicit that λ is on loan here. Ranking needs a number, so we use one and interrogate it after
+    the break. Change λ and the answer changes while the analysis does not: make them say which strategy
+    wins at ₹80,000 before you show it. That is the hook into Session 6.
   </aside>
 </section>
 
 <section>
   <h2>The same logic, on the plane</h2>
   <iframe class="widget" style="height:430px" src="../widgets/ce-plane/?lambda=212307" data-src="../widgets/ce-plane/?lambda=212307" loading="lazy"></iframe>
-  <p class="small">Same widget as this morning, now with the ranking in mind: the frontier is the set of points you would climb, and dominance is visible as a point below and to the right of another.</p>
+  <p class="small">The ranking you just did, drawn. The frontier is the set of points you would climb, and a dominant option sits below and to the right of another. Drag λ and the verdict changes.</p>
   <p class="cite">On your phone: <strong>sph-aiimsbhopal.github.io/intro-economic-evaluation-health</strong></p>
   <aside class="notes">
-    A short revisit, since they met this in Block 2. The new thing to point at is the net monetary
-    benefit row, which the next slide explains.
+    First time they meet the plane interactively. Give them two minutes on their phones: move the
+    threshold line and watch points cross it. Then point at the net monetary benefit row, which the next
+    slide explains.
   </aside>
 </section>
 
@@ -399,6 +403,29 @@
   </aside>
 </section>
 
+<!-- ==================================================== CLINICAL BRIDGE -->
+<section>
+  <h2>The same arithmetic, on a drug</h2>
+  <p class="small dim">One year of adjuvant trastuzumab against chemotherapy alone. Same model, same
+  costs, same country. Only the source of the effectiveness estimate differs.</p>
+  <table>
+    <tr><th>Effectiveness estimate from</th><th>QALYs gained</th><th>ICER per QALY gained</th></tr>
+    <tr><td>The HERA trial</td><td class="num">1.29</td><td class="num">₹1,78,877</td></tr>
+    <tr><td>Joint NSABP B-31 and NCCTG N9831 analysis</td><td class="num">1.69</td><td class="num">₹1,34,413</td></tr>
+  </table>
+  <p class="claim warn" style="margin-top:.3em">Nothing in the numerator moved. A bigger denominator made
+  the ICER a third smaller.</p>
+  <p class="small dim">Which is why the incremental ratio is a claim about two numbers, not one. Session 8
+  returns to this table and puts a probability on each row.</p>
+  <p class="cite">Gupta, Verma, Gupta, Prinja, <em>JCO Global Oncology</em>, 2020.</p>
+  <aside class="notes">
+    Work the arithmetic on the board if there is one: the incremental cost is the same in both rows, so
+    the whole gap is the denominator. ₹1,78,877 against ₹1,34,413 is a third, produced entirely by which
+    trial you believe. Then send them to their own paper: what is its ICER, and what one number would you
+    have to disbelieve to change it?
+  </aside>
+</section>
+
 <section>
   <h2>Recap</h2>
   <ul>
@@ -432,15 +459,16 @@
 </section>
 
 <section class="cover">
-  <p class="kicker">Faculty workshop &nbsp;·&nbsp; Session 8 &nbsp;·&nbsp; handling uncertainty</p>
-  <h1>Every number in that table<br>was an estimate</h1>
-  <p class="lede dim">One-way and probabilistic sensitivity analysis, the tornado diagram, the cloud, and
-  the cost-effectiveness acceptability curve.</p>
-  <p class="small faint" style="margin-top:1em">The ICER you just computed is a point estimate. The next
-  block is about how much to trust it.</p>
+  <p class="kicker">Faculty workshop &nbsp;·&nbsp; Session 6 &nbsp;·&nbsp; Drummond 4th ed., Chapter 2</p>
+  <h1>Where does<br><span class="nocaps">λ</span> come from?</h1>
+  <p class="lede dim">You have just ranked five strategies against a threshold you were handed. The next
+  session asks who set it, by which of two incompatible methods, and what follows when the two disagree.</p>
+  <p class="small faint" style="margin-top:1em">Also: opportunity cost, league tables, and budget impact,
+  the question a finance department asks that an ICER does not answer.</p>
   <aside class="notes">
-    Deliberately unsettling. They have just done the arithmetic carefully and correctly. Now tell them
-    the answer has a confidence region they have not seen yet.
+    This is the pivot of the day. Everything so far has been machinery; the next session is judgement.
+    Ask them, before the slide, what ₹2,12,307 might be a measurement of. Most will guess a budget
+    figure, which it is not.
   </aside>
 </section>
 

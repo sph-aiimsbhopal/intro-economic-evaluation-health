@@ -53,6 +53,19 @@ def set_bullet(para, char):
         e = pPr.makeelement(qn("a:buChar"), {"char": char})
     pPr.append(e)
 
+HL_AFTER = ("a:uLnTx", "a:uLn", "a:uFillTx", "a:uFill", "a:latin", "a:ea", "a:cs",
+            "a:sym", "a:hlinkClick", "a:hlinkMouseOver", "a:rtl", "a:extLst")
+
+def set_highlight(run, hexcolor):
+    """A solid inline background (the .pill badges) becomes a PowerPoint highlight.
+
+    python-pptx has no API for it, and a:highlight has a fixed place in the
+    rPr element order, so insert it rather than append."""
+    rPr = run.font._rPr
+    hl = rPr.makeelement(qn("a:highlight"), {})
+    hl.append(rPr.makeelement(qn("a:srgbClr"), {"val": hexcolor}))
+    rPr.insert_element_before(hl, *HL_AFTER)
+
 def add_text(slide, it):
     r = it["rect"]
     box = slide.shapes.add_textbox(emu(r["x"]), emu(r["y"]) - Emu(20000),
@@ -82,6 +95,8 @@ def add_text(slide, it):
                 f.color.rgb = c
             if run.get("spc"):
                 r_.font._rPr.set("spc", str(int(round(run["spc"] * 75))))   # 1/100 pt
+            if run.get("bg"):
+                set_highlight(r_, run["bg"])
     return box
 
 def add_rect(slide, it):
@@ -145,6 +160,8 @@ def add_table(slide, it):
                     c = col(run.get("color") or src.get("color"))
                     if c is not None:
                         f.color.rgb = c
+                    if run.get("bg"):
+                        set_highlight(r_, run["bg"])
     return g
 
 def build(deck):

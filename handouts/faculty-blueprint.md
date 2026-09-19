@@ -47,24 +47,55 @@ matter more than the specialty match.
 ## 3. Run sheet
 
 "Skip" means advance past the slide without showing it. Nothing is deleted from the decks.
-Poll numbers refer to `poll-bank.html`.
+Poll numbers refer to `poll-bank.html`. The deck file names (`block1`, `block2`, `block3a`, `block3b`,
+`block3c`) are inherited from the postgraduate course these were adapted from; they no longer run in
+that order, so go by the session number, not the file name.
 
 | # | Clock | Min | Session | Deck | Skip | Polls | Lead |
 |---|---|---|---|---|---|---|---|
 | | 09:30 | 10 | Registration and welcome | none | | | |
-| **1** | 09:40 | 20 | Where economic evidence enters health policy | `slides/opening.html` (10 slides) | | Q1, Q2 | |
-| **2** | 10:00 | 40 | What economic evaluation is, and what it is not | `slides/block1.html` | 12, 13, 21, 23; 14 optional | Q3 to Q5 | |
-| **3** | 10:40 | 40 | Thresholds, opportunity cost and budget impact | `slides/block2.html` | 11 brief (seen in Session 1); 12 and 13 optional | Q6 to Q8 | |
+| **1** | 09:40 | 20 | Where economic evidence enters health policy | `slides/opening.html` (12 slides) | | Q1, Q2 | |
+| **2** | 10:00 | 40 | What economic evaluation is, and what it is not | `slides/block1.html` (27 slides) | 12, 13, 21, 23; 14 optional | Q3 to Q5 | |
+| **3** | 10:40 | 40 | Framing the question | `slides/block3a.html` (18 slides) | 13; 10 and 11 brisk | Q6 to Q8 | |
 | | 11:20 | 20 | *Tea* | | | | |
-| **4** | 11:40 | 55 | Costing your own service | `slides/costing.html` (17 slides) + worksheet | | Q9 to Q11 | |
-| **5** | 12:35 | 40 | Framing the question | `slides/block3a.html` | 10 to 13 (costing, done in Session 4) | Q12 to Q14 | |
+| **4** | 11:40 | 55 | Costing your own service | `slides/costing.html` (17 slides) + worksheet | 4 and 9 brisk (named in Session 3) | Q9 to Q11 | |
+| **5** | 12:35 | 40 | Outcomes, discounting and the ICER | `slides/block3b.html` (26 slides) | 8, 11, 17 | Q12 to Q14 | |
 | | 13:15 | 50 | *Lunch* | | | | |
-| **6** | 14:05 | 40 | Outcomes, discounting and the ICER | `slides/block3b.html` | 8, 11, 17 | Q15 to Q17 | |
+| **6** | 14:05 | 40 | Thresholds, opportunity cost and budget impact | `slides/block2.html` (23 slides) | 11 brief (seen in Session 1); 12 and 13 optional | Q15 to Q17 | |
 | **7** | 14:45 | 25 | Modelling in half an hour | `slides/modelling.html` (15 slides) | | Q18, Q19 | |
 | | 15:10 | 15 | *Tea* | | | | |
-| **8** | 15:25 | 30 | Handling uncertainty | `slides/block3c.html` | 18; 5 brief | Q20 to Q22 | |
+| **8** | 15:25 | 30 | Handling uncertainty | `slides/block3c.html` (22 slides) | 18; 5 brief | Q20 to Q22 | |
 | **9** | 15:55 | 25 | Group appraisal report-back | none | | | |
 | **10** | 16:20 | 10 | Close and feedback | none | | Q23 | |
+
+### The shape of the day, and why it is in this order
+
+The morning takes an ICER apart and builds one; only after lunch does the day ask what an ICER is worth.
+So framing comes before costing, costing before outcomes, and the threshold session comes sixth rather
+than third. Two consequences to hold in mind:
+
+- **Session 5 has to name a threshold before Session 6 explains it.** The "So what do we fund?" slide
+  borrows lambda at about Rs 2,12,307 per QALY and says so on the slide. Say out loud that the number is
+  on loan and that Session 6 interrogates it. Do not pre-empt Session 6 by explaining where it comes from.
+- **The question raised at the end of Session 2** ("is Rs 54,881 per QALY good value?") stays open until
+  Session 6. That is deliberate. Tell them it is parked, or the room will think you forgot.
+
+### The clinical bridge slides
+
+Every group paper but one is a clinical or service decision, while the running teaching example is a
+public health programme. Four slides exist to close that gap, using one verified Indian clinical paper
+(Gupta 2020, adjuvant trastuzumab, PMID 32045547, open access, and **not** in the paper pack):
+
+| Session | Slide | What it does |
+|---|---|---|
+| 1 | opening 11, "Two examples, side by side" | Names both running examples and says the method does not change with the size of the decision |
+| 2 | block1 24, "The same two questions, on a drug" | Classifies the trastuzumab paper with Drummond's two questions |
+| 3 | block3a 15, "The same framing, on a drug" | Its five framing choices against the Reference Case principles |
+| 5 | block3b 23, "The same arithmetic, on a drug" | Two effectiveness sources, two ICERs a third apart |
+
+**Do not skip these**, even when running late; they are the answer to "that is public health, I
+prescribe". Session 8's trastuzumab slide (block3c 17) then completes the same table with the
+probabilities, so it reads as a callback rather than a new example.
 
 The decks and the participant handouts name **sessions by number**, never by clock time, so the day can
 slip without contradicting anything in a participant's hand. This clock column is for facilitators, and
@@ -78,14 +109,18 @@ Fill in the **Lead** column; the agenda's facilitator column was deliberately le
 |---|---|---|
 | Block 1, 12 and 13 | the six-box grid filled with cervical cancer studies; partial evaluations | Decided cut: the grid in depth. Slide 11 introduces the six boxes; that is enough |
 | Block 1, 14 | classifier widget | Keep if the room has phones out and time allows; otherwise skip |
-| Block 1, 21 | QALYs are not DALYs | Decided cut: the QALY versus DALY argument. Block 3B covers the distinction in one line |
+| Block 1, 21 | QALYs are not DALYs | Decided cut: the QALY versus DALY argument. Session 5 covers the distinction in one line |
 | Block 1, 23 | why this matters in your job | Rewritten for faculty (committees, supervised work), but it now overlaps the opening deck's "where you come in". Show it only if the opening was cut short |
 | Block 2, 11 | league tables | Its figures were shown in Session 1. Say "you saw these this morning" and move on |
 | Block 2, 12 and 13 | the NICE threshold change | Good material, but optional at 40 minutes |
-| Block 3A, 10 to 13 | costing: three steps, capital, cost classifier, Indian data | Taught in full in Session 4 |
+| Block 3A, 10 and 11 | costing in three steps; capital costs | Keep, but brisk. They now set up Session 4 instead of repeating it |
+| Block 3A, 12 | cost classifier widget | Keep if phones are out: it is the only place this widget appears |
+| Block 3A, 13 | where Indian cost data comes from | Repeated as costing slide 13, in more detail |
+| Costing, 4 and 9 | three steps; annuitising capital | Brisk, not skipped. Session 3 named both; here they are practised |
 | Block 3B, 8 | QALYs are not DALYs | Decided cut |
 | Block 3B, 11 | why discounting health is contested | Decided cut: the discounting argument. Keep slide 9 (the rule) and 10 (the widget) |
 | Block 3B, 17 | extended dominance | Decided cut. On slide 15, reveal the cytology row as dominated; say in one sentence that VIA every 10 years is also never chosen, "for a subtler reason we will not go into today", then go to 18 |
+| Block 3B, 21 and 22 | the same decision three ways; why NMB | Optional at 40 minutes. Slide 20 alone carries the formula |
 | Block 3C, 18 | scenario analysis and value of information | Time; name them aloud if a group asks |
 
 ### Minute plan for the two hands-on sessions
@@ -116,10 +151,11 @@ Six resource persons. Suggested split, names to be filled in:
 | Role | Covers | Person |
 |---|---|---|
 | Welcome, opening and close | 09:30 welcome, Session 1, Session 10 | |
-| Block 1 and Block 2 | 10:00, 10:40 | |
-| Costing | 11:40 slides and worksheet | |
-| Framing, outcomes | 12:35, 14:05 | |
-| Modelling, uncertainty | 14:45, 15:25 | |
+| What it is, and framing | Sessions 2 and 3, 10:00 and 10:40 | |
+| Costing | Session 4, 11:40 slides and worksheet | |
+| Outcomes and the ICER | Session 5, 12:35 | |
+| Thresholds and budget impact | Session 6, 14:05 | |
+| Modelling, uncertainty | Sessions 7 and 8, 14:45 and 15:25 | |
 | Floor and polls | runs Socrative all day; timekeeper; chairs the report-back | |
 
 Everyone not presenting **circulates** during the 3-minute paper slots and the worksheet, carrying the

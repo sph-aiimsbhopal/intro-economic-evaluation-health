@@ -25,14 +25,18 @@ and keeps it all day. After each session you apply what was just taught to that 
 prompts on its sheet and the appraisal checklist. In the second-last session, groups report back in
 pairs, each pair chosen so that the two papers disagree in an instructive way.
 
+The morning takes a cost-effectiveness ratio apart and builds one; only after lunch does the day ask
+what such a ratio is worth. Sessions 2, 3 and 5 each close by running that session's principle on a
+published clinical paper, so the method is shown on a drug as well as on a public health programme.
+
 | | Session |
 |---|---|
 | 1 | Where economic evidence enters health policy |
 | 2 | What economic evaluation is, and what it is not |
-| 3 | Thresholds, opportunity cost and budget impact |
+| 3 | Framing the question |
 | 4 | Costing your own service, with a worksheet |
-| 5 | Framing the question |
-| 6 | Outcomes, discounting and the ICER |
+| 5 | Outcomes, discounting and the ICER |
+| 6 | Thresholds, opportunity cost and budget impact |
 | 7 | Modelling in half an hour |
 | 8 | Handling uncertainty |
 | 9 | Group appraisal report-back |
@@ -128,7 +132,7 @@ slide, em dashes and HTTP errors:
 
 ```bash
 python3 -m http.server 8765
-node src/chk.mjs opening block1 block2 costing block3a block3b modelling block3c
+node src/chk.mjs opening block1 block3a costing block3b block2 modelling block3c
 ```
 
 **Publishing.** Pushing to `main` publishes the site through `.github/workflows/pages.yml`. The site

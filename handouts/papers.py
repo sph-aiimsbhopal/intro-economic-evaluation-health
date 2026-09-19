@@ -5,15 +5,18 @@ text, read 18 September 2026. Anything that could
 not be confirmed from those sources is marked as a check in the facilitator key, not stated.
 """
 
+# The running order of the day. Each entry is (session number, session title,
+# index into a paper's prompts list). The prompts lists below stay in topic
+# order, so reordering the day means editing only this table.
 SESSIONS = [
-    ("1", "Where economic evidence enters policy"),
-    ("2", "What economic evaluation is"),
-    ("3", "Thresholds, opportunity cost, budget impact"),
-    ("4", "Costing your own service"),
-    ("5", "Framing the question"),
-    ("6", "Outcomes, discounting and the ICER"),
-    ("7", "Modelling in half an hour"),
-    ("8", "Handling uncertainty"),
+    ("1", "Where economic evidence enters policy", 0),
+    ("2", "What economic evaluation is", 1),
+    ("3", "Framing the question", 4),
+    ("4", "Costing your own service", 3),
+    ("5", "Outcomes, discounting and the ICER", 5),
+    ("6", "Thresholds, opportunity cost, budget impact", 2),
+    ("7", "Modelling in half an hour", 6),
+    ("8", "Handling uncertainty", 7),
 ]
 
 PAIRS = [

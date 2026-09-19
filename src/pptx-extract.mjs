@@ -44,6 +44,13 @@ for (let i = 0; i < total; i++) {
       return [1, 2, 3].map(k => (+m[k]).toString(16).padStart(2, '0')).join('').toUpperCase();
     };
     const INLINE = new Set(['STRONG', 'B', 'EM', 'I', 'SPAN', 'A', 'CODE', 'KBD', 'SUP', 'SUB', 'BR']);
+    // a background worth carrying into PowerPoint as a highlight: solid, not a wash
+    const bgc = c => {
+      const m = c.match(/rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s*([\d.]+))?\)/);
+      if (!m) return null;
+      if (m[4] !== undefined && parseFloat(m[4]) < 0.5) return null;
+      return [1, 2, 3].map(k => (+m[k]).toString(16).padStart(2, '0')).join('').toUpperCase();
+    };
 
     // --- collect the runs of one element, splitting on <br> ---
     const paraRuns = el => {
@@ -65,13 +72,14 @@ for (let i = 0; i < total; i++) {
           i: cs.fontStyle === 'italic' || st.i,
           color: rgb(cs.color) || st.color,
           sz: px(cs.fontSize) || st.sz,
+          bg: (INLINE.has(node.tagName) ? bgc(cs.backgroundColor) : null) || st.bg,
         };
         node.childNodes.forEach(c => walk(c, st2));
       };
       const cs = getComputedStyle(el);
       walk(el, { b: +cs.fontWeight >= 600, i: cs.fontStyle === 'italic', color: rgb(cs.color),
                  sz: px(cs.fontSize), upper: cs.textTransform === 'uppercase',
-                 spc: px(cs.letterSpacing) || 0 });
+                 spc: px(cs.letterSpacing) || 0, bg: null });
       return paras.filter(r => r.length).map(runs => ({ runs }));
     };
 

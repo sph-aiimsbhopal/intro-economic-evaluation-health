@@ -5,7 +5,7 @@
 #
 # Needs: node with playwright, python3 with python-pptx.
 set -e
-DECKS="opening block1 block2 costing block3a block3b modelling block3c"
+DECKS="opening block1 block3a costing block3b block2 modelling block3c"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 WORK="${TMPDIR:-/tmp}/ee-pptx"
 mkdir -p "$WORK"

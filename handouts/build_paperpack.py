@@ -140,7 +140,8 @@ changes the conclusion; (4) your verdict: <em>would you act on this paper?</em><
             out.append(f"<p>{para}</p>")
         out.append("</div>")
         out.append('<h2>Your prompts through the day</h2><table class="pr"><thead><tr><th>After</th><th>Ask of your paper</th></tr></thead><tbody>')
-        for (t, s), q in zip(SESSIONS, p['prompts']):
+        for t, s, i in SESSIONS:
+            q = p['prompts'][i]
             out.append(f"<tr><td>Session {t}<span class=\"s\">{E(s)}</span></td><td>{q}</td></tr>")
         out.append("</tbody></table>")
         out.append('<p class="foot">The summary paraphrases the published abstract and is not a substitute for it. '
