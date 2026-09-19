@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Economic Evaluation in Health — Programme</title>
+<style>
+  :root{
+    --deep:#1c2f5e; --deep-2:#2c4a8f; --bar:#16264d;
+    --teal:#2a4890; --teal-br:#c08e2a; --green:#3d8a63; --amber:#c08e2a;
+    --mint:#eef2fa; --mint-br:#d5deef;
+    --ink:#22283b; --ink-2:#4c5670; --ink-3:#7d8699; --line:#dee3ec;
+    --on-1:#cdd9f2;        /* bright text on the dark band */
+    --on-2:#aab9de;        /* dimmer text on the dark band */
+    --on-3:#9fb2dd;        /* small caps label on dark */
+    --on-4:#dde5f5;        /* body text on dark */
+    --on-5:#c0cbe2;        /* footer / details-bar secondary */
+    --icon:#8fa6dd;        /* stroke colour of the small icons */
+    --link:#a9bdea;        /* links on the dark footer */
+    --tint:#f4f6fb;        /* hero band */
+    --tint-2:#fbfcfe;      /* programme card */
+    --tint-3:#f6f8fc;      /* person card */
+    --rule-mid:#6f7fbe;    /* middle stop of the gradient rule */
+    --reg-1:#23397a;       /* registration panel gradient */
+    --reg-2:#3a5cae;
+    --slot-b:#a9781a;      /* midday card heading */
+    --slot-c:#2f7d59;      /* afternoon card heading */
+    --ink-body:#2c3448;    /* long-form body text */
+    --note-bg:#fdf6e3; --note-br:#f0e0b0; --note-ink:#5c4a1c; --note-b:#7a5e12;
+  }
+  @page{ size:A4; margin:0 }
+  *{ box-sizing:border-box; margin:0; padding:0 }
+  html,body{
+    font-family:"Lato","Segoe UI","Helvetica Neue",Carlito,Arial,sans-serif;
+    color:var(--ink); background:#8a9aa2; -webkit-font-smoothing:antialiased;
+    font-size:10pt; line-height:1.5;
+  }
+  .page{
+    width:210mm; height:297mm; background:#fff; overflow:hidden;
+    margin:0 auto; display:flex; flex-direction:column;
+  }
+  .pad{ padding:0 13mm; flex:1 1 auto }
+
+  /* masthead — compact version of the brochure's */
+  .mast{
+    flex:0 0 auto; background:linear-gradient(100deg,var(--deep) 0%,var(--deep-2) 100%);
+    color:#fff; padding:4.6mm 9mm; display:flex; align-items:center; gap:6mm;
+  }
+  .mast .badge{ background:#fff; border-radius:3px; padding:1.9mm; flex:0 0 auto; display:flex }
+  .mast .badge img{ display:block; height:13.5mm; width:auto }
+  .mast .who{ flex:1 1 auto; text-align:center; line-height:1.3 }
+  .mast .inst{ font-size:12.6pt; font-weight:700; letter-spacing:-.01em }
+  .mast .unit{ font-size:8.2pt; font-weight:600; color:var(--on-1); margin-top:.6mm }
+  .mast .unit em{ font-style:normal; font-weight:400; color:var(--on-2) }
+  .mast .dept{ font-size:7pt; color:var(--on-3); margin-top:1.4mm }
+
+  .rule{ flex:0 0 auto; height:1.6mm;
+    background:linear-gradient(90deg,var(--teal-br) 0%,var(--rule-mid) 55%,var(--green) 100%) }
+
+  /* title block */
+  .head{ flex:0 0 auto; background:var(--tint); text-align:center; padding:4.2mm 13mm 4mm }
+  .head .kick{
+    font-size:7.2pt; font-weight:700; letter-spacing:.19em; text-transform:uppercase; color:var(--teal);
+  }
+  .head h1{ font-size:20pt; font-weight:700; color:var(--deep); letter-spacing:-.02em; margin-top:1.6mm; line-height:1.1 }
+  .head h1 span{ color:var(--teal-br) }
+  .head .when{
+    margin-top:2.6mm; font-size:9.4pt; color:var(--ink-2); font-weight:600;
+  }
+  .head .when b{ color:var(--deep) }
+
+  /* table */
+  table{ border-collapse:collapse; width:100%; margin-top:4mm; table-layout:fixed }
+  th{
+    background:var(--bar); color:#fff; text-align:left; font-weight:700;
+    font-size:7.6pt; letter-spacing:.11em; text-transform:uppercase; padding:2mm 3mm;
+  }
+  td{ padding:1.7mm 3mm; border-bottom:.5pt solid var(--line); vertical-align:top }
+  col.t{ width:20mm } col.s{ width:52mm } col.f{ width:31mm }
+
+  td.t{ font-size:8.6pt; font-weight:700; color:var(--deep); font-variant-numeric:tabular-nums; white-space:nowrap }
+  td.s{ font-size:8.8pt; font-weight:700; color:var(--ink-body); line-height:1.3 }
+  td.d{ font-size:8.3pt; color:var(--ink-2); line-height:1.35 }
+  td.f{ border-left:.5pt solid var(--line) }
+
+  tr.brk td{ background:var(--tint); border-bottom:.5pt solid var(--line) }
+  tr.brk td.t{ color:var(--ink-3) }
+  tr.brk td.s{ color:var(--ink-3); font-weight:700; font-style:italic }
+
+  tr.hands td.s:after{
+    content:"HANDS-ON"; display:inline-block; margin-left:2mm; vertical-align:1.2mm;
+    background:var(--amber); color:#fff; font-size:5.6pt; font-weight:700;
+    letter-spacing:.1em; padding:.5mm 1.6mm; border-radius:2px;
+  }
+
+  /* notes */
+  .notes{ display:grid; grid-template-columns:1fr 1fr; gap:5mm; margin-top:4mm }
+  .card{
+    background:var(--mint); border:.5pt solid var(--mint-br); border-left:2.4pt solid var(--teal-br);
+    padding:3.2mm 4mm; font-size:8.4pt; line-height:1.45; color:var(--ink-body);
+  }
+  .card b{ color:var(--deep); display:block; margin-bottom:1mm;
+    font-size:7.4pt; letter-spacing:.12em; text-transform:uppercase; color:var(--teal) }
+
+  .foot{
+    flex:0 0 auto; margin-top:auto; background:var(--bar); color:#fff;
+    padding:4mm 13mm; display:flex; justify-content:space-between; align-items:flex-end; gap:8mm;
+  }
+  .foot .l{ font-size:8.4pt; line-height:1.42; flex:1 1 auto }
+  .foot .l b{ font-size:9pt }
+  .foot .r{ font-size:8pt; text-align:right; line-height:1.5; color:var(--on-5); white-space:nowrap; flex:0 0 auto }
+  .foot .r b{ color:#fff }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="mast">
+    <div class="badge"><img src="__AIIMS__" alt="AIIMS Bhopal"></div>
+    <div class="who">
+      <div class="inst">All India Institute of Medical Sciences, Bhopal</div>
+      <div class="unit">School of Public Health <em>in collaboration with</em> Regional Resource Centre for Health Technology Assessment</div>
+      <div class="dept">Under the aegis of HTAIn, Department of Health Research, MoHFW, Government of India</div>
+    </div>
+    <div class="badge"><img src="__HTAIN__" alt="HTAIn"></div>
+  </div>
+  <div class="rule"></div>
+
+  <div class="head">
+    <div class="kick">Programme</div>
+    <h1>Economic Evaluation <span>in Health</span></h1>
+    <div class="when"><b>Wednesday, 23 September 2026</b> &nbsp;&middot;&nbsp; 09:30 to 16:30 &nbsp;&middot;&nbsp; AIIMS Bhopal</div>
+  </div>
+
+  <div class="pad">
+    <table>
+      <colgroup><col class="t"><col class="s"><col><col class="f"></colgroup>
+      <thead>
+        <tr><th>Time</th><th>Session</th><th>What it covers</th><th>Facilitator</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="t">09:30 &ndash; 09:40</td>
+          <td class="s">Registration and welcome</td>
+          <td class="d">Sign-in, workshop folder, and how the day will run.</td>
+          <td class="f"></td>
+        </tr>
+        <tr>
+          <td class="t">09:40 &ndash; 10:00</td>
+          <td class="s">Where economic evidence enters health policy</td>
+          <td class="d">How decisions about what the health system pays for are actually made in India, who asks the questions, and where clinicians and researchers come into it.</td>
+          <td class="f"></td>
+        </tr>
+        <tr>
+          <td class="t">10:00 &ndash; 10:40</td>
+          <td class="s">What economic evaluation is, and what it is not</td>
+          <td class="d">Opportunity cost. The two questions that sort every study into six boxes. Why a trial is a partial evaluation. CMA, CEA, CUA and CBA.</td>
+          <td class="f"></td>
+        </tr>
+        <tr>
+          <td class="t">10:40 &ndash; 11:20</td>
+          <td class="s">Thresholds, opportunity cost and budget impact</td>
+          <td class="d">Where a threshold comes from, India's own estimate, and why affordability this year is a separate test from cost-effectiveness.</td>
+          <td class="f"></td>
+        </tr>
+        <tr class="brk">
+          <td class="t">11:20 &ndash; 11:40</td>
+          <td class="s">Tea</td>
+          <td class="d"></td>
+          <td class="f"></td>
+        </tr>
+        <tr class="hands">
+          <td class="t">11:40 &ndash; 12:35</td>
+          <td class="s">Costing your own service</td>
+          <td class="d">Worksheet exercise. Micro-costing against gross costing, step-down allocation of shared overheads, annuitising capital, and where Indian unit-cost data already exists.</td>
+          <td class="f"></td>
+        </tr>
+        <tr>
+          <td class="t">12:35 &ndash; 13:15</td>
+          <td class="s">Framing the question</td>
+          <td class="d">Decision problem, comparator, perspective and time horizon &mdash; the four choices that decide the answer before any data are collected.</td>
+          <td class="f"></td>
+        </tr>
+        <tr class="brk">
+          <td class="t">13:15 &ndash; 14:05</td>
+          <td class="s">Lunch</td>
+          <td class="d"></td>
+          <td class="f"></td>
+        </tr>
+        <tr>
+          <td class="t">14:05 &ndash; 14:45</td>
+          <td class="s">Outcomes, discounting and the ICER</td>
+          <td class="d">What a QALY actually is and where its weights come from. Why discounting makes prevention look worse. Average against incremental, and net monetary benefit.</td>
+          <td class="f"></td>
+        </tr>
+        <tr>
+          <td class="t">14:45 &ndash; 15:10</td>
+          <td class="s">Modelling in half an hour</td>
+          <td class="d">Decision trees and Markov models at reading level: why a model exists at all, what a cycle is, and what to distrust in a published one.</td>
+          <td class="f"></td>
+        </tr>
+        <tr class="brk">
+          <td class="t">15:10 &ndash; 15:25</td>
+          <td class="s">Tea</td>
+          <td class="d"></td>
+          <td class="f"></td>
+        </tr>
+        <tr>
+          <td class="t">15:25 &ndash; 15:55</td>
+          <td class="s">Handling uncertainty</td>
+          <td class="d">One-way and probabilistic sensitivity analysis, the tornado diagram, and the cost-effectiveness acceptability curve.</td>
+          <td class="f"></td>
+        </tr>
+        <tr class="hands">
+          <td class="t">15:55 &ndash; 16:20</td>
+          <td class="s">Group appraisal report-back</td>
+          <td class="d">Eight groups, paired by specialty. Four contrasting pairs of papers presented and defended, six minutes each.</td>
+          <td class="f"></td>
+        </tr>
+        <tr>
+          <td class="t">16:20 &ndash; 16:30</td>
+          <td class="s">Close and feedback</td>
+          <td class="d">What to do on Monday, where the material lives, and feedback forms.</td>
+          <td class="f"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="notes">
+      <div class="card">
+        <b>The paper you are given at registration</b>
+        Each group receives one published economic evaluation from its own specialty and works on it
+        through the whole day, applying each principle to that paper as it is taught. By the last session
+        the appraisal form in your folder is already complete.
+      </div>
+      <div class="card">
+        <b>After the workshop</b>
+        The slides, the six interactive widgets, the appraisal form and the full reading list stay online
+        at the address below, free to reuse and to pass on to your own students. Sessions include short
+        live polls, so keep a phone to hand.
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="l"><b>School of Public Health</b> &nbsp;&middot;&nbsp; Regional Resource Centre for HTA<br>
+      AIIMS Bhopal, Saket Nagar, Bhopal &ndash; 462020</div>
+    <div class="r"><b>Web:</b> sph-aiimsbhopal.github.io/intro-economic-evaluation-health</div>
+  </div>
+
+</div>
+</body>
+</html>

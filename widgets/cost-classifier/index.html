@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Which costs count?</title>
+<link rel="stylesheet" href="../../assets/css/tokens.css">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);padding:16px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto}
+
+  header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+  h1{font-size:1.12rem;margin:0;font-weight:650;letter-spacing:-.01em}
+  .prog{font-size:.78rem;color:var(--ink-dim);font-variant-numeric:tabular-nums}
+  .bar{height:3px;background:var(--panel-2);border-radius:2px;overflow:hidden;margin-bottom:16px}
+  .bar > i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+
+  .item{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:15px 17px;margin-bottom:16px}
+  .item .ctx{font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--accent);display:block;margin-bottom:7px}
+  .item h2{font-size:1.02rem;margin:0;font-weight:650;line-height:1.35}
+
+  .q{margin-bottom:14px}
+  .q .qt{font-size:.82rem;font-weight:650;margin-bottom:8px}
+  .q .qt b{color:var(--accent);font-weight:700;margin-right:6px}
+  .opts{display:flex;flex-wrap:wrap;gap:7px}
+  button.opt{background:var(--panel-2);border:1px solid var(--line);color:var(--ink);
+    font-size:.82rem;font-family:inherit;padding:9px 14px;border-radius:9px;cursor:pointer;
+    transition:border-color .15s,color .15s,background .15s;text-align:left}
+  button.opt:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+  button.opt:disabled{cursor:default;opacity:.5}
+  button.opt.right{background:var(--fill-good);border-color:var(--good);color:var(--good);opacity:1}
+  button.opt.wrong{background:var(--fill-bad);border-color:var(--bad);color:var(--bad);opacity:1}
+
+  .fb{border-radius:8px;padding:12px 14px;border:1px solid;margin-bottom:14px;font-size:.85rem}
+  .fb .vt{font-weight:700;font-size:.95rem;margin-bottom:5px;display:block}
+  .fb p{margin:0 0 7px}
+  .fb p:last-child{margin-bottom:0}
+  .fb.ok{background:var(--fill-good);border-color:var(--edge-good)}
+  .fb.ok .vt{color:var(--good)}
+  .fb.no{background:var(--fill-bad);border-color:var(--edge-bad)}
+  .fb.no .vt{color:var(--bad)}
+  .persp{font-size:.8rem;color:var(--ink-dim);border-top:1px dashed var(--line);padding-top:8px;margin-top:9px}
+  .persp b{color:var(--ink)}
+
+  .row{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:4px}
+  button.go{background:var(--accent);border:none;color:var(--bg);font-weight:700;font-size:.86rem;
+    font-family:inherit;padding:10px 20px;border-radius:9px;cursor:pointer}
+  button.go:hover{filter:brightness(1.12)}
+  button.ghost{background:transparent;border:1px solid var(--line);color:var(--ink-dim);
+    font-size:.8rem;font-family:inherit;padding:9px 16px;border-radius:9px;cursor:pointer}
+  button.ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+  .score{text-align:center;padding:22px 10px}
+  .score .n{font-size:3rem;font-weight:750;letter-spacing:-.03em;color:var(--accent);line-height:1}
+  .score .l{color:var(--ink-dim);font-size:.9rem;margin-top:6px}
+  table.rev{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:16px}
+  table.rev th{text-align:left;color:var(--accent);font-size:.66rem;text-transform:uppercase;
+    letter-spacing:.05em;padding:6px;border-bottom:2px solid var(--line)}
+  table.rev td{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.35}
+  table.rev td.ok{color:var(--good);font-weight:700}
+  table.rev td.no{color:var(--bad);font-weight:700}
+  .hidden{display:none}
+  .foot{font-size:.68rem;color:var(--ink-faint);margin-top:18px;padding-top:12px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Which costs count?</h1>
+    <div class="prog" id="prog">Item 1 of 10</div>
+  </header>
+  <div class="bar"><i id="barfill"></i></div>
+
+  <div id="quiz">
+    <div class="item">
+      <span class="ctx" id="ctx"></span>
+      <h2 id="title"></h2>
+    </div>
+
+    <div class="q" id="q1">
+      <div class="qt"><b>Q1</b>What kind of cost is this?</div>
+      <div class="opts" id="o1"></div>
+    </div>
+
+    <div class="q hidden" id="q2">
+      <div class="qt"><b>Q2</b>Under the Indian Reference Case, where does it belong?</div>
+      <div class="opts" id="o2"></div>
+    </div>
+
+    <div class="fb hidden" id="fb"><span class="vt" id="fbt"></span><p id="fbp"></p><div class="persp" id="fbx"></div></div>
+
+    <div class="row"><button class="go hidden" id="next">Next item →</button></div>
+  </div>
+
+  <div id="results" class="hidden">
+    <div class="score">
+      <div class="n" id="scoreN">0 / 10</div>
+      <div class="l" id="scoreL"></div>
+    </div>
+    <table class="rev"><thead><tr><th>Line item</th><th>Category</th><th>Where it belongs</th><th style="text-align:right">You</th></tr></thead>
+      <tbody id="revBody"></tbody></table>
+    <div class="row" style="justify-content:center;margin-top:20px"><button class="ghost" id="again">Try again</button></div>
+  </div>
+
+  <p class="foot">
+    Categories and placement follow the Indian Reference Case: Sharma D, Prinja S, Aggarwal AK, Rajsekar K,
+    Bahuguna P. <em>Lancet Reg Health Southeast Asia</em> 2023;16:100241 (PMID 37694178). Line items are
+    typical of an Indian immunisation or screening programme costing.
+  </p>
+</div>
+
+<script>
+(function(){
+  const CAT = {
+    dm:  'Direct medical',
+    dnm: 'Direct non-medical',
+    ind: 'Indirect (productivity)',
+    intg:'Intangible'
+  };
+  const PLACE = {
+    base: 'Base case',
+    sa:   'Sensitivity analysis only',
+    excl: 'Excluded entirely'
+  };
+
+  const ITEMS = [
+    { ctx:'HPV vaccination programme',
+      title:'Salary of the ANM for the time she spends giving the injections',
+      cat:'dm', place:'base', payer:true,
+      why:'Staff time is a direct medical cost, a resource consumed in delivering the intervention itself. Human-resource cost is usually the largest single line in an Indian public-facility costing.',
+      px:'Borne by the health system, so it counts under the <b>healthcare payer perspective</b> too.' },
+
+    { ctx:'HPV vaccination programme',
+      title:'Annuitised cost of the cold-chain refrigerator used to store the vaccine',
+      cat:'dm', place:'base', payer:true,
+      why:'A capital item, but still a direct medical cost. It is annuitised, spread over its useful life at the discount rate, rather than charged in full to the year of purchase, because the programme uses only one year of it.',
+      px:'Health-system resource, so it survives the narrower <b>payer perspective</b>. Forgetting capital costs altogether is a common and reviewable omission.' },
+
+    { ctx:'HPV vaccination programme',
+      title:'Cost of training the vaccinators before the campaign',
+      cat:'dm', place:'base', payer:true,
+      why:'A programme cost, and still direct medical: a resource consumed to deliver the intervention. Start-up and training costs are routinely forgotten in student costings.',
+      px:'Health-system cost, counted under the <b>payer perspective</b> as well.' },
+
+    { ctx:'HPV vaccination programme',
+      title:'Bus fare for a mother bringing her daughter to the CHC',
+      cat:'dnm', place:'base', payer:false,
+      why:'Transport is the classic direct non-medical cost: a real resource consumed because of the intervention, but not itself medical care.',
+      px:'Borne by the family, so it is in the <b>abridged societal</b> base case but drops out under the <b>healthcare payer perspective</b>. That difference is exactly why the Reference Case asks you to report both.' },
+
+    { ctx:'Cervical cancer screening',
+      title:'Out-of-pocket payment for a Pap smear taken at a private laboratory',
+      cat:'dm', place:'base', payer:false,
+      why:'Still a direct <em>medical</em> cost, because it buys medical care. What differs is who pays it, not what it is. Students often mislabel anything patient-borne as "indirect".',
+      px:'In the <b>abridged societal</b> base case; out under the <b>payer perspective</b>. With India’s high out-of-pocket share, leaving this out can change a conclusion.' },
+
+    { ctx:'Cervical cancer treatment',
+      title:'Meals bought by a relative staying with a patient during a hospital admission',
+      cat:'dnm', place:'base', payer:false,
+      why:'Direct non-medical: a real cost caused by the treatment, but not medical care. Food, lodging and attendant costs belong here.',
+      px:'Family-borne, so it is in the <b>abridged societal</b> base case and out under the <b>payer perspective</b>.' },
+
+    { ctx:'Cervical cancer treatment',
+      title:'A day of wages the mother loses to accompany her daughter to hospital',
+      cat:'ind', place:'sa', payer:false,
+      why:'Lost production is an indirect cost. Note that it is not a payment anyone makes, it is output the economy does not get.',
+      px:'The Indian Reference Case deliberately keeps indirect costs <b>out of the base case</b> and asks for them in sensitivity analysis, valued by the human capital approach. The reasons given are that the methods are contested, the Indian data are thin, and including them systematically favours diseases of the working and better-off.' },
+
+    { ctx:'Cervical cancer, late presentation',
+      title:'Production lost to the economy through a woman’s premature death at 45',
+      cat:'ind', place:'sa', payer:false,
+      why:'Indirect cost from premature mortality, the same category as lost wages over a longer span.',
+      px:'<b>Sensitivity analysis only</b>, by the human capital approach. Results should be presented both with and without it.' },
+
+    { ctx:'HPV vaccination programme',
+      title:'A girl’s fear and distress in the minutes before the injection',
+      cat:'intg', place:'excl', payer:false,
+      why:'Intangible cost. Real, but pain, fear and suffering are not resource use.',
+      px:'<b>Excluded entirely</b>, and for a precise reason: this disutility is already captured in the QALY denominator through the quality-of-life weight. Counting it as a cost as well would be double counting.' },
+
+    { ctx:'Cervical cancer treatment under PM-JAY',
+      title:'The PM-JAY package rate paid to an empanelled hospital for a hysterectomy',
+      cat:'dm', place:'base', payer:true,
+      why:'A direct medical cost, valued at the reimbursement price rather than at the resources actually consumed. Worth noticing: a package rate is a price, and prices and costs are not the same thing.',
+      px:'The Reference Case suggests treating <b>PM-JAY as the payer</b> for curative services, so this is in under both perspectives.' }
+  ];
+
+  const O1 = [['dm','Direct medical'],['dnm','Direct non-medical'],
+              ['ind','Indirect (productivity)'],['intg','Intangible']];
+  const O2 = [['base','Base case'],['sa','Sensitivity analysis only'],['excl','Excluded entirely']];
+
+  const $ = id => document.getElementById(id);
+  let i=0, a1=null, a2=null, marks=[];
+
+  function buildOpts(host, opts, onPick){
+    host.innerHTML='';
+    opts.forEach(([v,label])=>{
+      const b=document.createElement('button');
+      b.className='opt'; b.textContent=label; b.dataset.v=v;
+      b.onclick=()=>onPick(v,host);
+      host.appendChild(b);
+    });
+  }
+  function lock(host, correct, picked){
+    [...host.children].forEach(b=>{
+      b.disabled=true;
+      if(b.dataset.v===correct) b.className='opt right';
+      else if(b.dataset.v===picked) b.className='opt wrong';
+    });
+  }
+
+  function render(){
+    const it=ITEMS[i]; a1=a2=null;
+    $('prog').textContent='Item '+(i+1)+' of '+ITEMS.length;
+    $('barfill').style.width=(i/ITEMS.length*100)+'%';
+    $('ctx').textContent=it.ctx;
+    $('title').textContent=it.title;
+    $('q2').classList.add('hidden');
+    $('fb').classList.add('hidden');
+    $('next').classList.add('hidden');
+    buildOpts($('o1'), O1, pick1);
+  }
+
+  function pick1(v,host){
+    a1=v; lock(host, ITEMS[i].cat, v);
+    $('q2').classList.remove('hidden');
+    buildOpts($('o2'), O2, pick2);
+  }
+
+  function pick2(v,host){
+    a2=v; const it=ITEMS[i];
+    lock(host, it.place, v);
+    const ok = (a1===it.cat && a2===it.place);
+    marks.push({ok, title:it.title, cat:CAT[it.cat], place:PLACE[it.place],
+                yours: CAT[a1]+' · '+PLACE[a2]});
+    $('fb').className='fb '+(ok?'ok':'no');
+    $('fbt').textContent = ok ? 'Correct' : 'Not quite';
+    $('fbp').innerHTML = '<strong>'+CAT[it.cat]+' &middot; '+PLACE[it.place]+'.</strong> '+it.why;
+    $('fbx').innerHTML = it.px;
+    $('fb').classList.remove('hidden');
+    $('next').classList.remove('hidden');
+    $('next').textContent = (i===ITEMS.length-1) ? 'See your score →' : 'Next item →';
+  }
+
+  $('next').onclick=()=>{
+    if(i===ITEMS.length-1) showResults();
+    else { i++; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+  };
+
+  function showResults(){
+    const n=marks.filter(m=>m.ok).length;
+    $('quiz').classList.add('hidden');
+    $('results').classList.remove('hidden');
+    $('barfill').style.width='100%';
+    $('prog').textContent='Done';
+    $('scoreN').textContent=n+' / '+ITEMS.length;
+    $('scoreL').textContent = n===ITEMS.length
+      ? 'All correct. You can cost a programme without embarrassing yourself in a viva.'
+      : (n>=7 ? 'Good. Re-read the ones you missed. The boundary cases are where marks are lost.'
+              : 'Worth another pass. Ask two questions of every line: what resource is it, and who bears it?');
+    const tb=$('revBody'); tb.innerHTML='';
+    marks.forEach(m=>{
+      const tr=document.createElement('tr');
+      tr.innerHTML='<td>'+m.title+'</td><td>'+m.cat+'</td><td>'+m.place+'</td>'+
+        '<td class="'+(m.ok?'ok':'no')+'" style="text-align:right">'+(m.ok?'✓':m.yours)+'</td>';
+      tb.appendChild(tr);
+    });
+  }
+
+  $('again').onclick=()=>{
+    i=0; marks=[];
+    $('results').classList.add('hidden');
+    $('quiz').classList.remove('hidden');
+    render(); window.scrollTo({top:0,behavior:'smooth'});
+  };
+
+  render();
+})();
+</script>
+</body>
+</html>

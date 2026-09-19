@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A QALY is an area</title>
+<link rel="stylesheet" href="../../assets/css/tokens.css">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);padding:18px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.5}
+  .wrap{max-width:1120px;margin:0 auto}
+  h1{font-size:1.3rem;margin:0 0 2px;font-weight:650;letter-spacing:-.01em}
+  .sub{color:var(--ink-dim);font-size:.85rem;margin:0 0 18px}
+  .grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(290px,1fr);gap:18px;align-items:start}
+  @media(max-width:900px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px}
+  svg{display:block;width:100%;height:auto;touch-action:none;user-select:none}
+  .axlabel{font-size:12px;fill:var(--ink-dim);font-weight:600}
+  .tick{font-size:10px;fill:var(--ink-faint)}
+  .handle{cursor:grab;filter:drop-shadow(0 2px 5px var(--shadow))}
+  .handle:active{cursor:grabbing}
+  .areatxt{font-size:13px;font-weight:700}
+
+  table.readout{width:100%;border-collapse:collapse;font-size:.86rem}
+  table.readout td{padding:7px 2px;border-bottom:1px solid var(--line)}
+  table.readout td:last-child{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+  table.readout tr:last-child td{border-bottom:none}
+  .lbl{color:var(--ink-dim)}
+  .swatch{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:7px;vertical-align:baseline}
+
+  .big{border:1px solid var(--edge-accent);background:var(--fill-accent);border-radius:8px;
+    padding:12px 14px;margin-bottom:14px}
+  .big .n{font-size:1.9rem;font-weight:750;letter-spacing:-.03em;color:var(--accent);line-height:1}
+  .big .l{font-size:.78rem;color:var(--ink-dim);margin-top:4px}
+
+  label.ctl{display:block;font-size:.74rem;color:var(--ink-dim);margin:14px 0 5px;font-weight:600;
+    text-transform:uppercase;letter-spacing:.05em}
+  .presets{display:flex;flex-wrap:wrap;gap:6px}
+  button.preset{background:var(--panel-2);border:1px solid var(--line);color:var(--ink);
+    font-size:.76rem;padding:6px 10px;border-radius:999px;cursor:pointer;font-family:inherit}
+  button.preset:hover{border-color:var(--accent);color:var(--accent)}
+  .note{font-size:.72rem;color:var(--ink-faint);margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+  .hint{font-size:.78rem;color:var(--ink-dim);margin-top:8px;text-align:center}
+  kbd{background:var(--panel-2);border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:.72rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>A QALY is an area</h1>
+  <p class="sub">Quality of life on the vertical axis, years on the horizontal. Drag either corner. The area under each profile <em>is</em> its QALYs.</p>
+
+  <div class="grid">
+    <div class="card">
+      <svg id="plot" viewBox="0 0 720 470" role="img" aria-label="Quality-adjusted life years as area under a utility-time profile">
+        <g id="chart"></g>
+      </svg>
+      <p class="hint">Drag the corner handles &nbsp;·&nbsp; or focus one and use <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd></p>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="big">
+          <div class="n" id="incr">—</div>
+          <div class="l">incremental QALYs gained: the area between the two profiles</div>
+        </div>
+
+        <table class="readout">
+          <tr><td class="lbl"><span class="swatch" id="swB"></span>Intervention</td><td id="rB">—</td></tr>
+          <tr><td class="lbl" style="padding-left:17px">utility × years</td><td id="rBcalc" style="font-weight:400;color:var(--ink-faint)">—</td></tr>
+          <tr><td class="lbl"><span class="swatch" id="swA"></span>Comparator</td><td id="rA">—</td></tr>
+          <tr><td class="lbl" style="padding-left:17px">utility × years</td><td id="rAcalc" style="font-weight:400;color:var(--ink-faint)">—</td></tr>
+        </table>
+
+        <label class="ctl">Try a scenario</label>
+        <div class="presets" id="presets"></div>
+
+        <p class="note">
+          <strong>A utility of 1.0 is full health and 0 is equivalent to being dead.</strong>
+          Values below zero are possible and mean a state judged worse than death, which is why the axis
+          runs a little below the line. Utilities come from the general public, not from patients, and
+          India has its own EQ-5D-5L value set: applying UK tariffs to Indian patients is a flaw a
+          reviewer should catch.
+          <br><br>
+          Notice how differently the same gain can be produced: more years at the same quality, the same
+          years at better quality, or fewer years at much better quality. All three are the same number of
+          QALYs, and the QALY cannot tell them apart. That is the measure's central limitation, not a bug
+          in this widget.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const W=720,H=470, M={t:26,r:24,b:52,l:74};
+  const PW=W-M.l-M.r, PH=H-M.t-M.b;
+  const XMAX=14, UMIN=-0.2, UMAX=1.0;
+  const sx = y => M.l + (y/XMAX)*PW;
+  const sy = u => M.t + ((UMAX-u)/(UMAX-UMIN))*PH;
+  const ix = px => ((px-M.l)/PW)*XMAX;
+  const iy = py => UMAX - ((py-M.t)/PH)*(UMAX-UMIN);
+
+  // A = comparator, B = intervention
+  let A={u:0.55, y:4.0}, B={u:0.78, y:7.0};
+
+  const svg=document.getElementById('plot'), g=document.getElementById('chart');
+  const C = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const NS='http://www.w3.org/2000/svg';
+  const el=(n,a)=>{const x=document.createElementNS(NS,n);for(const k in a)x.setAttribute(k,a[k]);return x;};
+
+  function draw(){
+    g.innerHTML='';
+    const cA=C('--ink-faint'), cB=C('--accent');
+
+    // gridlines
+    for(let u=0;u<=1.0001;u+=0.25){
+      const y=sy(u);
+      g.appendChild(el('line',{x1:M.l,y1:y,x2:M.l+PW,y2:y,stroke:C('--line'),'stroke-opacity':.5}));
+      const t=el('text',{x:M.l-9,y:y+4,'text-anchor':'end',class:'tick'}); t.textContent=u.toFixed(2);
+      g.appendChild(t);
+    }
+    for(let yr=2;yr<=XMAX;yr+=2){
+      const x=sx(yr);
+      g.appendChild(el('line',{x1:x,y1:M.t,x2:x,y2:sy(UMIN),stroke:C('--line'),'stroke-opacity':.35}));
+      const t=el('text',{x:x,y:sy(UMIN)+16,'text-anchor':'middle',class:'tick'}); t.textContent=yr;
+      g.appendChild(t);
+    }
+
+    // "dead" line at u = 0
+    g.appendChild(el('line',{x1:M.l,y1:sy(0),x2:M.l+PW,y2:sy(0),stroke:C('--ink-faint'),'stroke-width':1.5}));
+    const dl=el('text',{x:M.l+PW-4,y:sy(0)-6,'text-anchor':'end',fill:C('--ink-faint'),'font-size':10,'font-weight':600});
+    dl.textContent='utility 0 = equivalent to being dead'; g.appendChild(dl);
+
+    // B first (larger, behind), then A on top
+    rect(B, cB, 0.20, 'intervention');
+    rect(A, cA, 0.34, 'comparator');
+
+    // axes
+    g.appendChild(el('line',{x1:M.l,y1:M.t,x2:M.l,y2:sy(UMIN),stroke:C('--ink-faint')}));
+
+    const ax=el('text',{x:M.l+PW/2,y:H-12,'text-anchor':'middle',class:'axlabel'});
+    ax.textContent='Years'; g.appendChild(ax);
+    const ay=el('text',{x:18,y:M.t+PH/2,'text-anchor':'middle',class:'axlabel',
+      transform:'rotate(-90 18 '+(M.t+PH/2)+')'});
+    ay.textContent='Health-related quality of life (utility)'; g.appendChild(ay);
+
+    handle(B, cB, 'Intervention');
+    handle(A, cA, 'Comparator');
+  }
+
+  function rect(p, col, op, label){
+    const x0=sx(0), x1=sx(p.y), y0=sy(p.u), y1=sy(0);
+    g.appendChild(el('rect',{x:x0,y:Math.min(y0,y1),width:x1-x0,height:Math.abs(y1-y0),
+      fill:col,'fill-opacity':op,stroke:col,'stroke-width':1.5}));
+    if(x1-x0>70 && Math.abs(y1-y0)>26){
+      const t=el('text',{x:x0+(x1-x0)/2,y:(y0+y1)/2+5,'text-anchor':'middle',fill:col,class:'areatxt'});
+      t.textContent=(p.u*p.y).toFixed(2)+' QALYs';
+      g.appendChild(t);
+      const l=el('text',{x:x0+(x1-x0)/2,y:(y0+y1)/2+21,'text-anchor':'middle',fill:col,
+        'font-size':10,'font-weight':600,'fill-opacity':.75});
+      l.textContent=label; g.appendChild(l);
+    }
+  }
+
+  function handle(p, col, name){
+    const x=sx(p.y), y=sy(p.u);
+    g.appendChild(el('circle',{cx:x,cy:y,r:15,fill:col,'fill-opacity':.15}));
+    const dot=el('circle',{cx:x,cy:y,r:8,fill:col,stroke:C('--bg'),'stroke-width':2.5,
+      class:'handle',tabindex:'0',role:'slider','aria-label':name+', utility and duration'});
+    g.appendChild(dot);
+    dot.addEventListener('pointerdown', e=>down(e,p));
+    dot.addEventListener('keydown', e=>key(e,p));
+  }
+
+  function clamp(p){
+    p.u=Math.max(UMIN,Math.min(1,p.u));
+    p.y=Math.max(0.2,Math.min(XMAX,p.y));
+  }
+
+  function down(ev,p){
+    ev.preventDefault();
+    svg.setPointerCapture(ev.pointerId);
+    const move=e=>{
+      const pt=svg.createSVGPoint(); pt.x=e.clientX; pt.y=e.clientY;
+      const q=pt.matrixTransform(svg.getScreenCTM().inverse());
+      p.y=ix(q.x); p.u=iy(q.y); clamp(p); render();
+    };
+    const up=()=>{ svg.releasePointerCapture(ev.pointerId);
+      svg.removeEventListener('pointermove',move); svg.removeEventListener('pointerup',up); };
+    svg.addEventListener('pointermove',move);
+    svg.addEventListener('pointerup',up);
+  }
+
+  function key(e,p){
+    const su=e.shiftKey?0.01:0.05, sy_=e.shiftKey?0.1:0.5;
+    let hit=true;
+    if(e.key==='ArrowRight') p.y+=sy_;
+    else if(e.key==='ArrowLeft') p.y-=sy_;
+    else if(e.key==='ArrowUp') p.u+=su;
+    else if(e.key==='ArrowDown') p.u-=su;
+    else hit=false;
+    if(hit){ e.preventDefault(); clamp(p); render();
+      requestAnimationFrame(()=>{ const hs=g.querySelectorAll('.handle');
+        hs[p===B?0:1] && hs[p===B?0:1].focus(); }); }
+  }
+
+  function render(){
+    draw();
+    const qA=A.u*A.y, qB=B.u*B.y, d=qB-qA;
+    document.getElementById('incr').textContent=(d>=0?'+':'−')+Math.abs(d).toFixed(2)+' QALY';
+    document.getElementById('incr').style.color = d>=0 ? C('--accent') : C('--bad');
+    document.getElementById('rA').textContent=qA.toFixed(2)+' QALYs';
+    document.getElementById('rB').textContent=qB.toFixed(2)+' QALYs';
+    document.getElementById('rAcalc').textContent=A.u.toFixed(2)+' × '+A.y.toFixed(1)+' yr';
+    document.getElementById('rBcalc').textContent=B.u.toFixed(2)+' × '+B.y.toFixed(1)+' yr';
+    document.getElementById('swA').style.background=C('--ink-faint');
+    document.getElementById('swB').style.background=C('--accent');
+  }
+
+  const PRESETS=[
+    ['More years, same quality', {u:0.55,y:4}, {u:0.55,y:8.2}],
+    ['Same years, better quality',{u:0.40,y:6}, {u:0.78,y:6}],
+    ['Fewer years, much better',  {u:0.35,y:9}, {u:0.90,y:6.0}],
+    ['A palliative gain',         {u:0.25,y:1.2},{u:0.55,y:1.2}],
+    ['Harm, worse on both',      {u:0.70,y:7}, {u:0.50,y:5}]
+  ];
+  const pc=document.getElementById('presets');
+  PRESETS.forEach(([n,a,b])=>{
+    const btn=document.createElement('button');
+    btn.className='preset'; btn.textContent=n;
+    btn.onclick=()=>{ A={...a}; B={...b}; render(); };
+    pc.appendChild(btn);
+  });
+
+  render();
+  new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script>
+</body>
+</html>

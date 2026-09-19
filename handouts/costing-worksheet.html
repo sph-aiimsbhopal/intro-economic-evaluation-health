@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Costing worksheet: one episode of care in your department</title>
+<meta name="description" content="A two-page A4 worksheet for costing one episode of care, bottom up, from the provider's side.">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/handout.css">
+<style>
+  /* Worksheet: built for A4 paper first, screen second. */
+  @page{ size:A4; margin:8mm 10mm 8mm }
+  .ws{ max-width:1000px; margin:0 auto; padding:18px 22px 40px }
+  .ws h1{ font-size:1.45rem; margin:0; color:#fff }
+  .ws .top{ background:var(--band); color:#fff; padding:12px 16px; display:flex;
+    justify-content:space-between; align-items:flex-end; gap:12px;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact }
+  .ws .top .kick{ font-size:.68rem; text-transform:uppercase; letter-spacing:.14em; font-weight:700; opacity:.85; margin:0 0 3px }
+  .ws .top .pg{ font-size:.75rem; opacity:.85; white-space:nowrap }
+  .ws h2{ margin:14px 0 6px; font-size:.9rem; padding-bottom:4px }
+  .ws h2 .n{ display:inline-block; background:var(--band); color:#fff; width:1.45em; text-align:center;
+    margin-right:.45em; border-radius:2px; -webkit-print-color-adjust:exact; print-color-adjust:exact }
+  .ws p{ margin:.35em 0; font-size:.86rem; line-height:1.4 }
+  .ws .hint{ font-size:.8rem; color:var(--ink-dim) }
+  .ws table{ margin:5px 0; font-size:.8rem }
+  .ws th{ padding:5px 7px; font-size:.76rem; -webkit-print-color-adjust:exact; print-color-adjust:exact }
+  .ws td{ padding:0 7px; height:24px; border:1px solid var(--line); background:#fff !important }
+  .ws tr.eg td{ color:var(--ink-dim); font-style:italic; height:auto; padding:4px 7px;
+    background:var(--panel) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact }
+  .ws td.num,.ws th.num{ text-align:right }
+  .ws tr.tot td{ font-weight:700; background:var(--panel) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact }
+  .fields{ display:grid; grid-template-columns:1fr 1fr; gap:6px 18px; margin:6px 0 }
+  .fields .f{ display:flex; gap:8px; align-items:baseline; font-size:.84rem }
+  .fields .f.w{ grid-column:1 / -1 }
+  .fields label{ font-weight:700; white-space:nowrap }
+  .fields .rule{ flex:1; border-bottom:1px solid var(--ink-faint); min-height:1.25em }
+  .ticks{ font-size:.84rem } .ticks span{ margin-right:1.1em; white-space:nowrap }
+  .box{ border:1px solid var(--ink-faint); display:inline-block; width:.8em; height:.8em; vertical-align:-.05em; margin-right:.3em }
+  .path{ display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin:6px 0 }
+  .path div{ border:1px dashed var(--ink-faint); height:46px; font-size:.72rem; color:var(--ink-faint); padding:3px 6px }
+  .formula{ background:var(--panel); border-left:4px solid var(--accent); padding:5px 10px; font-size:.82rem; margin:5px 0;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact }
+  .two{ display:grid; grid-template-columns:1.35fr 1fr; gap:14px; align-items:start }
+  table.af td,table.af th{ height:auto; padding:3px 7px; text-align:center }
+  .lines .l{ border-bottom:1px solid var(--ink-faint); height:20px }
+  .note{ font-size:.74rem; color:var(--ink-faint); margin-top:8px }
+  .page{ page-break-after:always; break-after:page }
+  .page:last-child{ page-break-after:auto; break-after:auto }
+  @media print{
+    body{ font-size:10pt }
+    .ws{ padding:0; max-width:none }
+    .page{ height:280mm; overflow:hidden; position:relative }
+  }
+</style>
+</head>
+<body>
+<div class="ws">
+
+<!-- ================= PAGE 1 ================= -->
+<div class="page">
+  <div class="top">
+    <div><p class="kick">Economic Evaluation in Health &nbsp;·&nbsp; AIIMS Bhopal &nbsp;·&nbsp; 23 September 2026</p>
+    <h1>Costing your own service</h1></div>
+    <div class="pg">Worksheet &nbsp;·&nbsp; page 1 of 2</div>
+  </div>
+
+  <p style="margin-top:8px">Cost <strong>one episode of care</strong> that your department delivers, from the
+  hospital's side, <strong>bottom up</strong>: count what is used, then price it. Rough numbers are fine. The
+  point is to find out which lines matter and which numbers you do not actually know.</p>
+
+  <h2><span class="n">1</span>Define the episode</h2>
+  <div class="fields">
+    <div class="f"><label>Department</label><span class="rule"></span></div>
+    <div class="f"><label>Names in the group</label><span class="rule"></span></div>
+    <div class="f w"><label>The episode</label><span class="rule"></span></div>
+    <div class="f w"><span class="hint">Where it starts and ends, e.g. "one elective laparoscopic cholecystectomy, admission to discharge" or "one new-patient OPD visit for suspected TB, up to diagnosis"</span></div>
+  </div>
+  <p class="ticks"><strong>Perspective:</strong>
+    <span><span class="box"></span>hospital (provider)</span>
+    <span><span class="box"></span>health system</span>
+    <span><span class="box"></span>abridged societal (adds what the patient pays)</span>
+    &nbsp;<strong>Cost year:</strong> 20____</p>
+
+  <h2><span class="n">2</span>Map the pathway</h2>
+  <p class="hint">One box per stage the patient passes through. Everything you count below should belong to a box.</p>
+  <div class="path"><div>stage 1</div><div>stage 2</div><div>stage 3</div><div>stage 4</div><div>stage 5</div></div>
+
+  <h2><span class="n">3</span>Staff time</h2>
+  <div class="formula"><strong>Cost per minute</strong> = monthly gross salary ÷ minutes actually available per month
+  &nbsp;<span class="hint">(working days × productive hours × 60; leave, teaching and admin time are not available)</span></div>
+  <table>
+    <thead><tr><th style="width:24%">Cadre</th><th class="num">Monthly gross (₹)</th><th class="num">Minutes available / month</th><th class="num">₹ per minute</th><th class="num">Minutes on this episode</th><th class="num" style="width:13%">Cost (₹)</th></tr></thead>
+    <tbody>
+      <tr class="eg"><td>Staff nurse <span class="hint">(constructed)</span></td><td class="num">60,000</td><td class="num">22 × 6 × 60 = 7,920</td><td class="num">7.58</td><td class="num">45</td><td class="num">341</td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr class="tot"><td colspan="5">A &nbsp;Staff subtotal</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="n">4</span>Drugs, consumables and investigations</h2>
+  <table>
+    <thead><tr><th style="width:36%">Item</th><th class="num">Quantity</th><th class="num">Unit price (₹)</th><th style="width:22%">Price from</th><th class="num" style="width:13%">Cost (₹)</th></tr></thead>
+    <tbody>
+      <tr class="eg"><td>IV cannula <span class="hint">(constructed)</span></td><td class="num">2</td><td class="num">35</td><td>hospital store rate</td><td class="num">70</td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr class="tot"><td colspan="4">B &nbsp;Drugs, consumables and investigations subtotal</td><td></td></tr>
+    </tbody>
+  </table>
+  <p class="note">Worked rows in grey are constructed to show the arithmetic. They are not real salaries or prices.</p>
+</div>
+
+<!-- ================= PAGE 2 ================= -->
+<div class="page">
+  <div class="top">
+    <div><p class="kick">Economic Evaluation in Health &nbsp;·&nbsp; AIIMS Bhopal &nbsp;·&nbsp; 23 September 2026</p>
+    <h1>Costing your own service</h1></div>
+    <div class="pg">Worksheet &nbsp;·&nbsp; page 2 of 2</div>
+  </div>
+
+  <h2><span class="n">5</span>Equipment: annuitise, do not charge the purchase price</h2>
+  <div class="two">
+    <div>
+      <div class="formula"><strong>Equivalent annual cost</strong> = purchase price ÷ annuity factor<br>
+      <strong>Cost per use</strong> = equivalent annual cost ÷ uses per year</div>
+      <table>
+        <thead><tr><th style="width:28%">Equipment</th><th class="num">Price (₹)</th><th class="num">Life (yr)</th><th class="num">Factor</th><th class="num">Uses / yr</th><th class="num" style="width:17%">Cost (₹)</th></tr></thead>
+        <tbody>
+          <tr class="eg"><td>Ultrasound <span class="hint">(constructed)</span></td><td class="num">5,00,000</td><td class="num">10</td><td class="num">8.530</td><td class="num">2,000</td><td class="num">29</td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr class="tot"><td colspan="5">C &nbsp;Equipment subtotal</td><td></td></tr>
+        </tbody>
+      </table>
+      <p class="hint">Example: 5,00,000 ÷ 8.530 = ₹58,617 a year; ÷ 2,000 scans = ₹29 a scan.
+      Machine shared with other departments? Use its total uses per year.</p>
+    </div>
+    <div>
+      <table class="af">
+        <thead><tr><th>Useful life (years)</th><th>Annuity factor at 3%</th></tr></thead>
+        <tbody>
+          <tr><td>5</td><td>4.580</td></tr><tr><td>7</td><td>6.230</td></tr>
+          <tr><td>8</td><td>7.020</td></tr><tr><td>10</td><td>8.530</td></tr>
+          <tr><td>15</td><td>11.938</td></tr><tr><td>20</td><td>14.877</td></tr>
+          <tr><td>30 <span class="hint">(building)</span></td><td>19.600</td></tr>
+        </tbody>
+      </table>
+      <p class="hint">Factor = [1 − (1.03)<sup>−n</sup>] ÷ 0.03. The 3% matches the Indian Reference Case discount rate.</p>
+    </div>
+  </div>
+
+  <h2><span class="n">6</span>Shared overheads: the costs nobody owns</h2>
+  <p class="hint">Administration, laundry, kitchen, electricity, water, security, CSSD, the building itself. Pick one method and say which.</p>
+  <div class="formula"><strong>Step-down share</strong> = annual cost of the shared service × your department's share of the allocation base
+  (beds, floor area, staff or patient-days) ÷ episodes your department delivers per year</div>
+  <table>
+    <thead><tr><th style="width:30%">Shared service</th><th class="num">Annual cost (₹)</th><th>Allocation base and your share</th><th class="num">Episodes / yr</th><th class="num" style="width:13%">Cost (₹)</th></tr></thead>
+    <tbody>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr class="tot"><td colspan="4">D &nbsp;Overhead subtotal <span class="hint" style="font-weight:400">(or a stated mark-up: ____ % of A + B, source: ________)</span></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="n">7</span>Add it up, and compare</h2>
+  <table>
+    <tbody>
+      <tr class="tot"><td>Cost of one episode to the hospital &nbsp;=&nbsp; A + B + C + D</td><td class="num" style="width:22%">₹</td></tr>
+      <tr><td>PM-JAY package rate for the nearest matching procedure <span class="hint">(if one exists)</span></td><td class="num">₹</td></tr>
+      <tr><td>National Health System Cost Database figure <span class="hint">(if one exists)</span></td><td class="num">₹</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="n">8</span>Three questions to answer before you report back</h2>
+  <p><strong>(a)</strong> Which line was biggest? Did it surprise you?</p>
+  <div class="lines"><div class="l"></div></div>
+  <p><strong>(b)</strong> Which single number are you least sure of? How much would the total move if it were
+  half, or double?</p>
+  <div class="lines"><div class="l"></div></div>
+  <p><strong>(c)</strong> What does the patient pay that is not on this sheet? Think of drugs bought outside,
+  tests sent out, travel, food, an attendant, days of lost work.</p>
+  <div class="lines"><div class="l"></div></div>
+  <p class="note">Question (b) is a one-way sensitivity analysis done by hand. Question (c) is the difference
+  between the provider perspective and the abridged societal perspective the Indian Reference Case asks for.</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modelling in half an hour</title>
+<link rel="stylesheet" href="../vendor/reveal.js/dist/reveal.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/slides.css">
+<style>
+  .reveal svg text{ font-family:var(--font) }
+  .reveal table th.num{ text-align:right }
+  .reveal .split{ display:grid; grid-template-columns:1.25fr 1fr; gap:26px; align-items:start }
+</style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<section class="cover">
+  <p class="kicker">Economic Evaluation in Health &nbsp;·&nbsp; Faculty workshop &nbsp;·&nbsp; 14:45</p>
+  <h1>Modelling in half an hour</h1>
+  <p class="lede dim">Why a model exists, what a decision tree and a Markov model do, what a cycle is,
+  and what to distrust. For reading models, not building them.</p>
+  <p class="small faint" style="margin-top:1em">Drummond et al., 4th ed., Chapter 9</p>
+  <aside class="notes">
+    Twenty-five minutes, straight after the ICER session. Five of the eight papers in the pack are
+    models. The aim is that every group can describe its paper's model in two sentences and name one
+    thing about it they would challenge.
+  </aside>
+</section>
+
+<section>
+  <h2>By the end of this session</h2>
+  <ol>
+    <li>Say <strong>why</strong> most economic evaluations are models, not trials</li>
+    <li>Read a <strong>decision tree</strong> and roll it back</li>
+    <li>Say what a <strong>Markov model</strong> and a <strong>cycle</strong> are</li>
+    <li>Name what the Markov assumption <strong>forgets</strong></li>
+    <li>Ask <strong>seven questions</strong> of any published model</li>
+  </ol>
+  <aside class="notes">
+    No software, no formulas beyond multiplication. If anyone asks how to build one, the answer is
+    Briggs and Sculpher 1998 and a supervisor who has built one.
+  </aside>
+</section>
+
+<section>
+  <h2>Why a model at all?</h2>
+  <table>
+    <tr><th>A trial gives you</th><th>A decision needs</th></tr>
+    <tr><td>two or three arms</td><td>every relevant option, including current practice</td></tr>
+    <tr><td>one to three years of follow-up</td><td>a lifetime, if survival differs</td></tr>
+    <tr><td>clinical outcomes</td><td>QALYs, costs, Indian prices</td></tr>
+    <tr><td>a selected population, often abroad</td><td>Indian patients in Indian facilities</td></tr>
+  </table>
+  <p class="claim" style="margin-top:.3em">A model is a framework for combining evidence from many sources
+  to answer a question no single study answered.</p>
+  <aside class="notes">
+    This is the justification, and also the warning. Every source that goes in brings its own
+    uncertainty and its own setting. The model is only as good as its worst input and its structure.
+  </aside>
+</section>
+
+<section>
+  <h2>Two shapes you will meet</h2>
+  <div class="cards c2">
+    <div class="card"><h3>Decision tree</h3>
+      <p class="small">Branches for choices and chance events, ending in outcomes. Events happen
+      <strong>once</strong>, over a <strong>short</strong> period.</p>
+      <p class="small dim">A test, a course of treatment, an acute episode.</p></div>
+    <div class="card"><h3>Markov model</h3>
+      <p class="small">A few health states; people move between them in repeated <strong>cycles</strong>.
+      Events <strong>recur</strong> over a <strong>long</strong> period.</p>
+      <p class="small dim">Chronic disease, cancer recurrence, a lifetime horizon.</p></div>
+  </div>
+  <p class="claim" style="margin-top:.45em">Many papers use both: a tree for the first event, a Markov
+  model for what follows.</p>
+  <aside class="notes">
+    The Kaur screening paper in the pack is exactly this: a decision tree then a Markov model. Group 4
+    should recognise it.
+  </aside>
+</section>
+
+<section>
+  <h2>A decision tree</h2>
+  <svg viewBox="0 0 1160 380" width="1160" height="380" role="img" aria-label="Decision tree comparing drug A and drug B, each with cure and failure branches">
+    <g stroke="#10141a" stroke-width="2" fill="none">
+      <path d="M86,190 L383,95"/><path d="M86,190 L383,285"/>
+      <path d="M417,95 L660,45"/><path d="M417,95 L660,145"/>
+      <path d="M417,285 L660,235"/><path d="M417,285 L660,335"/>
+    </g>
+    <rect x="46" y="170" width="40" height="40" fill="#162a6c"/>
+    <circle cx="400" cy="95" r="17" fill="#1b3e8f"/><circle cx="400" cy="285" r="17" fill="#1b3e8f"/>
+    <g fill="#17683c"><path d="M660,45 l24,-14 v28 z"/><path d="M660,235 l24,-14 v28 z"/></g>
+    <g fill="#a32217"><path d="M660,145 l24,-14 v28 z"/><path d="M660,335 l24,-14 v28 z"/></g>
+    <g font-size="22" fill="#10141a">
+      <text x="130" y="118" font-weight="700">Drug A  ₹10,000</text>
+      <text x="130" y="282" font-weight="700">Drug B  ₹4,000</text>
+      <text x="500" y="55">cure 0.8</text><text x="500" y="145">fail 0.2</text>
+      <text x="500" y="245">cure 0.6</text><text x="500" y="335">fail 0.4</text>
+      <text x="700" y="53">cured</text>
+      <text x="700" y="153">second-line  + ₹20,000</text>
+      <text x="700" y="243">cured</text>
+      <text x="700" y="343">second-line  + ₹20,000</text>
+    </g>
+    <g font-size="19" fill="#47525f">
+      <text x="30" y="240">decision</text><text x="372" y="140">chance</text><text x="372" y="330">chance</text>
+    </g>
+  </svg>
+  <p class="cite">Constructed example. Square: a choice. Circle: chance. Triangle: where a path ends.</p>
+  <aside class="notes">
+    Walk one path aloud: choose A, pay 10,000, 80% are cured, 20% fail and go to second-line at a further
+    20,000. Ask them to guess which drug is cheaper overall before the next slide.
+  </aside>
+</section>
+
+<section>
+  <h2>Rolling it back</h2>
+  <p class="lede">Multiply along each path, then add the paths.</p>
+  <table>
+    <tr><th></th><th class="num">Expected cost</th><th class="num">First-line cures</th></tr>
+    <tr><td>Drug A</td><td class="num">10,000 + 0.2 × 20,000 = <strong>₹14,000</strong></td><td class="num">0.8</td></tr>
+    <tr><td>Drug B</td><td class="num">4,000 + 0.4 × 20,000 = <strong>₹12,000</strong></td><td class="num">0.6</td></tr>
+    <tr><td>A versus B</td><td class="num">+₹2,000</td><td class="num">+0.2</td></tr>
+  </table>
+  <div class="eq sm">ICER = 2,000 ÷ 0.2 = ₹10,000 per additional cure</div>
+  <p class="small dim">Drug A costs six thousand rupees more at the counter but only two thousand more
+  overall, because it avoids second-line treatment.</p>
+  <p class="cite">Constructed example.</p>
+  <aside class="notes">
+    That last line is the reason models exist: the purchase price is not the cost of the choice.
+    Note the unit: cost per cure is a natural unit, like the hernia paper in the pack. To compare with
+    other programmes you would need QALYs on the branches.
+  </aside>
+</section>
+
+<section>
+  <h2>When a tree breaks</h2>
+  <ul>
+    <li>Events <strong>recur</strong>: relapse, re-admission, a second stroke</li>
+    <li>Risk <strong>changes with time</strong>: age, years since surgery</li>
+    <li>The horizon is <strong>long</strong>, so the tree would need thousands of branches</li>
+  </ul>
+  <p class="claim" style="margin-top:.4em">Then you stop drawing every path and instead track how many
+  people are in each state, year by year.</p>
+  <aside class="notes">
+    That is the Markov idea: replace an exploding tree with a small set of states and a rule for moving
+    between them.
+  </aside>
+</section>
+
+<section>
+  <h2>A Markov model</h2>
+  <div class="split">
+    <svg viewBox="0 0 640 460" width="640" height="460" role="img" aria-label="Markov model with three states: well, sick and dead">
+      <defs><marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#10141a"/></marker></defs>
+      <g stroke="#10141a" stroke-width="2.2" fill="none" marker-end="url(#m)">
+        <path d="M190,120 L420,120"/>
+        <path d="M120,165 L270,300"/>
+        <path d="M480,165 L360,300"/>
+        <path d="M95,80 C60,10 180,10 145,80"/>
+        <path d="M455,80 C420,10 540,10 505,80"/>
+        <path d="M282,386 C240,455 380,455 338,386"/>
+      </g>
+      <g font-size="24" font-weight="700" text-anchor="middle">
+        <circle cx="120" cy="120" r="62" fill="rgba(23,104,60,.12)" stroke="#17683c" stroke-width="2"/><text x="120" y="128">Well</text>
+        <circle cx="480" cy="120" r="62" fill="rgba(138,90,0,.12)" stroke="#8a5a00" stroke-width="2"/><text x="480" y="128">Sick</text>
+        <circle cx="310" cy="330" r="62" fill="rgba(163,34,23,.10)" stroke="#a32217" stroke-width="2"/><text x="310" y="338">Dead</text>
+      </g>
+      <g font-size="21" fill="#10141a" text-anchor="middle">
+        <text x="305" y="108">0.10</text><text x="160" y="250">0.02</text><text x="450" y="250">0.20</text>
+        <text x="120" y="22">0.88</text><text x="480" y="22">0.80</text><text x="410" y="440">1.00</text>
+      </g>
+    </svg>
+    <div>
+      <p class="small"><strong>States</strong> are exhaustive and exclusive: everyone is in exactly one.</p>
+      <p class="small"><strong>Arrows</strong> carry the probability of moving in one cycle. Each state's
+      arrows add to 1.</p>
+      <p class="small"><strong>Dead</strong> is absorbing: nobody leaves.</p>
+      <p class="small"><strong>Each state</strong> carries a cost and a utility per cycle.</p>
+      <p class="cite">Constructed example.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    Check they can read the arrows: of people who are Well at the start of a year, 88% stay well, 10%
+    become sick, 2% die. Nobody recovers from Sick here, which is itself an assumption worth naming.
+  </aside>
+</section>
+
+<section>
+  <h2>What a cycle is</h2>
+  <p class="lede">Start 1,000 people in Well. Apply the arrows once per cycle, here one year.</p>
+  <table>
+    <tr><th>Cycle</th><th class="num">Well</th><th class="num">Sick</th><th class="num">Dead</th><th class="num">QALYs this cycle</th></tr>
+    <tr><td>0</td><td class="num">1,000</td><td class="num">0</td><td class="num">0</td><td class="num">n/a</td></tr>
+    <tr><td>1</td><td class="num">880</td><td class="num">100</td><td class="num">20</td><td class="num">852</td></tr>
+    <tr><td>2</td><td class="num">774</td><td class="num">168</td><td class="num">58</td><td class="num">798</td></tr>
+  </table>
+  <p class="small" style="margin-top:.3em">QALYs = people × utility (Well 0.9, Sick 0.6). Do the same with
+  costs. Run until nearly everyone is dead, discount, add up. Then do it again for the other option.</p>
+  <p class="cite">Constructed example. Cycle 2: Well 880 × 0.88; Sick 100 × 0.80 + 880 × 0.10; Dead the rest.</p>
+  <aside class="notes">
+    This is all a Markov cohort model does. A spreadsheet row per cycle. The ICER comes from the
+    difference in the discounted totals between two such spreadsheets.
+  </aside>
+</section>
+
+<section>
+  <h2>What the model forgets</h2>
+  <p class="lede">The <strong>Markov assumption</strong>: where you go next depends only on the state you
+  are in now, not on how you got there or how long you have been there.</p>
+  <div class="cards c2">
+    <div class="card bad"><h3>The problem</h3><p class="small">Recurrence after cancer surgery is highest in
+    the first two years. A single "disease-free" state gives everyone the same risk in year 1 and year 10.</p></div>
+    <div class="card good"><h3>The usual fixes</h3><p class="small">Split the state by time since event
+    ("tunnel" states), let probabilities change with age, or simulate individuals instead of a cohort.</p></div>
+  </div>
+  <p class="claim warn" style="margin-top:.45em">If history matters clinically, check that the model
+  remembers it.</p>
+  <aside class="notes">
+    Groups 1 and 3 have Markov models where time since surgery plausibly matters. Ask them whether their
+    paper handles it. They may not be able to tell from the paper, which is itself a finding.
+  </aside>
+</section>
+
+<section>
+  <h2>How long is a cycle?</h2>
+  <ul>
+    <li>Short enough that <strong>two events rarely happen</strong> in one cycle</li>
+    <li>Matched to the disease: <strong>months</strong> for cancer on treatment, <strong>a year</strong> for slow chronic disease</li>
+    <li>People move at the <strong>end</strong> of a cycle but really move halfway through on average, so
+    careful models apply a <strong>half-cycle correction</strong></li>
+  </ul>
+  <p class="claim" style="margin-top:.3em">You need not compute any of this. You need to find the cycle length
+  in the paper, and notice if it is missing.</p>
+  <aside class="notes">
+    If a paper does not state its cycle length, the model cannot be reproduced. That alone is a
+    reporting failure.
+  </aside>
+</section>
+
+<section>
+  <h2>Where the numbers come from</h2>
+  <table>
+    <tr><th>Input</th><th>Usual source</th><th>What to ask</th></tr>
+    <tr><td>Transition probabilities</td><td>trials, cohorts, registries</td><td>From India? Over what follow-up?</td></tr>
+    <tr><td>Beyond follow-up</td><td>extrapolation</td><td>How was it extended, and was it tested?</td></tr>
+    <tr><td>Utilities</td><td>EQ-5D surveys</td><td>Indian value set?</td></tr>
+    <tr><td>Costs per state</td><td>costing studies, package rates</td><td>The five costing errors</td></tr>
+  </table>
+  <p class="claim warn" style="margin-top:.3em">A model built entirely on borrowed numbers can be internally
+  perfect and still answer someone else's question.</p>
+  <aside class="notes">
+    Group 6's NIV paper is the example: every parameter from the literature. Group 4's screening paper
+    is the counter-example, with primary Indian costs and utilities.
+  </aside>
+</section>
+
+<section>
+  <h2>Seven questions for any published model</h2>
+  <ol class="small">
+    <li>Is there a <strong>diagram</strong> of the structure? Could you redraw it?</li>
+    <li>Do the <strong>states</strong> include every event that differs between the options?</li>
+    <li>Is the <strong>cycle length</strong> stated and sensible?</li>
+    <li>Where do the <strong>probabilities</strong> come from, and from which country?</li>
+    <li>How far does it <strong>extrapolate</strong> beyond the evidence?</li>
+    <li>Was it <strong>validated</strong>: does it reproduce known survival or incidence?</li>
+    <li>Were <strong>structural</strong> alternatives tested, or only parameters?</li>
+  </ol>
+  <aside class="notes">
+    Question 7 bridges to the uncertainty session next: probabilistic analysis varies parameters inside
+    a fixed structure. If the structure is wrong, PSA will not find it.
+  </aside>
+</section>
+
+<section>
+  <h2>And your paper</h2>
+  <ol>
+    <li>Is it a model? A tree, a Markov model, both, or neither?</li>
+    <li>Name the health states and the cycle length</li>
+    <li>Which of the seven questions can the paper not answer?</li>
+  </ol>
+  <p class="claim" style="margin-top:.3em">Two sentences on its structure, ready for the report-back.</p>
+  <aside class="notes">
+    Five minutes at the tables before tea if the session has run to time. Groups 2, 5 and 8 will find they
+    have no model at all; ask them whether their question needed one.
+  </aside>
+</section>
+
+<section>
+  <h2>Sources</h2>
+  <ol class="sources two">
+    <li><b>Drummond MF, Sculpher MJ, Claxton K, Stoddart GL, Torrance GW.</b> Methods for the Economic Evaluation of Health Care Programmes. 4th ed. Oxford University Press; 2015. <b>Chapter 9</b>, Economic evaluation using decision analytic modelling.</li>
+    <li><b>Briggs A, Sculpher M.</b> An introduction to Markov modelling for economic evaluation. <em>PharmacoEconomics</em> 1998;13(4):397–409. PMID 10178664</li>
+    <li><b>Caro JJ, Briggs AH, Siebert U, Kuntz KM.</b> Modeling good research practices: overview. A report of the ISPOR-SMDM Modeling Good Research Practices Task Force-1. <em>Value Health</em> 2012;15(6):796–803. PMID 22990082</li>
+  </ol>
+  <aside class="notes">
+    Not for reading out. The decision tree, the Markov diagram and the cohort table are constructed
+    examples.
+  </aside>
+</section>
+
+</div></div>
+<script src="../vendor/reveal.js/dist/reveal.js"></script>
+<script src="../vendor/reveal.js/plugin/notes/notes.js"></script>
+<script>
+Reveal.initialize({ hash:true, slideNumber:'c/t', transition:'fade', transitionSpeed:'fast',
+  width:1280, height:720, margin:0, center:false, minScale:0.2, maxScale:2.0,
+  pdfSeparateFragments:false, plugins:[RevealNotes] });
+</script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The cost-effectiveness plane</title>
+<link rel="stylesheet" href="../../assets/css/tokens.css">
+<style>
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.5; padding:18px;
+  }
+  .wrap{max-width:1120px;margin:0 auto}
+  h1{font-size:1.35rem;margin:0 0 2px;font-weight:650;letter-spacing:-.01em}
+  .sub{color:var(--ink-dim);font-size:.85rem;margin:0 0 18px}
+  .grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,1fr);gap:18px;align-items:start}
+  @media(max-width:900px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+  svg{display:block;width:100%;height:auto;touch-action:none;user-select:none}
+  .qlabel{font-size:11px;fill:var(--ink-dim);font-weight:600;letter-spacing:.04em}
+  .qsub{font-size:10px;fill:var(--ink-faint)}
+  .axlabel{font-size:12px;fill:var(--ink-dim);font-weight:600}
+  .tick{font-size:10px;fill:var(--ink-faint)}
+  .handle{cursor:grab;filter:drop-shadow(0 2px 5px var(--shadow))}
+  .handle:active{cursor:grabbing}
+
+  .verdict{border-radius:8px;padding:12px 14px;margin-bottom:12px;border:1px solid}
+  .verdict .big{font-size:1.5rem;font-weight:700;letter-spacing:-.02em;line-height:1.15}
+  .verdict .small{font-size:.8rem;opacity:.85;margin-top:3px}
+  .v-good{background:var(--fill-good);border-color:var(--edge-good);color:var(--good)}
+  .v-bad{background:var(--fill-bad);border-color:var(--edge-bad);color:var(--bad)}
+  .v-warn{background:var(--fill-bad);border-color:var(--line);color:var(--warn)}
+
+  table.readout{width:100%;border-collapse:collapse;font-size:.86rem}
+  table.readout td{padding:6px 2px;border-bottom:1px solid var(--line)}
+  table.readout td:last-child{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+  table.readout tr:last-child td{border-bottom:none}
+  .lbl{color:var(--ink-dim)}
+
+  label.ctl{display:block;font-size:.78rem;color:var(--ink-dim);margin:14px 0 4px;font-weight:600;
+    text-transform:uppercase;letter-spacing:.05em}
+  input[type=range]{width:100%;accent-color:var(--thresh)}
+  .threshval{color:var(--thresh);font-weight:700;font-variant-numeric:tabular-nums}
+  .presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+  button.preset{
+    background:var(--panel-2);border:1px solid var(--line);color:var(--ink);
+    font-size:.76rem;padding:6px 10px;border-radius:999px;cursor:pointer;font-family:inherit
+  }
+  button.preset:hover{border-color:var(--accent);color:var(--accent)}
+  .note{font-size:.72rem;color:var(--ink-faint);margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+  .hint{font-size:.78rem;color:var(--ink-dim);margin-top:8px;text-align:center}
+  kbd{background:var(--panel-2);border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:.72rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The cost-effectiveness plane</h1>
+  <p class="sub">Drag the intervention. The origin is the comparator. Current practice, not "do nothing".</p>
+
+  <div class="grid">
+    <div class="card">
+      <svg id="plane" viewBox="0 0 720 580" role="img" aria-label="Cost-effectiveness plane">
+        <g id="chart"></g>
+      </svg>
+      <p class="hint">Drag the blue dot &nbsp;·&nbsp; or focus it and use <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd></p>
+    </div>
+
+    <div>
+      <div class="card">
+        <div id="verdict" class="verdict v-good">
+          <div class="big" id="verdictBig">—</div>
+          <div class="small" id="verdictSmall">—</div>
+        </div>
+
+        <table class="readout">
+          <tr><td class="lbl">Incremental cost &nbsp;(ΔC)</td><td id="rCost">—</td></tr>
+          <tr><td class="lbl">Incremental effect &nbsp;(ΔE)</td><td id="rEff">—</td></tr>
+          <tr><td class="lbl">ICER &nbsp;= ΔC / ΔE</td><td id="rIcer">—</td></tr>
+          <tr><td class="lbl">Net monetary benefit</td><td id="rNmb">—</td></tr>
+          <tr><td class="lbl">Quadrant</td><td id="rQuad">—</td></tr>
+        </table>
+
+        <label class="ctl" for="thr">
+          Threshold <span style="text-transform:none">(λ)</span>: <span class="threshval" id="thrVal">₹2,00,000</span> per QALY
+        </label>
+        <input type="range" id="thr" min="0" max="500000" step="1" value="200000">
+
+        <label class="ctl">Load a scenario</label>
+        <div class="presets" id="presets"></div>
+
+        <p class="note">
+          <strong>ICER is undefined when ΔE = 0</strong>, and is <em>meaningless on its own</em> in the
+          NW and SE quadrants. Both give a <em>negative</em> ratio, so dominance decides, not the number.
+          The mirror trap: NE and SW both give <em>positive</em> ratios, and the same ICER value means
+          opposite things. In the SW you are being asked to <em>sell</em> health for savings, so the
+          decision rule reverses.
+          Net monetary benefit (NMB = λ·ΔE − ΔC) has no such ambiguity, which is why it is the cleaner
+          formulation. Scenarios are illustrative teaching figures, not extracted results. Check the papers.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const W=720,H=580, M={t:34,r:26,b:56,l:96};
+  const PW=W-M.l-M.r, PH=H-M.t-M.b;
+  const X0=M.l+PW/2, Y0=M.t+PH/2;
+  const XMAX=2.0, YMAX=250000;              // ±domain
+  const sx = e => X0 + (e/XMAX)*(PW/2);
+  const sy = c => Y0 - (c/YMAX)*(PH/2);
+  const ix = px => ((px-X0)/(PW/2))*XMAX;
+  const iy = py => ((Y0-py)/(PH/2))*YMAX;
+
+  let dE=0.45, dC=72000, lambda=200000;
+
+  // a deck can preset the widget: ?lambda=212307&de=0.45&dc=72000
+  (function(){
+    const q = new URLSearchParams(location.search);
+    const num = (k, lo, hi) => { const v = parseFloat(q.get(k)); return isFinite(v) ? Math.max(lo, Math.min(hi, v)) : null; };
+    const L = num('lambda', 0, 500000); if (L !== null) lambda = L;
+    const E = num('de', -2, 2);         if (E !== null) dE = E;
+    const Cst = num('dc', -250000, 250000); if (Cst !== null) dC = Cst;
+  })();
+
+  const svg=document.getElementById('plane'), g=document.getElementById('chart');
+  // read a design token so the chart follows the light/dark theme
+  const C = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const NS='http://www.w3.org/2000/svg';
+  const el=(n,a)=>{const x=document.createElementNS(NS,n);for(const k in a)x.setAttribute(k,a[k]);return x;};
+
+  // ---- Indian numbering: 2,00,000 ----
+  function inr(n){
+    const neg = n<0; n=Math.round(Math.abs(n));
+    let s=String(n);
+    if(s.length>3){
+      const last3=s.slice(-3); let rest=s.slice(0,-3);
+      rest=rest.replace(/\B(?=(\d{2})+(?!\d))/g,',');
+      s=rest+','+last3;
+    }
+    return (neg?'−₹':'₹')+s;
+  }
+
+  function draw(){
+    g.innerHTML='';
+
+    // quadrant shading: NW (dominated) and SE (dominant)
+    g.appendChild(el('rect',{x:M.l,y:M.t,width:PW/2,height:PH/2,fill:C('--fill-bad')}));
+    g.appendChild(el('rect',{x:X0,y:Y0,width:PW/2,height:PH/2,fill:C('--fill-good')}));
+
+    // frame
+    g.appendChild(el('rect',{x:M.l,y:M.t,width:PW,height:PH,fill:'none',stroke:C('--line')}));
+
+    // gridlines
+    for(let i=-2;i<=2;i++){ if(i===0) continue;
+      const x=sx(i*XMAX/2);
+      g.appendChild(el('line',{x1:x,y1:M.t,x2:x,y2:M.t+PH,stroke:C('--line'),'stroke-opacity':.45}));
+    }
+    for(let i=-2;i<=2;i++){ if(i===0) continue;
+      const y=sy(i*YMAX/2);
+      g.appendChild(el('line',{x1:M.l,y1:y,x2:M.l+PW,y2:y,stroke:C('--line'),'stroke-opacity':.45}));
+    }
+
+    // threshold ray: cost = lambda * effect
+    if(lambda>0){
+      const eAtTop = YMAX/lambda;
+      let e1,c1,e2,c2;
+      if(eAtTop<=XMAX){ e1=eAtTop;c1=YMAX; e2=-eAtTop;c2=-YMAX; }
+      else { e1=XMAX;c1=lambda*XMAX; e2=-XMAX;c2=-lambda*XMAX; }
+      g.appendChild(el('line',{x1:sx(e2),y1:sy(c2),x2:sx(e1),y2:sy(c1),
+        stroke:C('--thresh'),'stroke-width':2,'stroke-dasharray':'7 5'}));
+      // label part-way up the ray, offset to the right so it clears the quadrant captions
+      const le=e1*0.62, lc=lambda*le;
+      const tl=el('text',{x:sx(le)+12,y:sy(lc)+4,'text-anchor':'start',fill:C('--thresh'),'font-size':11,'font-weight':600});
+      tl.textContent='λ = '+inr(lambda)+'/QALY';
+      g.appendChild(tl);
+    }
+
+    // axes
+    g.appendChild(el('line',{x1:M.l,y1:Y0,x2:M.l+PW,y2:Y0,stroke:C('--ink-faint'),'stroke-width':1.5}));
+    g.appendChild(el('line',{x1:X0,y1:M.t,x2:X0,y2:M.t+PH,stroke:C('--ink-faint'),'stroke-width':1.5}));
+
+    // ticks
+    [-2,-1,1,2].forEach(i=>{
+      const v=i*XMAX/2, x=sx(v);
+      const t=el('text',{x:x,y:Y0+16,'text-anchor':'middle',class:'tick'});
+      t.textContent=(v>0?'+':'')+v.toFixed(1); g.appendChild(t);
+    });
+    [-2,-1,1,2].forEach(i=>{
+      const v=i*YMAX/2, y=sy(v);
+      const t=el('text',{x:M.l-10,y:y+4,'text-anchor':'end',class:'tick'});
+      t.textContent=(v>0?'+':'−')+'₹'+(Math.abs(v)/100000).toFixed(2)+'L'; g.appendChild(t);
+    });
+
+    // quadrant labels
+    const quads=[
+      [M.l+PW/4, M.t+30,   'MORE COSTLY, LESS EFFECTIVE', 'Dominated, reject', C('--bad')],
+      [X0+PW/4,  M.t+30,   'MORE COSTLY, MORE EFFECTIVE', 'Trade-off, ICER decides', C('--ink-dim')],
+      [M.l+PW/4, M.t+PH-26,'LESS COSTLY, LESS EFFECTIVE', 'Trade-off: is the saving worth the health lost?', C('--ink-dim')],
+      [X0+PW/4,  M.t+PH-26,'LESS COSTLY, MORE EFFECTIVE', 'Dominant, adopt', C('--good')]
+    ];
+    quads.forEach(([x,y,a,b,col])=>{
+      const t1=el('text',{x:x,y:y,'text-anchor':'middle',class:'qlabel',fill:col}); t1.textContent=a;
+      const t2=el('text',{x:x,y:y+14,'text-anchor':'middle',class:'qsub'}); t2.textContent=b;
+      g.appendChild(t1); g.appendChild(t2);
+    });
+
+    // axis titles
+    const ax=el('text',{x:X0,y:H-14,'text-anchor':'middle',class:'axlabel'});
+    ax.textContent='Incremental effect  ΔE  (QALYs gained per patient)'; g.appendChild(ax);
+    const ay=el('text',{x:20,y:Y0,'text-anchor':'middle',class:'axlabel',
+      transform:'rotate(-90 20 '+Y0+')'});
+    ay.textContent='Incremental cost  ΔC  (₹ per patient)'; g.appendChild(ay);
+
+    // comparator at origin
+    g.appendChild(el('circle',{cx:X0,cy:Y0,r:5,fill:C('--bg'),stroke:C('--ink-faint'),'stroke-width':2}));
+    const ct=el('text',{x:X0-9,y:Y0-11,'text-anchor':'end',fill:C('--ink-faint'),'font-size':10,'font-weight':600});
+    ct.textContent='comparator'; g.appendChild(ct);
+
+    // vector from origin
+    const px=sx(dE), py=sy(dC);
+    g.appendChild(el('line',{x1:X0,y1:Y0,x2:px,y2:py,stroke:C('--accent'),'stroke-width':1.5,
+      'stroke-dasharray':'3 3','stroke-opacity':.6}));
+
+    // handle
+    const halo=el('circle',{cx:px,cy:py,r:16,fill:C('--accent'),'fill-opacity':.15});
+    const dot=el('circle',{cx:px,cy:py,r:9,fill:C('--accent'),stroke:C('--bg'),'stroke-width':2.5,
+      class:'handle',tabindex:'0',role:'slider','aria-label':'Intervention position'});
+    g.appendChild(halo); g.appendChild(dot);
+    dot.addEventListener('pointerdown',down);
+    dot.addEventListener('keydown',key);
+  }
+
+  function down(ev){
+    ev.preventDefault();
+    svg.setPointerCapture(ev.pointerId);
+    const move=e=>{
+      const pt=svg.createSVGPoint(); pt.x=e.clientX; pt.y=e.clientY;
+      const p=pt.matrixTransform(svg.getScreenCTM().inverse());
+      dE=Math.max(-XMAX,Math.min(XMAX,ix(p.x)));
+      dC=Math.max(-YMAX,Math.min(YMAX,iy(p.y)));
+      render();
+    };
+    const up=e=>{
+      svg.releasePointerCapture(ev.pointerId);
+      svg.removeEventListener('pointermove',move);
+      svg.removeEventListener('pointerup',up);
+    };
+    svg.addEventListener('pointermove',move);
+    svg.addEventListener('pointerup',up);
+  }
+
+  function key(e){
+    const se=e.shiftKey?0.01:0.05, sc=e.shiftKey?2000:10000;
+    let hit=true;
+    if(e.key==='ArrowRight') dE+=se;
+    else if(e.key==='ArrowLeft') dE-=se;
+    else if(e.key==='ArrowUp') dC+=sc;
+    else if(e.key==='ArrowDown') dC-=sc;
+    else hit=false;
+    if(hit){ e.preventDefault();
+      dE=Math.max(-XMAX,Math.min(XMAX,dE)); dC=Math.max(-YMAX,Math.min(YMAX,dC));
+      render(); requestAnimationFrame(()=>{const h=g.querySelector('.handle'); if(h) h.focus();});
+    }
+  }
+
+  function render(){
+    draw();
+    const nmb = lambda*dE - dC;
+    const flatE = Math.abs(dE) < 0.005;
+    const flatC = Math.abs(dC) < 500;
+
+    document.getElementById('rCost').textContent = flatC ? '≈ ₹0' : inr(dC);
+    document.getElementById('rEff').textContent  = (dE>=0?'+':'−')+Math.abs(dE).toFixed(3)+' QALY';
+    document.getElementById('rNmb').textContent  = inr(nmb);
+
+    let icerTxt, quad, cls, big, small;
+
+    if(flatE){
+      icerTxt='undefined (ΔE ≈ 0)';
+      quad = flatC ? 'at the origin' : (dC>0?'due north':'due south');
+      if(flatC){ cls='v-warn'; big='No difference'; small='Same cost, same effect. Nothing to choose between them.'; }
+      else if(dC<0){ cls='v-good'; big='Cost-saving, no health loss'; small='This is cost-minimisation territory: equal effect, so choose the cheaper option.'; }
+      else { cls='v-bad'; big='Reject'; small='Costs more for no additional health. There is no ratio to compute.'; }
+    } else if(dE>0 && dC<0){
+      icerTxt='dominant (cheaper and better)';
+      quad='SE, dominant'; cls='v-good';
+      big='Adopt'; small='Less costly and more effective than the comparator. No threshold needed. This wins at any λ.';
+    } else if(dE<0 && dC>0){
+      icerTxt='dominated (costlier and worse)';
+      quad='NW, dominated'; cls='v-bad';
+      big='Reject'; small='More costly and less effective. The ratio here is negative, the same sign as a dominant intervention in the SE quadrant. That is exactly why you never read an ICER without knowing its quadrant.';
+    } else if(dE>0 && dC>0){
+      const icer=dC/dE;
+      icerTxt=inr(icer)+' per QALY';
+      quad='NE, trade-off';
+      if(icer<=lambda){ cls='v-good'; big='Cost-effective at λ';
+        small='Buys a QALY for '+inr(icer)+', below your threshold of '+inr(lambda)+'. Positive net monetary benefit.'; }
+      else { cls='v-bad'; big='Not cost-effective at λ';
+        small='Buys a QALY for '+inr(icer)+', above your threshold of '+inr(lambda)+'. Adopting it would displace more health than it creates.'; }
+    } else { // dE<0 && dC<0
+      const icer=dC/dE;
+      icerTxt=inr(icer)+' per QALY (health given up)';
+      quad='SW, trade-off, rule reverses';
+      if(icer>=lambda){ cls='v-warn'; big='Acceptable trade-off';
+        small='You save '+inr(Math.abs(icer))+' for each QALY given up, more than λ, so the freed budget buys back more health elsewhere. Defensible, and politically very hard.'; }
+      else { cls='v-bad'; big='Reject';
+        small='You give up a QALY for only '+inr(Math.abs(icer))+' of savings, less than λ. The saving cannot buy that health back elsewhere.'; }
+    }
+
+    document.getElementById('rIcer').textContent=icerTxt;
+    document.getElementById('rQuad').textContent=quad;
+    const v=document.getElementById('verdict');
+    v.className='verdict '+cls;
+    document.getElementById('verdictBig').textContent=big;
+    document.getElementById('verdictSmall').textContent=small;
+  }
+
+  // controls
+  const thr=document.getElementById('thr');
+  thr.value = lambda;
+  thr.addEventListener('input',()=>{
+    lambda=+thr.value;
+    document.getElementById('thrVal').textContent=inr(lambda);
+    render();
+  });
+
+  const PRESETS=[
+    ['New drug, launch price',      0.42,  185000],
+    ['Same drug, biosimilar price', 0.42,   62000],
+    ['Vaccine added to UIP',        0.06,    2400],
+    ['Task-shifting to CHOs',       0.15,  -18000],
+    ['Me-too drug, higher price',  -0.08,   45000],
+    ['Withdraw a marginal service',-0.30, -140000]
+  ];
+  const pc=document.getElementById('presets');
+  PRESETS.forEach(([name,e,c])=>{
+    const b=document.createElement('button');
+    b.className='preset'; b.textContent=name;
+    b.onclick=()=>{dE=e;dC=c;render();};
+    pc.appendChild(b);
+  });
+
+  document.getElementById('thrVal').textContent=inr(lambda);
+  render();
+})();
+</script>
+</body>
+</html>

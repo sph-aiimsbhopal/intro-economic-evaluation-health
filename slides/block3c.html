@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Block 3C: Handling uncertainty</title>
+<link rel="stylesheet" href="../vendor/reveal.js/dist/reveal.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/slides.css">
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<section class="cover">
+  <p class="kicker">Economic Evaluation in Health &nbsp;·&nbsp; Faculty workshop &nbsp;·&nbsp; 15:25</p>
+  <h1>Handling uncertainty</h1>
+  <p class="lede dim">One-way and probabilistic sensitivity analysis, the tornado diagram, and the
+  cost-effectiveness acceptability curve.</p>
+  <p class="small faint" style="margin-top:1em">Drummond et al., 4th ed., and the Indian Reference Case,
+  principles 9 to 12</p>
+  <aside class="notes">
+    Open by returning to the ranking table from 3B. They computed ₹26,154 and ₹1,50,000 per QALY. Ask
+    how confident they are in the third decimal place of 22.530 QALYs. Nobody is. Good. That is the
+    block.
+  </aside>
+</section>
+
+<section>
+  <h2>By the end of this block</h2>
+  <ol>
+    <li>Say why an ICER is a <strong>point estimate</strong>, and name the kinds of uncertainty</li>
+    <li>Tell <strong>heterogeneity</strong> from uncertainty, and say why they differ</li>
+    <li>Read a <strong>tornado diagram</strong> and say what it cannot tell you</li>
+    <li>Describe what a <strong>probabilistic sensitivity analysis</strong> does</li>
+    <li>Read a <strong>cost-effectiveness acceptability curve</strong> and say how it is built</li>
+    <li>Say what "a 57% probability of being cost-effective" does <em>not</em> mean</li>
+  </ol>
+  <aside class="notes">
+    Objective 6 separates understanding from recitation, and it is where most published discussion
+    sections go wrong.
+  </aside>
+</section>
+
+<section>
+  <h2>Every number was estimated</h2>
+  <table>
+    <tr><th>Input</th><th>Where it came from</th><th>How sure are we?</th></tr>
+    <tr><td>Sensitivity of VIA</td><td>a meta-analysis</td><td>a confidence interval, often wide</td></tr>
+    <tr><td>Cost per woman screened</td><td>a sample of facilities</td><td>a mean with a standard error</td></tr>
+    <tr><td>Utility of living with treated cancer</td><td>a valuation survey</td><td>a mean with a standard error</td></tr>
+    <tr><td>Progression from infection to cancer</td><td>cohort studies, extrapolated</td><td>modelled, not observed</td></tr>
+  </table>
+  <p class="claim warn" style="margin-top:.3em">The ICER inherits all of it, and reports none of it.</p>
+  <p class="small dim">₹26,154 per QALY is the answer if every parameter sits at its central value at the
+  same moment. That is one draw from a very large space.</p>
+  <aside class="notes">
+    The argument for the whole block. Point at any row and ask what happens to the ICER if that number
+    is 20% different. They will not know, and that is the question the rest of the block answers.
+  </aside>
+</section>
+
+<section>
+  <h2>Four things that get muddled</h2>
+  <table>
+    <tr><th>Kind</th><th>What it means</th><th>What you do</th></tr>
+    <tr><td><strong>Parameter uncertainty</strong></td><td>we do not know an input's true value</td><td>one-way and probabilistic analysis</td></tr>
+    <tr><td><strong>Structural uncertainty</strong></td><td>the model itself might be built wrong</td><td>scenario analysis, alternative structures</td></tr>
+    <tr><td><strong>Methodological uncertainty</strong></td><td>a defensible choice could have gone the other way</td><td>scenario analysis; follow the Reference Case</td></tr>
+    <tr><td><strong>Heterogeneity</strong></td><td>the true value genuinely <em>differs</em> between people</td><td>subgroup analysis, not sensitivity analysis</td></tr>
+  </table>
+  <p class="claim warn" style="margin-top:.3em">Probabilistic analysis handles the first of these and
+  nothing else. Say so when you report it.</p>
+  <aside class="notes">
+    The heterogeneity row is the one they get wrong. Uncertainty is "we do not know". Heterogeneity is
+    "we do know, and it varies". Averaging over real variation hides the possibility that an
+    intervention is excellent for one group and useless for another.
+  </aside>
+</section>
+
+<section>
+  <h2><span class="pill">9</span> Heterogeneity: decide subgroups first</h2>
+  <p class="lede">An intervention may be cost-effective in one subgroup and nowhere else. That is a
+  targeting opportunity, not a nuisance.</p>
+  <p class="claim" style="margin-top:.4em">Identify subgroups at the <strong>planning</strong> stage, so
+  stratified costs, effects and utilities are collected for each.</p>
+  <p class="small dim" style="margin-top:.4em">Picking subgroups after seeing the results is data
+  dredging with an economics vocabulary. The Reference Case says so plainly. Justify the basis for each
+  subgroup and have a clinician confirm it is sensible.</p>
+  <p class="small dim">Heterogeneity and equity are, on published appraisals, among the weakest parts of
+  Indian economic evaluations. Handling them well is a way to stand out.</p>
+  <aside class="notes">
+    A good example to offer: HPV vaccination in a cohort with high screening coverage versus one with
+    almost none. Same vaccine, quite different value. Averaging the two gives a number that describes
+    neither.
+  </aside>
+</section>
+
+<section>
+  <h2><span class="pill">10</span> What India actually requires</h2>
+  <div class="cards c2" style="margin-top:.3em">
+    <div class="card"><h3>Probabilistic sensitivity analysis</h3><p class="small">Recommended for
+    <strong>all</strong> analyses. Not optional, not only for models, not only for large studies.</p></div>
+    <div class="card"><h3>Acceptability curves</h3><p class="small">The recommended way to present the
+    results of that analysis.</p></div>
+    <div class="card"><h3>Deterministic sensitivity analysis</h3><p class="small">For key structural
+    assumptions and for parameters likely to be influential.</p></div>
+    <div class="card"><h3>Scenario analysis</h3><p class="small">Including an explicit best case and
+    worst case.</p></div>
+  </div>
+  <p class="claim warn" style="margin-top:.4em">Only 73% of the Indian evaluations reviewed had done any
+  sensitivity analysis at all.</p>
+  <p class="cite">Sharma et al., 2023. Proportion from Shah et al., <em>Frontiers in Public Health</em>, 2022.</p>
+  <aside class="notes">
+    The word "all" is the one to stress. Anyone planning a costing study who intends to skip
+    probabilistic analysis because "it is only a small study" is planning something the national
+    standard does not accept.
+  </aside>
+</section>
+
+<section>
+  <h2>One-way analysis: move one thing at a time</h2>
+  <p class="lede">Take a parameter, swing it across its plausible range, hold everything else at its
+  central value, and see what happens to the ICER.</p>
+  <p>Repeat for every parameter. Cheap, transparent, and it answers the question a decision-maker asks
+  first:</p>
+  <p class="claim">Which number does this conclusion actually depend on?</p>
+  <p class="small dim" style="margin-top:.4em">The range must come from somewhere defensible: a published
+  confidence interval, the spread across facilities in a costing study, the range of prices actually
+  quoted. Not from a round number you liked.</p>
+  <aside class="notes">
+    Ranges chosen by convenience, "we varied everything by plus or minus 20%", are a real weakness in
+    the Indian literature and easy to spot. Ask them to look for the justification of the range next
+    time they read a sensitivity analysis.
+  </aside>
+</section>
+
+<section>
+  <h2>The tornado diagram</h2>
+  <p class="small">One bar per parameter, showing the ICER at its low and high value. Sorted widest at
+  the top, which is where the name comes from.</p>
+  <div class="cards c3" style="margin-top:.3em">
+    <div class="card"><h3>Widest bar</h3><p class="small">The parameter the answer turns on. Get this one
+    right before anything else.</p></div>
+    <div class="card"><h3>Bars crossing λ</h3><p class="small">Parameters that can flip the decision, not
+    merely move the number.</p></div>
+    <div class="card"><h3>Narrow bars</h3><p class="small">Precision here buys nothing. Stop arguing about
+    them.</p></div>
+  </div>
+  <p class="claim good" style="margin-top:.4em">In the 2011 Indian rotavirus analysis the two parameters
+  that mattered were <strong>vaccine price</strong> and <strong>efficacy against severe disease</strong>.</p>
+  <p class="cite">Esposito, Tate, Kang, Parashar, <em>Clinical Infectious Diseases</em>, 2011.</p>
+  <aside class="notes">
+    That finding is why the same vaccine was cost-saving at $0.15 a dose and merely cost-effective at
+    $7.00. Price dominating a vaccine evaluation is close to a general rule, and it is why the
+    negotiation matters more than the model.
+  </aside>
+</section>
+
+<section>
+  <h2>Read the tornado</h2>
+  <iframe class="widget" src="../widgets/uncertainty/" data-src="../widgets/uncertainty/" loading="lazy"></iframe>
+  <p class="cite">Tab 1 for now. We come back to tab 2. Also at <strong>widgets/uncertainty/</strong></p>
+  <aside class="notes">
+    Three minutes on tab 1 only. Ask which bar is widest and what that implies for what to do next. The
+    answer is "negotiate the price", not "run a bigger trial". Hold tab 2 back. It lands better after
+    the next two slides.
+  </aside>
+</section>
+
+<section>
+  <h2>Why one-way analysis is not enough</h2>
+  <ul>
+    <li>Parameters do not take turns. Several are wrong <em>at once</em>, and the joint effect is not
+    the sum of the separate ones</li>
+    <li>Some are <strong>correlated</strong>. A facility with high staff costs usually has high overheads
+    too</li>
+    <li>It cannot give you a <strong>probability</strong>. A tornado says the ICER could be anywhere from
+    ₹1.05 lakh to ₹4.06 lakh, and nothing about how likely either end is</li>
+  </ul>
+  <p class="claim" style="margin-top:.4em">For a probability you must vary everything at once, thousands
+  of times.</p>
+  <aside class="notes">
+    The third point motivates probabilistic analysis. Decision-makers ask how likely it is that this is
+    good value, and one-way analysis simply cannot answer that, however many bars you draw.
+  </aside>
+</section>
+
+<section>
+  <h2>Probabilistic sensitivity analysis</h2>
+  <ol>
+    <li>Give every uncertain parameter a <strong>distribution</strong>, not a single value</li>
+    <li>Draw one value from each: a complete, internally coherent set of inputs</li>
+    <li>Run the model once with that set. Record ΔC and ΔE</li>
+    <li>Repeat a thousand times, or ten thousand</li>
+  </ol>
+  <p class="claim" style="margin-top:.4em">The output is not a number. It is a <em>distribution</em> of
+  possible answers.</p>
+  <p class="small dim">Which is the honest representation, and the reason the Reference Case wants it for
+  every analysis.</p>
+  <aside class="notes">
+    Emphasise step 2. One draw is a coherent set. You are not varying parameters independently in
+    sequence, you are asking "what if the world were like this?" a thousand times.
+  </aside>
+</section>
+
+<section>
+  <h2>Which distribution, and why</h2>
+  <table>
+    <tr><th>Parameter type</th><th>Distribution</th><th>Because</th></tr>
+    <tr><td>Probabilities, proportions, utilities</td><td><strong>Beta</strong></td><td>bounded between 0 and 1, as they must be</td></tr>
+    <tr><td>Costs, lengths of stay, resource counts</td><td><strong>Gamma</strong> or log-normal</td><td>cannot go negative, and are right-skewed</td></tr>
+    <tr><td>Relative risks and odds ratios</td><td>log-normal</td><td>symmetric on the scale where they are estimated</td></tr>
+    <tr><td>A set of mutually exclusive probabilities</td><td>Dirichlet</td><td>they must still sum to one after sampling</td></tr>
+  </table>
+  <p class="claim warn" style="margin-top:.3em">Using a normal distribution for a cost is a real error.
+  It lets the model draw a negative cost.</p>
+  <aside class="notes">
+    They do not need to derive these. They need to recognise a wrong choice when supervising or
+    reviewing, and to know that the choice is a stated methodological decision, not a software default
+    to be left alone.
+  </aside>
+</section>
+
+<section>
+  <h2>The result is a cloud, not a point</h2>
+  <p class="lede">Plot every simulation on the cost-effectiveness plane. Each dot is one coherent version
+  of the world.</p>
+  <div class="cards c3" style="margin-top:.3em">
+    <div class="card"><h3>How wide?</h3><p class="small">A tight cloud means the conclusion is robust.
+    A sprawling one means you do not really know.</p></div>
+    <div class="card"><h3>Which side of λ?</h3><p class="small">Count the dots below the threshold line.
+    That proportion is your answer.</p></div>
+    <div class="card"><h3>Which quadrants?</h3><p class="small">A cloud straddling the vertical axis means
+    the intervention might not work at all.</p></div>
+  </div>
+  <p class="claim" style="margin-top:.3em">The counting is done on <strong>net monetary benefit</strong>,
+  not on the ratio.</p>
+  <aside class="notes">
+    Where net monetary benefit finally earns its keep. If they wondered why you spent a minute on it in
+    3B, this is the payoff.
+  </aside>
+</section>
+
+<section>
+  <h2>The cloud, and the curve it generates</h2>
+  <iframe class="widget" src="../widgets/uncertainty/" data-src="../widgets/uncertainty/" loading="lazy"></iframe>
+  <p class="cite">Open <strong>tab 2</strong>. Drag λ and watch both charts at once.</p>
+  <aside class="notes">
+    The most important five minutes of this block. Make them drag λ slowly and watch the dashed line
+    sweep the cloud while the dot climbs the curve. Then ask someone to state the relationship in their
+    own words. When someone says "the curve is just the proportion of green dots at each threshold",
+    the concept has landed and you can stop.
+  </aside>
+</section>
+
+<section>
+  <h2>The acceptability curve</h2>
+  <p class="lede">Threshold on the horizontal axis. Probability of being cost-effective on the vertical.
+  One point for every value λ could take.</p>
+  <p>To build it: pick a λ, count the simulations with positive net monetary benefit, plot the
+  proportion. Move λ. Repeat.</p>
+  <p class="eq sm">P(cost-effective at <span class="nocaps">λ</span>) <span class="op">=</span>
+  proportion of runs with (<span class="nocaps">λ</span> <span class="op">×</span> Δ<i>E<sub>i</sub></i>)
+  <span class="op">−</span> Δ<i>C<sub>i</sub></i> <span class="op">&gt;</span> 0</p>
+  <p class="claim good" style="margin-top:.3em">It saves the decision-maker from committing to a
+  threshold before seeing the answer.</p>
+  <p class="small dim">Useful in India now, where the threshold is unsettled. You can say: below ₹1 lakh
+  a poor bet, above ₹3 lakh a good one, in between it depends on a number not yet agreed.</p>
+  <aside class="notes">
+    That last sentence is the honest form of an Indian discussion section, and worth dictating. It uses
+    the curve to sidestep a question the analyst has no authority to settle, which is exactly what the
+    tool is for.
+  </aside>
+</section>
+
+<section>
+  <h2>What a curve does <em>not</em> tell you</h2>
+  <ul>
+    <li>Not the probability that the intervention <strong>works</strong>. Only that it is good value,
+    given the model</li>
+    <li>Not structural uncertainty. If the model is wrong, <strong>all</strong> ten thousand simulations
+    are wrong together</li>
+    <li>Not whether you can <strong>afford</strong> it. That is budget impact, a separate calculation</li>
+    <li>Not a decision. A curve near 50% at every plausible threshold is a call for more research</li>
+  </ul>
+  <p class="claim warn" style="margin-top:.4em">And an 80% probability of being cost-effective still means
+  a one-in-five chance you are wrong.</p>
+  <aside class="notes">
+    Say the last line slowly. Decision-makers routinely read 80% as "yes". It is not "yes", it is
+    "probably", and that difference is what value-of-information analysis exists to price.
+  </aside>
+</section>
+
+<section>
+  <h2>The Indian example worth remembering</h2>
+  <p class="small dim">One year of adjuvant trastuzumab versus chemotherapy alone, non-metastatic breast
+  cancer, Markov model, societal perspective:</p>
+  <table>
+    <tr><th>Effectiveness source</th><th>QALYs</th><th>ICER per QALY</th><th>Probability cost-effective</th></tr>
+    <tr><td>HERA trial</td><td class="num">1.29</td><td class="num">₹1,78,877</td><td class="num"><span class="pill bad">4%</span></td></tr>
+    <tr><td>Joint NSABP and NCCTG analysis</td><td class="num">1.69</td><td class="num">₹1,34,413</td><td class="num"><span class="pill warn">57.3%</span></td></tr>
+    <tr><td>With a 15 to 35% price reduction</td><td class="num">–</td><td class="num">–</td><td class="num"><span class="pill good">90%</span></td></tr>
+  </table>
+  <p class="claim warn" style="margin-top:.3em">Same drug, same country, same year.</p>
+  <p class="small dim">Nine weeks of trastuzumab was cost-effective, and the authors recommended including
+  it in guidelines. A point estimate alone would have hidden all of this.</p>
+  <p class="cite">Gupta, Verma, Gupta, Prinja, <em>JCO Global Oncology</em>, 2020.</p>
+  <aside class="notes">
+    The best slide in the block. Three things fall out of it: uncertainty is not decoration, the choice
+    of effectiveness source is itself a decision, and a price negotiation can do more for value than
+    any amount of further modelling. Give it two minutes.
+  </aside>
+</section>
+
+<section>
+  <h2>Two more to know the names of</h2>
+  <div class="cards c2">
+    <div class="card"><h3>Scenario analysis</h3><p class="small">Not one parameter but a whole set of
+    assumptions changed together: a different perspective, a shorter horizon, an explicit best and worst
+    case. The Reference Case asks for these alongside probabilistic analysis.</p></div>
+    <div class="card"><h3>Value of information</h3><p class="small">The formal answer to "should we do
+    more research before deciding?" It prices the expected cost of getting the decision wrong, and so
+    puts a value on reducing uncertainty. Beyond this session. See Drummond.</p></div>
+  </div>
+  <p class="claim" style="margin-top:.5em">Naming the tool you did not use is better than pretending it
+  does not exist.</p>
+  <aside class="notes">
+    Value of information deserves a session of its own and does not fit here. Naming it means they will
+    recognise it in a paper and know what to look up.
+  </aside>
+</section>
+
+<section>
+  <h2><span class="pill">11</span> Equity and <span class="pill">12</span> presentation</h2>
+  <div class="cards c2">
+    <div class="card"><h3>Equity</h3><p class="small">All lives and all QALYs count equally, whatever the
+    age, sex or income. Use <strong>distributional analysis</strong> to show who gains, or
+    <strong>extended analysis</strong> for financial risk protection.</p></div>
+    <div class="card"><h3>Presentation</h3><p class="small">Report disaggregated <em>and</em> aggregated
+    results. Give total costs and outcomes separately, not only the ratio. Justify any departure from
+    the Reference Case.</p></div>
+  </div>
+  <p class="claim warn" style="margin-top:.4em">In 2023 the Reference Case had to say no recognised
+  threshold for India existed. Three years later, Chugh and colleagues published one.</p>
+  <p class="small dim">You are learning this subject at the moment it is being settled.</p>
+  <aside class="notes">
+    End the technical content there. Land that last point properly. The guidance they are learning was
+    written with an explicit placeholder, and that placeholder has just been filled. It is a live
+    field, and they can contribute to it.
+  </aside>
+</section>
+
+<section>
+  <h2>Recap</h2>
+  <ul>
+    <li>An ICER is a <strong>point estimate</strong> that inherits every input's uncertainty</li>
+    <li><strong>Heterogeneity is not uncertainty.</strong> It gets subgroup analysis, planned in advance</li>
+    <li><strong>One-way analysis</strong> shows what the answer turns on. It cannot give a probability</li>
+    <li><strong>Probabilistic analysis</strong> gives every parameter a distribution. India asks for it
+    in <em>all</em> analyses</li>
+    <li>The <strong>curve</strong> is just the cloud counted at every threshold, using net monetary benefit</li>
+  </ul>
+  <aside class="notes">
+    Then move to the closing slide, which zooms out over the whole workshop.
+  </aside>
+</section>
+
+<section>
+  <h2>Where you started, and where you are</h2>
+  <table>
+    <tr><th></th><th>You could not</th><th>Now you can</th></tr>
+    <tr><td><strong>1</strong></td><td>tell a costing study from a CEA</td><td>classify any study in two questions</td></tr>
+    <tr><td><strong>2</strong></td><td>say if ₹54,881 per QALY was good value</td><td>set it against ₹2,12,307, with the caveat</td></tr>
+    <tr><td><strong>3A</strong></td><td>spot a bad comparator</td><td>frame a decision problem and cost it</td></tr>
+    <tr><td><strong>3B</strong></td><td>rank more than two options</td><td>find dominance, build a frontier</td></tr>
+    <tr><td><strong>3C</strong></td><td>say how much to trust any of it</td><td>read a tornado, a cloud and a curve</td></tr>
+  </table>
+  <p class="claim good" style="margin-top:.2em">Take home: appraise one Indian evaluation against the
+  eleven principles. Bring the flaw you found.</p>
+  <aside class="notes">
+    Set the take-home concretely. Give three papers out, one per group. Insist they bring a flaw. Every
+    paper has one, and finding it is the skill.
+  </aside>
+</section>
+
+<section>
+  <h2>Sources</h2>
+  <ol class="sources two">
+    <li><b>Drummond MF, Sculpher MJ, Claxton K, Stoddart GL, Torrance GW.</b> Methods for the Economic Evaluation of Health Care Programmes. 4th ed. Oxford University Press; 2015.</li>
+    <li><b>Sharma D, Prinja S, Aggarwal AK, Rajsekar K, Bahuguna P.</b> Development of the Indian Reference Case for undertaking economic evaluation for health technology assessment. <em>Lancet Reg Health Southeast Asia</em> 2023;16:100241. PMID 37694178</li>
+    <li><b>Gupta N, Verma RK, Gupta S, Prinja S.</b> Cost effectiveness of trastuzumab for management of breast cancer in India. <em>JCO Glob Oncol</em> 2020;6:205–16. PMID 32045547</li>
+    <li><b>Esposito DH, Tate JE, Kang G, Parashar UD.</b> Projected impact and cost-effectiveness of a rotavirus vaccination program in India, 2008. <em>Clin Infect Dis</em> 2011;52(2):171–7. PMID 21288839</li>
+    <li><b>Shah K, Singh M, Kotwani P, et al.</b> Comprehensive league table of cost-utility ratios for health policy decisions in India. <em>Front Public Health</em> 2022;10:831254. PMID 36311623</li>
+    <li><b>Chugh Y, Jyani G, Kar SS, Rajsekar K, Prinja S, et al.</b> Estimating the willingness-to-pay per quality-adjusted life-year to aid health technology assessment in India. <em>Value Health</em> 2026;29(3):457–66. PMID 41176029</li>
+  </ol>
+  <p class="cite">Parameters in the uncertainty widget are illustrative, chosen to show the mechanism.
+  The trastuzumab figures above are the real Indian example.</p>
+  <aside class="notes">
+    Point them at handouts/reading-list.html for the annotated version, and at
+    handouts/appraisal-checklist.html for the take-home exercise.
+  </aside>
+</section>
+
+</div></div>
+<script src="../vendor/reveal.js/dist/reveal.js"></script>
+<script src="../vendor/reveal.js/plugin/notes/notes.js"></script>
+<script>
+Reveal.initialize({ hash:true, slideNumber:'c/t', transition:'fade', transitionSpeed:'fast',
+  width:1280, height:720, margin:0, center:false, minScale:0.2, maxScale:2.0,
+  pdfSeparateFragments:false, plugins:[RevealNotes] });
+</script>
+</body>
+</html>

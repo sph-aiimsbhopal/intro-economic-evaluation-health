@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Discounting a prevention programme</title>
+<link rel="stylesheet" href="../../assets/css/tokens.css">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);padding:18px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.5}
+  .wrap{max-width:1120px;margin:0 auto}
+  h1{font-size:1.3rem;margin:0 0 2px;font-weight:650;letter-spacing:-.01em}
+  .sub{color:var(--ink-dim);font-size:.85rem;margin:0 0 18px}
+  .grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,1fr);gap:18px;align-items:start}
+  @media(max-width:900px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px}
+  svg{display:block;width:100%;height:auto}
+  .axlabel{font-size:12px;fill:var(--ink-dim);font-weight:600}
+  .tick{font-size:10px;fill:var(--ink-faint)}
+  .keylbl{font-size:11px;font-weight:650}
+
+  table.readout{width:100%;border-collapse:collapse;font-size:.85rem}
+  table.readout th{text-align:right;font-size:.66rem;text-transform:uppercase;letter-spacing:.05em;
+    color:var(--accent);padding:5px 3px;border-bottom:2px solid var(--line)}
+  table.readout th:first-child{text-align:left}
+  table.readout td{padding:7px 3px;border-bottom:1px solid var(--line);
+    text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+  table.readout td:first-child{text-align:left;font-weight:400;color:var(--ink-dim)}
+  table.readout tr:last-child td{border-bottom:none}
+
+  .big{border:1px solid var(--edge-accent);background:var(--fill-accent);border-radius:8px;
+    padding:12px 14px;margin-bottom:14px}
+  .big .n{font-size:1.75rem;font-weight:750;letter-spacing:-.03em;color:var(--accent);line-height:1;
+    font-variant-numeric:tabular-nums}
+  .big .l{font-size:.78rem;color:var(--ink-dim);margin-top:5px}
+
+  label.ctl{display:block;font-size:.74rem;color:var(--ink-dim);margin:16px 0 5px;font-weight:600;
+    text-transform:uppercase;letter-spacing:.05em}
+  input[type=range]{width:100%;accent-color:var(--accent)}
+  .rateval{color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums}
+  .marks{display:flex;justify-content:space-between;font-size:.68rem;color:var(--ink-faint);margin-top:2px}
+  .presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+  button.preset{background:var(--panel-2);border:1px solid var(--line);color:var(--ink);
+    font-size:.76rem;padding:6px 10px;border-radius:999px;cursor:pointer;font-family:inherit}
+  button.preset:hover{border-color:var(--accent);color:var(--accent)}
+  button.preset.on{border-color:var(--accent);color:var(--accent);background:var(--fill-accent)}
+  .note{font-size:.72rem;color:var(--ink-faint);margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Discounting a prevention programme</h1>
+  <p class="sub">HPV vaccination at age 14. The cost falls this year; the health arrives decades later. Move the rate and watch what that does.</p>
+
+  <div class="grid">
+    <div class="card">
+      <svg id="plot" viewBox="0 0 720 430" role="img" aria-label="Discounted costs and health benefits over time"><g id="chart"></g></svg>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="big">
+          <div class="n" id="icer">—</div>
+          <div class="l">cost per QALY gained, at the rate you have set</div>
+        </div>
+
+        <table class="readout">
+          <tr><th></th><th>Undiscounted</th><th>At this rate</th></tr>
+          <tr><td>Cost per girl</td><td id="c0">—</td><td id="c1">—</td></tr>
+          <tr><td>QALYs gained</td><td id="q0">—</td><td id="q1">—</td></tr>
+          <tr><td>Retained</td><td id="r0">—</td><td id="r1">—</td></tr>
+        </table>
+
+        <label class="ctl" for="rate">Discount rate: <span class="rateval" id="rv">3.0%</span></label>
+        <input type="range" id="rate" min="0" max="10" step="0.5" value="3">
+        <div class="marks"><span>0%</span><span>5%</span><span>10%</span></div>
+
+        <label class="ctl">Reference rates</label>
+        <div class="presets" id="presets"></div>
+
+        <p class="note">
+          <strong>The Indian Reference Case sets 3% for both costs and outcomes</strong>, beyond one year,
+          and asks you to vary it from 0% to 5% in sensitivity analysis and to report undiscounted values
+          as well.
+          <br><br>
+          Watch the two “retained” figures diverge. The cost is paid now, so discounting barely touches it;
+          the health arrives from age 30 onward, so it is discounted hard. That asymmetry is not a quirk of
+          arithmetic. It is why every prevention programme looks worse than a treatment at the same rate,
+          and it is the reason some economists argue health should be discounted at a lower rate than money.
+          The counter-argument is that a lower rate for health implies you should always wait, because
+          delaying a programme makes it look better. Neither side has won.
+          <br><br>
+          <em>The figures here are illustrative: a ₹1,500 cost at age 14 and a small annual health gain
+          from age 30 to 70, chosen to show the mechanism cleanly, not extracted from any paper. Compare
+          what you get at 3% with the ₹5,693–₹31,511 per QALY that Chauhan and colleagues report for HPV
+          vaccination in India.</em>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // ---- the model: deliberately simple and stated in full on the slide ----
+  const AGE_VACC = 14;
+  const COST_YEAR = 0;          // vaccine + delivery paid at vaccination
+  const COST = 1500;            // ₹ per girl, illustrative
+  const BEN_START = 16;         // years after vaccination that health gains begin (age 30)
+  const BEN_END   = 56;         // ... and end (age 70)
+  const BEN_PER_YEAR = 0.0055;  // QALYs gained per year of the benefit window, illustrative
+  const HORIZON = 60;
+
+  let rate = 0.03;
+
+  const W=720,H=430, M={t:26,r:20,b:56,l:70};
+  const PW=W-M.l-M.r, PH=H-M.t-M.b;
+  const svg=document.getElementById('plot'), g=document.getElementById('chart');
+  const C = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const NS='http://www.w3.org/2000/svg';
+  const el=(n,a)=>{const x=document.createElementNS(NS,n);for(const k in a)x.setAttribute(k,a[k]);return x;};
+
+  function inr(n){
+    const neg=n<0; n=Math.round(Math.abs(n)); let s=String(n);
+    if(s.length>3){ const l3=s.slice(-3); let r=s.slice(0,-3);
+      r=r.replace(/\B(?=(\d{2})+(?!\d))/g,','); s=r+','+l3; }
+    return (neg?'−₹':'₹')+s;
+  }
+
+  function series(r){
+    const cost=[], ben=[];
+    for(let t=0;t<=HORIZON;t++){
+      const df = Math.pow(1+r, -t);
+      cost.push(t===COST_YEAR ? COST*df : 0);
+      ben.push((t>=BEN_START && t<=BEN_END) ? BEN_PER_YEAR*df : 0);
+    }
+    return {cost, ben};
+  }
+  const sum = a => a.reduce((x,y)=>x+y,0);
+
+  function draw(){
+    g.innerHTML='';
+    const s = series(rate), s0 = series(0);
+    const maxBen = BEN_PER_YEAR;                     // undiscounted per-year benefit sets the scale
+    const sx = t => M.l + (t/HORIZON)*PW;
+    const sy = v => M.t + PH - (v/maxBen)*PH;
+
+    // axis + gridlines
+    for(let i=0;i<=4;i++){
+      const v=maxBen*i/4, y=sy(v);
+      g.appendChild(el('line',{x1:M.l,y1:y,x2:M.l+PW,y2:y,stroke:C('--line'),'stroke-opacity':.5}));
+      const t=el('text',{x:M.l-9,y:y+4,'text-anchor':'end',class:'tick'});
+      t.textContent=v.toFixed(4); g.appendChild(t);
+    }
+    for(let t=0;t<=HORIZON;t+=10){
+      const x=sx(t);
+      const lab=el('text',{x:x,y:M.t+PH+16,'text-anchor':'middle',class:'tick'});
+      lab.textContent=t; g.appendChild(lab);
+      const lab2=el('text',{x:x,y:M.t+PH+29,'text-anchor':'middle',class:'tick','fill-opacity':.7});
+      lab2.textContent='age '+(AGE_VACC+t); g.appendChild(lab2);
+    }
+
+    // undiscounted benefit envelope (ghost)
+    bars(s0.ben, sx, sy, C('--ink-faint'), .18);
+    // discounted benefit
+    bars(s.ben, sx, sy, C('--good'), .75);
+
+    // the cost, as a single marker at t=0 with its own scale note
+    const cx=sx(0);
+    g.appendChild(el('line',{x1:cx,y1:M.t,x2:cx,y2:M.t+PH,stroke:C('--bad'),'stroke-width':3}));
+    const ct=el('text',{x:cx+8,y:M.t+14,fill:C('--bad'),class:'keylbl'});
+    ct.textContent='cost, paid at age 14: '+inr(s.cost[0]); g.appendChild(ct);
+
+    // key
+    const k1=el('text',{x:M.l+PW-6,y:M.t+14,'text-anchor':'end',fill:C('--good'),class:'keylbl'});
+    k1.textContent='QALYs gained per year, discounted'; g.appendChild(k1);
+    const k2=el('text',{x:M.l+PW-6,y:M.t+29,'text-anchor':'end',fill:C('--ink-faint'),class:'keylbl'});
+    k2.textContent='the same, undiscounted'; g.appendChild(k2);
+
+    g.appendChild(el('line',{x1:M.l,y1:M.t+PH,x2:M.l+PW,y2:M.t+PH,stroke:C('--ink-faint')}));
+
+    const ax=el('text',{x:M.l+PW/2,y:H-10,'text-anchor':'middle',class:'axlabel'});
+    ax.textContent='Years since vaccination'; g.appendChild(ax);
+    const ay=el('text',{x:16,y:M.t+PH/2,'text-anchor':'middle',class:'axlabel',
+      transform:'rotate(-90 16 '+(M.t+PH/2)+')'});
+    ay.textContent='QALYs per year'; g.appendChild(ay);
+  }
+
+  function bars(arr, sx, sy, col, op){
+    const w = Math.max(1.5, (sx(1)-sx(0))*0.85);
+    const base = M.t + PH;
+    arr.forEach((v,t)=>{
+      if(v<=0) return;
+      const y = sy(v);
+      g.appendChild(el('rect',{x:sx(t)-w/2, y:y, width:w, height:Math.max(0, base-y),
+        fill:col, 'fill-opacity':op}));
+    });
+  }
+
+  function render(){
+    draw();
+    const s=series(rate), s0=series(0);
+    const c=sum(s.cost), q=sum(s.ben), c0=sum(s0.cost), q0=sum(s0.ben);
+    document.getElementById('c0').textContent=inr(c0);
+    document.getElementById('c1').textContent=inr(c);
+    document.getElementById('q0').textContent=q0.toFixed(3);
+    document.getElementById('q1').textContent=q.toFixed(3);
+    document.getElementById('r0').textContent=(100*c/c0).toFixed(0)+'% of cost';
+    document.getElementById('r1').textContent=(100*q/q0).toFixed(0)+'% of health';
+    document.getElementById('r0').style.color=C('--bad');
+    document.getElementById('r1').style.color=C('--good');
+    document.getElementById('icer').textContent = q>0 ? inr(c/q)+' / QALY' : '—';
+    document.getElementById('rv').textContent=(rate*100).toFixed(1)+'%';
+    [...document.querySelectorAll('button.preset')].forEach(b=>
+      b.classList.toggle('on', Math.abs(parseFloat(b.dataset.r)-rate*100)<1e-9));
+  }
+
+  const rs=document.getElementById('rate');
+  rs.addEventListener('input',()=>{ rate=parseFloat(rs.value)/100; render(); });
+
+  const PRESETS=[['0%, no discounting',0],['3%, Indian Reference Case',3],
+                 ['3.5%, NICE',3.5],['5%, upper bound in sensitivity analysis',5]];
+  const pc=document.getElementById('presets');
+  PRESETS.forEach(([n,v])=>{
+    const b=document.createElement('button');
+    b.className='preset'; b.textContent=n; b.dataset.r=v;
+    b.onclick=()=>{ rate=v/100; rs.value=v; render(); };
+    pc.appendChild(b);
+  });
+
+  render();
+  new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script>
+</body>
+</html>

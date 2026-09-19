@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uncertainty: tornado, cloud, acceptability curve</title>
+<link rel="stylesheet" href="../../assets/css/tokens.css">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);padding:16px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto}
+  h1{font-size:1.25rem;margin:0 0 2px;font-weight:650;letter-spacing:-.01em}
+  .sub{color:var(--ink-dim);font-size:.84rem;margin:0 0 14px}
+
+  .tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+  button.tab{background:transparent;border:1px solid var(--line);color:var(--ink-dim);
+    font:600 .82rem inherit;font-family:inherit;padding:8px 15px;border-radius:8px;cursor:pointer}
+  button.tab:hover{border-color:var(--accent);color:var(--accent)}
+  button.tab.on{background:var(--fill-accent);border-color:var(--accent);color:var(--accent)}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:920px){.two{grid-template-columns:1fr}}
+  svg{display:block;width:100%;height:auto}
+  .tick{font-size:10px;fill:var(--ink-faint)}
+  .axlabel{font-size:11px;fill:var(--ink-dim);font-weight:600}
+  .chartttl{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+    color:var(--accent);margin:0 0 8px}
+
+  .controls{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end;margin-top:14px}
+  .ctlbox{flex:1 1 260px;min-width:220px}
+  label.ctl{display:block;font-size:.72rem;color:var(--ink-dim);margin:0 0 5px;font-weight:600;
+    text-transform:uppercase;letter-spacing:.05em}
+  input[type=range]{width:100%;accent-color:var(--thresh)}
+  .lam{color:var(--thresh);font-weight:700;font-variant-numeric:tabular-nums}
+  button.act{background:var(--panel-2);border:1px solid var(--line);color:var(--ink);
+    font-size:.8rem;font-family:inherit;padding:9px 15px;border-radius:8px;cursor:pointer}
+  button.act:hover{border-color:var(--accent);color:var(--accent)}
+  select{background:var(--panel-2);border:1px solid var(--line);color:var(--ink);
+    font-size:.8rem;font-family:inherit;padding:8px 10px;border-radius:8px}
+
+  .headline{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+  .hl{flex:1 1 200px;border:1px solid var(--line);border-radius:8px;padding:11px 13px;background:var(--panel)}
+  .hl .n{font-size:1.5rem;font-weight:750;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+  .hl .l{font-size:.74rem;color:var(--ink-dim);margin-top:5px;line-height:1.35}
+  .hl.key{border-color:var(--edge-accent);background:var(--fill-accent)}
+  .hl.key .n{color:var(--accent)}
+
+  table.par{width:100%;border-collapse:collapse;font-size:.76rem;margin-top:14px}
+  table.par th{text-align:right;color:var(--accent);font-size:.64rem;text-transform:uppercase;
+    letter-spacing:.05em;padding:5px 6px;border-bottom:2px solid var(--line)}
+  table.par th:first-child{text-align:left}
+  table.par td{padding:6px;border-bottom:1px solid var(--line);text-align:right;
+    font-variant-numeric:tabular-nums}
+  table.par td:first-child{text-align:left;color:var(--ink-dim)}
+  table.par tr:last-child td{border-bottom:none}
+
+  .note{font-size:.72rem;color:var(--ink-faint);margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
+  .note b{color:var(--ink-dim)}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Uncertainty in one model</h1>
+  <p class="sub">A new drug versus current practice. Five uncertain parameters, one set of results, shown three ways.</p>
+
+  <div class="tabs">
+    <button class="tab on" data-v="dsa">1. One-way analysis (tornado)</button>
+    <button class="tab" data-v="psa">2. Probabilistic analysis: cloud to curve</button>
+  </div>
+
+  <!-- ================= TORNADO ================= -->
+  <div id="viewDSA">
+    <div class="headline">
+      <div class="hl key"><div class="n" id="baseIcer">—</div><div class="l">base-case ICER, with every parameter at its central value</div></div>
+      <div class="hl"><div class="n" id="baseC">—</div><div class="l">incremental cost, ΔC</div></div>
+      <div class="hl"><div class="n" id="baseE">—</div><div class="l">incremental effect, ΔE</div></div>
+    </div>
+
+    <div class="card">
+      <p class="chartttl">Tornado: each parameter moved across its plausible range, one at a time</p>
+      <svg id="tornado" viewBox="0 0 760 330" role="img" aria-label="Tornado diagram"><g id="tg"></g></svg>
+    </div>
+
+    <table class="par">
+      <thead><tr><th>Parameter</th><th>Low</th><th>Base</th><th>High</th><th>ICER swing</th></tr></thead>
+      <tbody id="parBody"></tbody>
+    </table>
+
+    <p class="note">
+      Read the widest bar first: that is the parameter the answer actually turns on. Everything below it
+      matters less than the room usually assumes.
+      <b>What one-way analysis cannot do</b> is tell you a probability, or let parameters move together,
+      and in reality they do. For that you need the second tab.
+    </p>
+  </div>
+
+  <!-- ================= PSA ================= -->
+  <div id="viewPSA" class="hidden">
+    <div class="headline">
+      <div class="hl key"><div class="n" id="pProb">—</div><div class="l">of simulations are cost-effective at the threshold set below</div></div>
+      <div class="hl"><div class="n" id="pMeanIcer">—</div><div class="l">mean ICER across simulations</div></div>
+      <div class="hl"><div class="n" id="pNE" style="font-size:1.1rem">—</div><div class="l">95% of simulations fall in this ICER range</div></div>
+    </div>
+
+    <div class="two">
+      <div class="card">
+        <p class="chartttl">Every simulation, plotted on the cost-effectiveness plane</p>
+        <svg id="cloud" viewBox="0 0 480 420" role="img" aria-label="Probabilistic sensitivity analysis scatter"><g id="cg"></g></svg>
+      </div>
+      <div class="card">
+        <p class="chartttl">The same simulations, counted at every threshold</p>
+        <svg id="ceac" viewBox="0 0 480 420" role="img" aria-label="Cost-effectiveness acceptability curve"><g id="eg"></g></svg>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="ctlbox">
+        <label class="ctl" for="lam">Threshold <span style="text-transform:none">(λ)</span>: <span class="lam" id="lamv">₹2,12,307</span> per QALY</label>
+        <input type="range" id="lam" min="0" max="600000" step="1" value="212307">
+      </div>
+      <div>
+        <label class="ctl" for="nsim">Simulations</label>
+        <select id="nsim">
+          <option value="200">200</option>
+          <option value="1000" selected>1,000</option>
+          <option value="5000">5,000</option>
+        </select>
+      </div>
+      <div><button class="act" id="rerun">Re-run</button></div>
+    </div>
+
+    <p class="note">
+      <b>The two charts are the same data.</b> Drag λ and watch the dashed line sweep the cloud while the
+      dot walks the curve: the height of the curve at any λ is simply the share of the cloud that falls
+      below the line there. That is all a cost-effectiveness acceptability curve is, and it is counted on
+      <b>net monetary benefit</b> (λ·ΔE − ΔC &gt; 0), not on the ratio, because negative and infinite ICERs
+      make counting on the ratio incoherent.
+      <br><br>
+      <b>What it does not tell you.</b> Not the probability that the drug works, only that it is good value
+      given the model. It captures parameter uncertainty and nothing else: if the model's structure is
+      wrong, every one of these simulations is wrong together. A curve hovering near 50% across all
+      plausible thresholds is an argument for more research, not a coin toss.
+      <br><br>
+      <em>Parameters here are illustrative, chosen to show the mechanism. For a real Indian example, read
+      Gupta N, Verma RK, Gupta S, Prinja S. Cost effectiveness of trastuzumab for management of breast
+      cancer in India. </em>JCO Glob Oncol<em> 2020;6:205–16 (PMID 32045547) — a 4% probability of being
+      cost-effective on one effectiveness source and 57.3% on another, rising to 90% with a 15–35% price
+      cut. Same drug, same country, same year.</em>
+    </p>
+  </div>
+</div>
+
+<script>
+(function(){
+  const C = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const NS='http://www.w3.org/2000/svg';
+  const el=(n,a)=>{const x=document.createElementNS(NS,n);for(const k in a)x.setAttribute(k,a[k]);return x;};
+
+  function inr(v){
+    const neg=v<0; v=Math.round(Math.abs(v)); let s=String(v);
+    if(s.length>3){ const l3=s.slice(-3); let r=s.slice(0,-3);
+      r=r.replace(/\B(?=(\d{2})+(?!\d))/g,','); s=r+','+l3; }
+    return (neg?'−₹':'₹')+s;
+  }
+  const lakh = v => (v<0?'−':'')+'₹'+(Math.abs(v)/100000).toFixed(2)+'L';
+
+  // ---------------- the model ----------------
+  // events averted = baseline risk x relative risk reduction
+  // dC = drug cost - (events averted x cost of an event)
+  // dE = events averted x QALYs per event averted
+  const P = [
+    {k:'drug',  name:'Cost of the drug course',        base:48000, lo:30000, hi:90000,  mean:48000, sd:15000, dist:'gamma', fmt:inr},
+    {k:'risk',  name:'Baseline risk of the event',     base:0.30,  lo:0.20,  hi:0.42,   mean:0.30,  sd:0.055, dist:'beta',  fmt:v=>v.toFixed(3)},
+    {k:'rrr',   name:'Relative risk reduction',        base:0.35,  lo:0.20,  hi:0.50,   mean:0.35,  sd:0.075, dist:'beta',  fmt:v=>v.toFixed(3)},
+    {k:'evcost',name:'Cost of treating one event',     base:85000, lo:55000, hi:130000, mean:85000, sd:20000, dist:'gamma', fmt:inr},
+    {k:'evqaly',name:'QALYs gained per event averted', base:1.90,  lo:1.20,  hi:2.70,   mean:1.90,  sd:0.40,  dist:'gamma', fmt:v=>v.toFixed(2)}
+  ];
+  const BASE = Object.fromEntries(P.map(p=>[p.k,p.base]));
+
+  function run(v){
+    const ea = v.risk * v.rrr;
+    const dC = v.drug - ea * v.evcost;
+    const dE = ea * v.evqaly;
+    return {dC, dE, icer: dE!==0 ? dC/dE : NaN};
+  }
+
+  // ---------------- random draws ----------------
+  let spare=null;
+  function normal(){
+    if(spare!==null){ const s=spare; spare=null; return s; }
+    let u,v,s;
+    do{ u=Math.random()*2-1; v=Math.random()*2-1; s=u*u+v*v; } while(s>=1||s===0);
+    const m=Math.sqrt(-2*Math.log(s)/s);
+    spare=v*m; return u*m;
+  }
+  function gammaStd(shape){                    // Marsaglia & Tsang
+    if(shape<1) return gammaStd(shape+1)*Math.pow(Math.random(),1/shape);
+    const d=shape-1/3, c=1/Math.sqrt(9*d);
+    for(;;){
+      let x,vv;
+      do{ x=normal(); vv=1+c*x; } while(vv<=0);
+      vv=vv*vv*vv;
+      const u=Math.random();
+      if(u<1-0.0331*x*x*x*x) return d*vv;
+      if(Math.log(u)<0.5*x*x+d*(1-vv+Math.log(vv))) return d*vv;
+    }
+  }
+  function drawGamma(mean,sd){ const sh=(mean/sd)**2, sc=sd*sd/mean; return gammaStd(sh)*sc; }
+  function drawBeta(mean,sd){
+    const v=sd*sd, t=mean*(1-mean)/v-1;
+    if(t<=0) return mean;
+    const a=mean*t, b=(1-mean)*t;
+    const g1=gammaStd(a), g2=gammaStd(b);
+    return g1/(g1+g2);
+  }
+  function drawSet(){
+    const o={};
+    P.forEach(p=>{ o[p.k] = p.dist==='beta' ? drawBeta(p.mean,p.sd) : drawGamma(p.mean,p.sd); });
+    return o;
+  }
+
+  // ---------------- tornado ----------------
+  function drawTornado(){
+    const g=document.getElementById('tg'); g.innerHTML='';
+    const W=760,H=330, M={t:34,r:22,b:34,l:210};
+    const PW=W-M.l-M.r, PH=H-M.t-M.b;
+    const b=run(BASE);
+
+    const rows = P.map(p=>{
+      const lo=run({...BASE,[p.k]:p.lo}).icer, hi=run({...BASE,[p.k]:p.hi}).icer;
+      return {p, lo:Math.min(lo,hi), hi:Math.max(lo,hi), span:Math.abs(hi-lo)};
+    }).sort((x,y)=>y.span-x.span);
+
+    const min=Math.min(...rows.map(r=>r.lo), b.icer)*0.95;
+    const max=Math.max(...rows.map(r=>r.hi), b.icer)*1.05;
+    const sx = v => M.l + ((v-min)/(max-min))*PW;
+    const rowH = PH/rows.length;
+
+    // gridlines
+    for(let i=0;i<=4;i++){
+      const v=min+(max-min)*i/4, x=sx(v);
+      g.appendChild(el('line',{x1:x,y1:M.t-8,x2:x,y2:M.t+PH,stroke:C('--line'),'stroke-opacity':.5}));
+      const t=el('text',{x:x,y:M.t+PH+18,'text-anchor':'middle',class:'tick'});
+      t.textContent=lakh(v); g.appendChild(t);
+    }
+
+    rows.forEach((r,i)=>{
+      const y=M.t+i*rowH+rowH*0.5;
+      const h=Math.min(26,rowH*0.62);
+      g.appendChild(el('rect',{x:sx(r.lo),y:y-h/2,width:Math.max(2,sx(r.hi)-sx(r.lo)),height:h,
+        fill:C('--accent'),'fill-opacity':.30,stroke:C('--accent'),'stroke-width':1}));
+      const lb=el('text',{x:M.l-12,y:y+4,'text-anchor':'end','font-size':11,'font-weight':600,fill:C('--ink')});
+      lb.textContent=r.p.name; g.appendChild(lb);
+      const lo=el('text',{x:sx(r.lo)-6,y:y+4,'text-anchor':'end',class:'tick'});
+      lo.textContent=lakh(r.lo); g.appendChild(lo);
+      const hi=el('text',{x:sx(r.hi)+6,y:y+4,'text-anchor':'start',class:'tick'});
+      hi.textContent=lakh(r.hi); g.appendChild(hi);
+    });
+
+    // base-case line
+    const bx=sx(b.icer);
+    g.appendChild(el('line',{x1:bx,y1:M.t-14,x2:bx,y2:M.t+PH,stroke:C('--ink'),'stroke-width':2}));
+    const bt=el('text',{x:bx,y:M.t-20,'text-anchor':'middle','font-size':11,'font-weight':700,fill:C('--ink')});
+    bt.textContent='base case '+inr(b.icer); g.appendChild(bt);
+
+    const ax=el('text',{x:M.l+PW/2,y:H-4,'text-anchor':'middle',class:'axlabel'});
+    ax.textContent='ICER (₹ per QALY gained)'; g.appendChild(ax);
+
+    document.getElementById('baseIcer').textContent=inr(b.icer);
+    document.getElementById('baseC').textContent=inr(b.dC);
+    document.getElementById('baseE').textContent='+'+b.dE.toFixed(3)+' QALY';
+
+    const tb=document.getElementById('parBody'); tb.innerHTML='';
+    rows.forEach(r=>{
+      const loI=run({...BASE,[r.p.k]:r.p.lo}).icer, hiI=run({...BASE,[r.p.k]:r.p.hi}).icer;
+      const tr=document.createElement('tr');
+      tr.innerHTML='<td>'+r.p.name+'</td><td>'+r.p.fmt(r.p.lo)+'</td><td>'+r.p.fmt(r.p.base)+
+        '</td><td>'+r.p.fmt(r.p.hi)+'</td><td style="color:'+C('--accent')+';font-weight:700">'+
+        lakh(Math.min(loI,hiI))+' – '+lakh(Math.max(loI,hiI))+'</td>';
+      tb.appendChild(tr);
+    });
+  }
+
+  // ---------------- PSA ----------------
+  let sims=[], lambda=212307;
+
+  function simulate(n){
+    sims=[];
+    for(let i=0;i<n;i++){
+      const r=run(drawSet());
+      if(isFinite(r.dC) && isFinite(r.dE)) sims.push(r);
+    }
+  }
+
+  function drawCloud(){
+    const g=document.getElementById('cg'); g.innerHTML='';
+    const W=480,H=420, M={t:22,r:16,b:46,l:66};
+    const PW=W-M.l-M.r, PH=H-M.t-M.b;
+    if(!sims.length) return;
+
+    const eMax=Math.max(...sims.map(s=>s.dE))*1.08;
+    const cLo=Math.min(0,...sims.map(s=>s.dC))*1.08;
+    const cHi=Math.max(...sims.map(s=>s.dC))*1.08;
+    const sx = e => M.l + (e/eMax)*PW;
+    const sy = c => M.t + ((cHi-c)/(cHi-cLo))*PH;
+
+    g.appendChild(el('rect',{x:M.l,y:M.t,width:PW,height:PH,fill:'none',stroke:C('--line')}));
+    for(let i=0;i<=4;i++){
+      const c=cLo+(cHi-cLo)*i/4, y=sy(c);
+      g.appendChild(el('line',{x1:M.l,y1:y,x2:M.l+PW,y2:y,stroke:C('--line'),'stroke-opacity':.4}));
+      const t=el('text',{x:M.l-8,y:y+4,'text-anchor':'end',class:'tick'}); t.textContent=lakh(c);
+      g.appendChild(t);
+    }
+    for(let i=0;i<=4;i++){
+      const e=eMax*i/4, x=sx(e);
+      const t=el('text',{x:x,y:M.t+PH+16,'text-anchor':'middle',class:'tick'}); t.textContent=e.toFixed(2);
+      g.appendChild(t);
+    }
+    // zero-cost line
+    if(cLo<0){ const y=sy(0);
+      g.appendChild(el('line',{x1:M.l,y1:y,x2:M.l+PW,y2:y,stroke:C('--ink-faint'),'stroke-width':1.2})); }
+
+    // threshold ray through the origin
+    if(lambda>0){
+      const e1=Math.min(eMax, cHi/lambda), c1=lambda*e1;
+      g.appendChild(el('line',{x1:sx(0),y1:sy(0),x2:sx(e1),y2:sy(c1),
+        stroke:C('--thresh'),'stroke-width':2,'stroke-dasharray':'7 5'}));
+    }
+
+    const below=C('--good'), above=C('--bad');
+    sims.forEach(s=>{
+      if(s.dE<0 || s.dE>eMax) return;
+      const ok = (lambda*s.dE - s.dC) > 0;
+      g.appendChild(el('circle',{cx:sx(s.dE),cy:sy(s.dC),r:sims.length>2000?1.4:2.1,
+        fill: ok?below:above,'fill-opacity':.45}));
+    });
+
+    const ax=el('text',{x:M.l+PW/2,y:H-8,'text-anchor':'middle',class:'axlabel'});
+    ax.textContent='Incremental QALYs (ΔE)'; g.appendChild(ax);
+    const ay=el('text',{x:14,y:M.t+PH/2,'text-anchor':'middle',class:'axlabel',
+      transform:'rotate(-90 14 '+(M.t+PH/2)+')'});
+    ay.textContent='Incremental cost (ΔC)'; g.appendChild(ay);
+  }
+
+  function ceacPoints(){
+    const LMAX=600000, STEP=6000, pts=[];
+    for(let L=0;L<=LMAX;L+=STEP){
+      let k=0; for(const s of sims) if(L*s.dE - s.dC > 0) k++;
+      pts.push([L, k/sims.length]);
+    }
+    return pts;
+  }
+
+  function drawCeac(){
+    const g=document.getElementById('eg'); g.innerHTML='';
+    const W=480,H=420, M={t:22,r:16,b:46,l:52};
+    const PW=W-M.l-M.r, PH=H-M.t-M.b;
+    if(!sims.length) return;
+    const LMAX=600000;
+    const sx = L => M.l + (L/LMAX)*PW;
+    const sy = p => M.t + (1-p)*PH;
+
+    g.appendChild(el('rect',{x:M.l,y:M.t,width:PW,height:PH,fill:'none',stroke:C('--line')}));
+    for(let i=0;i<=4;i++){
+      const p=i/4, y=sy(p);
+      g.appendChild(el('line',{x1:M.l,y1:y,x2:M.l+PW,y2:y,stroke:C('--line'),'stroke-opacity':.4}));
+      const t=el('text',{x:M.l-8,y:y+4,'text-anchor':'end',class:'tick'});
+      t.textContent=(p*100).toFixed(0)+'%'; g.appendChild(t);
+    }
+    for(let i=0;i<=4;i++){
+      const L=LMAX*i/4, x=sx(L);
+      const t=el('text',{x:x,y:M.t+PH+16,'text-anchor':'middle',class:'tick'});
+      t.textContent=lakh(L); g.appendChild(t);
+    }
+    // 50% reference
+    g.appendChild(el('line',{x1:M.l,y1:sy(0.5),x2:M.l+PW,y2:sy(0.5),
+      stroke:C('--ink-faint'),'stroke-dasharray':'3 4','stroke-opacity':.8}));
+
+    const pts=ceacPoints();
+    const d=pts.map(([L,p],i)=>(i?'L':'M')+sx(L)+' '+sy(p)).join(' ');
+    g.appendChild(el('path',{d, fill:'none', stroke:C('--accent'),'stroke-width':2.4}));
+
+    // the current threshold
+    const x=sx(Math.min(lambda,LMAX));
+    g.appendChild(el('line',{x1:x,y1:M.t,x2:x,y2:M.t+PH,stroke:C('--thresh'),
+      'stroke-width':2,'stroke-dasharray':'7 5'}));
+    let k=0; for(const s of sims) if(lambda*s.dE - s.dC > 0) k++;
+    const p=k/sims.length;
+    g.appendChild(el('circle',{cx:x,cy:sy(p),r:6,fill:C('--thresh'),stroke:C('--bg'),'stroke-width':2}));
+    const lb=el('text',{x:Math.min(x+10, M.l+PW-4),y:sy(p)-12,
+      'text-anchor': x>M.l+PW*0.7?'end':'start','font-size':12,'font-weight':700,fill:C('--thresh')});
+    lb.textContent=(p*100).toFixed(1)+'%'; g.appendChild(lb);
+
+    const ax=el('text',{x:M.l+PW/2,y:H-8,'text-anchor':'middle',class:'axlabel'});
+    ax.textContent='Threshold, λ (₹ per QALY)'; g.appendChild(ax);
+    const ay=el('text',{x:14,y:M.t+PH/2,'text-anchor':'middle',class:'axlabel',
+      transform:'rotate(-90 14 '+(M.t+PH/2)+')'});
+    ay.textContent='Probability cost-effective'; g.appendChild(ay);
+  }
+
+  function renderPSA(){
+    drawCloud(); drawCeac();
+    let k=0, sumI=0; const icers=[];
+    for(const s of sims){
+      if(lambda*s.dE - s.dC > 0) k++;
+      if(s.dE>0){ const r=s.dC/s.dE; icers.push(r); sumI+=r; }
+    }
+    icers.sort((a,b)=>a-b);
+    const pct = q => icers.length ? icers[Math.min(icers.length-1, Math.floor(q*icers.length))] : NaN;
+    document.getElementById('pProb').textContent=(100*k/sims.length).toFixed(1)+'%';
+    document.getElementById('pNE').textContent= icers.length ? lakh(pct(0.025))+' – '+lakh(pct(0.975)) : '—';
+    document.getElementById('pMeanIcer').textContent= icers.length ? inr(sumI/icers.length) : '—';
+    document.getElementById('lamv').textContent=inr(lambda);
+  }
+
+  // ---------------- wiring ----------------
+  document.querySelectorAll('button.tab').forEach(b=>{
+    b.onclick=()=>{
+      document.querySelectorAll('button.tab').forEach(x=>x.classList.toggle('on', x===b));
+      const psa = b.dataset.v==='psa';
+      document.getElementById('viewDSA').classList.toggle('hidden', psa);
+      document.getElementById('viewPSA').classList.toggle('hidden', !psa);
+      if(psa) renderPSA(); else drawTornado();
+    };
+  });
+  const lamEl=document.getElementById('lam');
+  lamEl.addEventListener('input',()=>{ lambda=+lamEl.value; renderPSA(); });
+  document.getElementById('rerun').onclick=()=>{
+    simulate(+document.getElementById('nsim').value); renderPSA();
+  };
+  document.getElementById('nsim').onchange=()=>{
+    simulate(+document.getElementById('nsim').value); renderPSA();
+  };
+
+  function all(){ drawTornado(); if(!document.getElementById('viewPSA').classList.contains('hidden')) renderPSA(); }
+  simulate(1000);
+  all();
+  new MutationObserver(all).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script>
+</body>
+</html>

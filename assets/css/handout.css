@@ -1,0 +1,93 @@
+/* Handout pages: appraisal checklist, reading list.
+   Reads on a phone, prints on A4. Same palette as the decks. */
+
+*{box-sizing:border-box}
+
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--font); line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+
+header.band{background:var(--band);color:#fff;padding:26px 0}
+header.band .in{max-width:1000px;margin:0 auto;padding:0 26px}
+header.band .kick{font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;
+  font-weight:700;opacity:.82;margin:0 0 6px}
+header.band h1{font-size:1.9rem;line-height:1.15;margin:0;font-weight:700;letter-spacing:-.02em}
+
+.wrap{max-width:1000px;margin:0 auto;padding:26px 26px 70px}
+
+a{color:var(--accent)}
+a:hover{text-decoration:underline}
+
+.intro{font-size:1.04rem;color:var(--ink-dim);max-width:52em}
+
+h2{font-size:1.02rem;letter-spacing:.02em;text-transform:uppercase;color:var(--band);
+  font-weight:700;margin:34px 0 12px;padding-bottom:7px;border-bottom:2px solid var(--band)}
+h3{font-size:1.02rem;font-weight:700;margin:24px 0 8px;color:var(--ink)}
+
+p{margin:.7em 0}
+.small{font-size:.92rem}
+.dim{color:var(--ink-dim)}
+.faint{color:var(--ink-faint)}
+
+/* --- the fill-in header on the checklist --- */
+.formhead{border:1px solid var(--line);background:var(--panel);
+  padding:14px 18px;margin:18px 0 6px;display:grid;gap:10px}
+.formhead .row{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.formhead label{font-weight:700;font-size:.92rem;white-space:nowrap}
+.formhead .rule{flex:1 1 200px;border-bottom:1px solid var(--ink-faint);min-height:1.3em}
+
+/* --- tables --- */
+table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.92rem}
+th{background:var(--band);color:#fff;text-align:left;font-weight:700;
+  padding:9px 11px;vertical-align:bottom}
+td{padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even) td{background:var(--panel)}
+
+table.checklist td:nth-child(1){width:34px;text-align:center;font-weight:700;color:var(--band)}
+table.checklist td:nth-child(2){width:15%}
+table.checklist td:nth-child(4),
+table.checklist td:nth-child(5){background:#fff;border-left:1px solid var(--line)}
+table.checklist td:nth-child(4){width:20%}
+table.checklist td:nth-child(5){width:9%}
+
+.scroll{overflow-x:auto}
+
+/* --- reference entries --- */
+ul.refs{list-style:none;padding:0;margin:0}
+ul.refs > li{padding:12px 0 12px 14px;border-left:3px solid var(--line);
+  margin-bottom:4px}
+ul.refs > li:hover{border-left-color:var(--band)}
+ul.refs .note{display:block;margin-top:5px;font-size:.9rem;color:var(--ink-dim);
+  font-style:italic}
+.pmid{font-size:.86rem;color:var(--ink-faint);white-space:nowrap}
+
+ol.qs{padding-left:1.3em}
+ol.qs li{margin:.6em 0}
+
+blockquote{margin:14px 0;padding:10px 16px;border-left:4px solid var(--band-2);
+  background:var(--panel);font-size:.94rem;color:var(--ink-dim)}
+
+.callout{border:1px solid var(--line);border-left:5px solid var(--band);
+  background:var(--panel);padding:14px 18px;margin:18px 0}
+.callout p:first-child{margin-top:0}
+.callout p:last-child{margin-bottom:0}
+
+footer{margin-top:46px;padding-top:18px;border-top:1px solid var(--line);
+  font-size:.88rem;color:var(--ink-faint);line-height:1.6}
+
+.backlink{display:inline-block;margin-bottom:4px;font-size:.9rem}
+
+@media print{
+  header.band{padding:14px 0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  header.band h1{font-size:1.5rem}
+  th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .wrap{padding:14px 0 0;max-width:none}
+  .backlink,footer{display:none}
+  body{font-size:10.5pt}
+  table{font-size:9.5pt;page-break-inside:auto}
+  tr{page-break-inside:avoid}
+  h2,h3{page-break-after:avoid}
+  a{color:inherit;text-decoration:none}
+}

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Economic Evaluation in Health — Workshop Brochure</title>
+<style>
+  /* ---------- palette ---------- */
+  :root{
+    --deep:#1c2f5e;        /* header / footer band */
+    --deep-2:#2c4a8f;      /* header gradient end */
+    --bar:#16264d;         /* the details bar */
+    --teal:#2a4890;        /* section headings, rules */
+    --teal-br:#c08e2a;     /* bright accent */
+    --green:#3d8a63;
+    --amber:#c08e2a;
+    --mint:#eef2fa;        /* card fill */
+    --mint-br:#d5deef;
+    --ink:#22283b;
+    --ink-2:#4c5670;
+    --ink-3:#7d8699;
+    --line:#dee3ec;
+    --on-1:#cdd9f2;        /* bright text on the dark band */
+    --on-2:#aab9de;        /* dimmer text on the dark band */
+    --on-3:#9fb2dd;        /* small caps label on dark */
+    --on-4:#dde5f5;        /* body text on dark */
+    --on-5:#c0cbe2;        /* footer / details-bar secondary */
+    --icon:#8fa6dd;        /* stroke colour of the small icons */
+    --link:#a9bdea;        /* links on the dark footer */
+    --tint:#f4f6fb;        /* hero band */
+    --tint-2:#fbfcfe;      /* programme card */
+    --tint-3:#f6f8fc;      /* person card */
+    --rule-mid:#6f7fbe;    /* middle stop of the gradient rule */
+    --reg-1:#23397a;       /* registration panel gradient */
+    --reg-2:#3a5cae;
+    --slot-b:#a9781a;      /* midday card heading */
+    --slot-c:#2f7d59;      /* afternoon card heading */
+    --ink-body:#2c3448;    /* long-form body text */
+    --note-bg:#fdf6e3; --note-br:#f0e0b0; --note-ink:#5c4a1c; --note-b:#7a5e12;
+    --paper:#ffffff;
+  }
+
+  @page{ size:A4; margin:0 }
+
+  *{ box-sizing:border-box; margin:0; padding:0 }
+
+  html,body{
+    font-family:"Lato","Segoe UI","Helvetica Neue",Carlito,Arial,sans-serif;
+    color:var(--ink); background:#8a9aa2;
+    -webkit-font-smoothing:antialiased;
+    font-size:10.2pt; line-height:1.5;
+  }
+
+  .page{
+    width:210mm; height:297mm; background:var(--paper);
+    position:relative; overflow:hidden;
+    margin:0 auto; page-break-after:always;
+    display:flex; flex-direction:column;
+  }
+  .page:last-child{ page-break-after:auto }
+
+  .pad{ padding:0 15mm; flex:1 1 auto }
+
+  /* ---------- masthead ---------- */
+  .mast{
+    flex:0 0 auto;
+    background:linear-gradient(100deg,var(--deep) 0%,var(--deep-2) 100%);
+    color:#fff; padding:6.5mm 10mm 6mm;
+    display:flex; align-items:center; gap:7mm;
+  }
+  .mast .badge{
+    background:#fff; border-radius:3px; padding:2.4mm;
+    flex:0 0 auto; display:flex; align-items:center; justify-content:center;
+  }
+  .mast .badge img{ display:block; height:19mm; width:auto }
+  .mast .who{ flex:1 1 auto; text-align:center; line-height:1.32 }
+  .mast .inst{ font-size:15.5pt; font-weight:700; letter-spacing:-.01em }
+  .mast .unit{ font-size:9.6pt; font-weight:600; color:var(--on-1); margin-top:.8mm }
+  .mast .unit em{ font-style:normal; font-weight:400; color:var(--on-2) }
+  .mast .aegis{
+    font-size:6.6pt; letter-spacing:.19em; text-transform:uppercase;
+    color:var(--on-3); margin-top:2.4mm; font-weight:700;
+  }
+  .mast .dept{ font-size:8.2pt; color:var(--on-4); margin-top:.5mm }
+
+  .rule{ flex:0 0 auto; height:1.8mm; background:linear-gradient(90deg,var(--teal-br) 0%,var(--rule-mid) 55%,var(--green) 100%) }
+
+  /* ---------- hero ---------- */
+  .hero{ flex:0 0 auto; background:var(--tint); text-align:center; padding:5.4mm 15mm 5mm }
+  .pill{
+    display:inline-block; background:var(--teal); color:#fff;
+    font-size:7.4pt; font-weight:700; letter-spacing:.15em; text-transform:uppercase;
+    padding:1.7mm 6mm; border-radius:20px;
+  }
+  h1{
+    font-size:31pt; font-weight:700; letter-spacing:-.022em;
+    margin:4.5mm 0 0; line-height:1.06; color:var(--deep);
+  }
+  h1 span{ color:var(--teal-br) }
+  .tag{ font-size:11pt; color:var(--ink-2); margin-top:3mm; line-height:1.4 }
+
+  /* ---------- details bar ---------- */
+  .bar{ flex:0 0 auto; background:var(--bar); color:#fff; display:flex; padding:4mm 10mm; gap:6mm }
+  .bar .cell{ flex:1 1 0; display:flex; gap:3mm; align-items:flex-start }
+  .bar svg{ flex:0 0 auto; margin-top:.4mm }
+  .bar .k{ font-size:9.6pt; font-weight:700; line-height:1.32 }
+  .bar .v{ font-size:8.6pt; color:var(--on-5); line-height:1.32 }
+
+  /* ---------- sections ---------- */
+  .sec{ margin-top:5mm }
+  h2{
+    font-size:9.6pt; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+    color:var(--teal); padding-bottom:1.6mm; border-bottom:1.6pt solid var(--teal);
+  }
+  .body{ margin-top:3.4mm; font-size:9.9pt; line-height:1.62; color:var(--ink-body); text-align:justify }
+  .body strong{ color:var(--deep) }
+
+  /* ---------- stat cards ---------- */
+  .stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:3.5mm; margin-top:4.4mm }
+  .stat{
+    background:var(--mint); border:.6pt solid var(--mint-br); border-top:2.4pt solid var(--teal-br);
+    border-radius:2px; padding:4mm 2mm 3.6mm; text-align:center;
+  }
+  .stat .ico{ color:var(--teal); height:6mm; display:flex; align-items:center; justify-content:center }
+  .stat .n{ font-size:19pt; font-weight:700; color:var(--deep); line-height:1.1; margin-top:1.6mm }
+  .stat .l{
+    font-size:6.9pt; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-2);
+    margin-top:1.4mm; line-height:1.32; font-weight:600;
+  }
+
+  /* ---------- programme ---------- */
+  .prog{ display:grid; grid-template-columns:repeat(3,1fr); gap:3.5mm; margin-top:4mm }
+  .slot{ background:var(--tint-2); border:.6pt solid var(--line); border-left:2.6pt solid var(--teal); padding:3.6mm 4mm 4mm }
+  .slot.b{ border-left-color:var(--amber) }
+  .slot.c{ border-left-color:var(--green) }
+  .slot h3{ font-size:8.4pt; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--teal) }
+  .slot.b h3{ color:var(--slot-b) }
+  .slot.c h3{ color:var(--slot-c) }
+  .slot .t{ font-size:7.6pt; color:var(--ink-3); font-weight:600; margin-top:.6mm; letter-spacing:.04em }
+  .slot ul{ list-style:none; margin-top:2.8mm }
+  .slot li{ font-size:8.9pt; line-height:1.38; padding-left:3.6mm; position:relative; margin-bottom:2mm; color:var(--ink-body) }
+  .slot li:last-child{ margin-bottom:0 }
+  .slot li:before{ content:"\25B8"; position:absolute; left:0; color:var(--teal-br); font-size:8pt }
+  .slot.b li:before{ color:var(--amber) }
+  .slot.c li:before{ color:var(--green) }
+
+  /* ---------- page 2 : two columns ---------- */
+  .cols{ display:grid; grid-template-columns:1fr 1fr; gap:8mm }
+  ul.tick,ul.dot{ list-style:none; margin-top:3.4mm }
+  ul.tick li,ul.dot li{
+    font-size:9.2pt; line-height:1.42; padding-left:5mm; position:relative; margin-bottom:1.9mm; color:var(--ink-body);
+  }
+  ul.tick li:before{ content:"\2713"; position:absolute; left:0; color:var(--green); font-weight:700 }
+  ul.dot li:before{ content:"\2022"; position:absolute; left:1mm; color:var(--teal-br); font-weight:700 }
+  .note{
+    background:var(--note-bg); border:.6pt solid var(--note-br); border-left:2.4pt solid var(--amber);
+    padding:3.2mm 4mm; margin-top:3.4mm; font-size:8.7pt; line-height:1.45; color:var(--note-ink);
+  }
+  .note b{ color:var(--note-b) }
+
+  /* ---------- people ---------- */
+  .chief{
+    background:linear-gradient(100deg,var(--deep) 0%,var(--deep-2) 100%);
+    color:#fff; border-radius:2px; padding:3.7mm; text-align:center; margin-top:3mm;
+  }
+  .chief .r{ font-size:6.9pt; letter-spacing:.19em; text-transform:uppercase; color:var(--on-3); font-weight:700 }
+  .chief .n{ font-size:12.4pt; font-weight:700; margin-top:1.4mm }
+  .chief .n .hon{ font-size:.68em; font-weight:600; letter-spacing:.03em; color:var(--on-1) }
+  .chief .d{ font-size:8.4pt; color:var(--on-4); margin-top:.6mm }
+
+  .subhead{
+    text-align:center; font-size:6.9pt; letter-spacing:.19em; text-transform:uppercase;
+    color:var(--ink-3); font-weight:700; margin:3.2mm 0 2mm;
+  }
+  .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:3.5mm }
+  .grid4{ display:grid; grid-template-columns:repeat(4,1fr); gap:2.9mm; margin-top:3mm }
+  .person{
+    background:var(--tint-3); border:.6pt solid var(--line); border-radius:2px;
+    padding:2.8mm 2.4mm; text-align:center;
+  }
+  .person .n{ font-size:9pt; font-weight:700; color:var(--deep); line-height:1.25 }
+  .person .d{ font-size:7.6pt; color:var(--ink-2); margin-top:1mm; line-height:1.3 }
+  .person .i{ font-size:7.6pt; color:var(--teal); font-weight:700; margin-top:.8mm }
+
+  /* ---------- registration ---------- */
+  .reg{
+    background:linear-gradient(105deg,var(--reg-1) 0%,var(--reg-2) 100%); color:#fff;
+    border-radius:2px; padding:4.8mm 6mm; margin-top:4.6mm;
+    display:flex; align-items:center; gap:7mm;
+  }
+  .reg .main{ flex:1 1 auto; text-align:center }
+  .reg h3{ font-size:14pt; font-weight:700 }
+  .reg .url{
+    display:inline-block; background:rgba(255,255,255,.17); border:.6pt solid rgba(255,255,255,.4);
+    border-radius:20px; padding:1.8mm 6mm; margin-top:3mm; font-size:9.4pt; font-weight:700;
+  }
+  .reg .fine{ font-size:8.6pt; color:var(--on-4); margin-top:2.8mm; line-height:1.55 }
+  .reg .fine b{ color:#fff }
+  .reg .qr{ flex:0 0 auto; text-align:center }
+  .reg .qr img{ display:block; width:26mm; height:26mm; background:#fff; padding:1.6mm; border-radius:2px }
+  .reg .qr span{ display:block; font-size:6.8pt; color:var(--on-4); margin-top:1.4mm; letter-spacing:.06em }
+
+  /* ---------- footer ---------- */
+  .foot{
+    flex:0 0 auto; margin-top:auto; background:var(--bar); color:#fff;
+    padding:4.4mm 15mm; display:flex; justify-content:space-between; align-items:flex-end; gap:8mm;
+  }
+  .foot .l{ font-size:8.6pt; line-height:1.42; flex:1 1 auto }
+  .foot .l b{ font-size:9.2pt }
+  .foot .r{ font-size:8.2pt; text-align:right; line-height:1.5; color:var(--on-5); white-space:nowrap; flex:0 0 auto }
+  .foot .r b{ color:#fff }
+  .foot a{ color:var(--link); text-decoration:none }
+</style>
+</head>
+<body>
+
+<!-- ============================ PAGE 1 ============================ -->
+<div class="page">
+
+  <div class="mast">
+    <div class="badge"><img src="__AIIMS__" alt="AIIMS Bhopal"></div>
+    <div class="who">
+      <div class="inst">All India Institute of Medical Sciences, Bhopal</div>
+      <div class="unit">School of Public Health <em>in collaboration with</em><br>Regional Resource Centre for Health Technology Assessment</div>
+      <div class="aegis">Under the aegis of</div>
+      <div class="dept">Health Technology Assessment in India (HTAIn), Department of Health Research, MoHFW, Government of India</div>
+    </div>
+    <div class="badge"><img src="__HTAIN__" alt="HTAIn"></div>
+  </div>
+  <div class="rule"></div>
+
+  <div class="hero">
+    <span class="pill">One-day workshop</span>
+    <h1>Economic Evaluation <span>in Health</span></h1>
+    <p class="tag">What an ICER is, where it comes from,<br>and what it should and should not decide</p>
+  </div>
+
+  <div class="bar">
+    <div class="cell">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--icon)" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+      <div><div class="k">Wednesday, 23 September 2026</div><div class="v">09:30 to 16:30</div></div>
+    </div>
+    <div class="cell">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--icon)" stroke-width="2" stroke-linecap="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <div><div class="k">AIIMS Bhopal</div><div class="v">Saket Nagar, Bhopal</div></div>
+    </div>
+    <div class="cell">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--icon)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.3l2.4 2.4 4.6-5"/></svg>
+      <div><div class="k">No registration fee</div><div class="v">Workshop kit provided</div></div>
+    </div>
+  </div>
+
+  <div class="pad">
+
+    <div class="sec">
+      <h2>About the workshop</h2>
+      <p class="body">Health technology assessment now shapes what the Indian health system pays for,
+      from the national immunisation schedule to the packages funded under PMJAY. The questions it answers
+      come from clinicians and researchers, and the evidence it rests on is produced in institutes like
+      this one. This one-day workshop is an introduction for anyone who wants to <strong>read that
+      literature critically</strong>, judge whether a published cost-effectiveness claim deserves belief,
+      and <strong>take part in producing it</strong>. It is built around the <strong>Indian Reference
+      Case</strong> for health technology assessment, and every worked example is a published Indian
+      study. Participants work in small groups on one real evaluation from their own field, carried
+      through the whole day rather than read cold at the end. <strong>No prior training in health
+      economics, modelling or statistics is required.</strong></p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 4h11l5 5v11a1 1 0 01-1 1H4a1 1 0 01-1-1V5a1 1 0 011-1z"/><path d="M14 4v6h6M8 14h7M8 17.5h5"/></svg></div>
+        <div class="n">8</div>
+        <div class="l">Published papers<br>appraised</div>
+      </div>
+      <div class="stat">
+        <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 21h8M12 17v4M6.5 13l3-3.5 2.5 2.5 4.5-5"/></svg></div>
+        <div class="n">6</div>
+        <div class="l">Interactive<br>widgets</div>
+      </div>
+      <div class="stat">
+        <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="9" cy="7.5" r="3"/><path d="M2.5 20a6.5 6.5 0 0113 0M17 5.2a3 3 0 010 5.6M19 20a6.6 6.6 0 00-3-5.1"/></svg></div>
+        <div class="n">4</div>
+        <div class="l">Specialty<br>streams</div>
+      </div>
+      <div class="stat">
+        <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M9 11l2 2 4-4.5"/><path d="M5 3.5h14a1 1 0 011 1v15a1 1 0 01-1 1H5a1 1 0 01-1-1v-15a1 1 0 011-1z"/><path d="M9 17h6"/></svg></div>
+        <div class="n">11</div>
+        <div class="l">Reference Case<br>principles</div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>Programme at a glance</h2>
+      <div class="prog">
+        <div class="slot">
+          <h3>Morning</h3>
+          <div class="t">09:30 &ndash; 11:15</div>
+          <ul>
+            <li>Where economic evidence enters health policy</li>
+            <li>What economic evaluation is, and what it is not</li>
+            <li>Thresholds, opportunity cost and budget impact</li>
+          </ul>
+        </div>
+        <div class="slot b">
+          <h3>Midday</h3>
+          <div class="t">11:35 &ndash; 13:15</div>
+          <ul>
+            <li>Costing your own service &mdash; worksheet exercise</li>
+            <li>Framing: decision problem, comparator, perspective and time horizon</li>
+          </ul>
+        </div>
+        <div class="slot c">
+          <h3>Afternoon</h3>
+          <div class="t">14:05 &ndash; 16:30</div>
+          <ul>
+            <li>Outcomes, discounting, the ICER and net monetary benefit</li>
+            <li>Modelling in half an hour</li>
+            <li>Uncertainty: DSA, PSA and the acceptability curve</li>
+            <li>Group appraisal report-back</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <div class="l"><b>School of Public Health</b> &nbsp;&middot;&nbsp; Regional Resource Centre for Health Technology Assessment<br>
+      AIIMS Bhopal, Saket Nagar, Bhopal &ndash; 462020</div>
+    <div class="r"><b>Page 1 of 2</b></div>
+  </div>
+
+</div>
+
+<!-- ============================ PAGE 2 ============================ -->
+<div class="page">
+
+  <div class="pad" style="padding-top:6mm">
+
+    <div class="cols">
+      <div>
+        <h2>Workshop highlights</h2>
+        <ul class="tick">
+          <li>Eight published Indian evaluations, appraised in small groups across the day</li>
+          <li>A printed costing worksheet for a service in your own department</li>
+          <li>Six interactive widgets that run on a phone and stay online afterwards</li>
+          <li>Short live polls in every session, so nobody sits passively</li>
+          <li>The Indian Reference Case as a one-page appraisal form to take away</li>
+          <li>Every citation verified against PubMed, with a full reading list</li>
+          <li>Slides, handouts and widgets remain freely available online</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Who should attend</h2>
+        <ul class="dot">
+          <li>Faculty and senior residents across departments, AIIMS Bhopal</li>
+          <li>Anyone planning, or invited to co-investigate, a cost-effectiveness study</li>
+          <li>Researchers adding an economic component to a protocol or a grant application</li>
+          <li>Anyone who reads, reviews or is asked to comment on cost-effectiveness evidence</li>
+          <li>Departments considering submitting a topic to HTAIn through the Resource Centre</li>
+        </ul>
+        <div class="note"><b>Prerequisites:</b> None. No prior training in health economics, modelling
+        or statistics is assumed. All exercises are paper-based.</div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>Patrons</h2>
+      <div class="chief">
+        <div class="r">Chief Patron</div>
+        <div class="n">Lt Gen (Dr) Narendra Kotwal<span class="hon">, AVSM, SM, VSM (Retd)</span></div>
+        <div class="d">Executive Director &amp; CEO, AIIMS Bhopal</div>
+      </div>
+      <div class="subhead">Patrons</div>
+      <div class="grid3">
+        <div class="person"><div class="n">Prof. (Dr.) Rajnish Joshi</div><div class="d">Dean (Academics) &amp;<br>Academic Head, School of Public Health</div><div class="i">AIIMS Bhopal</div></div>
+        <div class="person"><div class="n">Prof. (Dr.) Rehan Ul Haq</div><div class="d">Dean (Research)</div><div class="i">AIIMS Bhopal</div></div>
+        <div class="person"><div class="n">Dr. Kavitha Rajsekar</div><div class="d">Scientist-F &amp; Scientist in Charge</div><div class="i">HTAIn, DHR</div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>Resource persons</h2>
+      <div class="grid3" style="margin-top:3mm">
+        <div class="person"><div class="n">Dr. Abhijit P. Pakhare</div><div class="d">Professor, Community &amp; Family Medicine<br>PI, RRC-HTA</div><div class="i">AIIMS Bhopal</div></div>
+        <div class="person"><div class="n">Dr. Abhijit Rozatkar</div><div class="d">Member Secretary,<br>School of Public Health Committee</div><div class="i">AIIMS Bhopal</div></div>
+        <div class="person"><div class="n">Dr. Ankur Joshi</div><div class="d">Additional Professor,<br>Community &amp; Family Medicine</div><div class="i">AIIMS Bhopal</div></div>
+      </div>
+      <div class="grid3" style="margin-top:2.9mm">
+        <div class="person"><div class="n">Dr. Shubham Atal</div><div class="d">Additional Professor,<br>Pharmacology</div><div class="i">AIIMS Bhopal</div></div>
+        <div class="person"><div class="n">Dr. Anvita Malhotra</div><div class="d">Scientist-D,<br>RRC-HTA</div><div class="i">AIIMS Bhopal</div></div>
+        <div class="person"><div class="n">Mr. Shivansh Verma</div><div class="d">Health Economist,<br>RRC-HTA</div><div class="i">AIIMS Bhopal</div></div>
+      </div>
+    </div>
+
+    <div class="reg">
+      <div class="main">
+        <h3>Register Now &mdash; Limited to 25 Participants</h3>
+        <span class="url">forms.gle/Te2jRPjubgbfywmm8</span>
+        <div class="fine">
+          Open to faculty and senior residents, AIIMS Bhopal<br>
+          <b>No registration fee</b> &nbsp;|&nbsp; Workshop kit and lunch will be provided<br>
+          <b>Resource material:</b> sph-aiimsbhopal.github.io/intro-economic-evaluation-health
+        </div>
+      </div>
+      <div class="qr">
+        <img src="__QR__" alt="QR code">
+        <span>Scan to register</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <div class="l"><b>School of Public Health</b> &nbsp;&middot;&nbsp; Regional Resource Centre for HTA<br>
+      AIIMS Bhopal, Saket Nagar, Bhopal &ndash; 462020</div>
+    <div class="r"><b>Email:</b> hta@aiimsbhopal.edu.in<br><b>Web:</b> <a href="https://sph-aiimsbhopal.github.io/intro-economic-evaluation-health/">sph-aiimsbhopal.github.io/intro-economic-evaluation-health</a></div>
+  </div>
+
+</div>
+
+</body>
+</html>

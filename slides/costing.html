@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Costing your own service</title>
+<link rel="stylesheet" href="../vendor/reveal.js/dist/reveal.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/slides.css">
+<style>
+  .reveal svg text{ font-family:var(--font) }
+  .reveal table th.num{ text-align:right }
+  .reveal .g2x2{ display:grid; grid-template-columns:auto 1fr 1fr; gap:6px; font-size:.7em }
+  .reveal .g2x2 .hd{ background:var(--band); color:#fff; font-weight:700; padding:.35em .55em }
+  .reveal .g2x2 .rh{ font-weight:700; color:var(--ink-dim); padding:.4em .6em .4em 0; display:flex; align-items:center }
+  .reveal .g2x2 .c{ background:var(--panel); border:1px solid var(--line); border-radius:3px; padding:.4em .55em; line-height:1.3 }
+</style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<section class="cover">
+  <p class="kicker">Economic Evaluation in Health &nbsp;·&nbsp; Faculty workshop &nbsp;·&nbsp; 11:40</p>
+  <h1>Costing your own service</h1>
+  <p class="lede dim">Micro and gross costing, bottom up and top down, capital and shared overheads, and
+  where Indian unit costs already exist. Then you cost one episode of care yourselves.</p>
+  <p class="small faint" style="margin-top:1em">Drummond et al., 4th ed., Chapter 7, and the Indian
+  Reference Case, principle 5</p>
+  <aside class="notes">
+    Twenty minutes of slides, thirty minutes on the worksheet, five minutes of report-back. Hold the
+    slides to twenty minutes even if the room wants to argue; the worksheet is where the learning
+    happens. Worksheets should already be on the tables, one per group.
+  </aside>
+</section>
+
+<section>
+  <h2>By the end of this session</h2>
+  <ol>
+    <li>Tell a <strong>price</strong> from a <strong>cost</strong>, and say why it matters</li>
+    <li>Choose between <strong>micro</strong> and <strong>gross</strong> costing, <strong>bottom up</strong> and <strong>top down</strong></li>
+    <li><strong>Annuitise</strong> a piece of equipment and <strong>allocate</strong> a shared overhead</li>
+    <li>Say where Indian <strong>unit costs</strong> already exist before collecting your own</li>
+    <li>Cost one episode of care in <strong>your</strong> department, roughly</li>
+  </ol>
+  <aside class="notes">
+    Objective 5 is the one that matters. Everything else is in service of the worksheet.
+  </aside>
+</section>
+
+<section>
+  <h2>Prices are not costs</h2>
+  <p class="lede">In 2018, many PM-JAY package prices bore little relation to what the care cost to deliver.</p>
+  <table>
+    <tr><th>Share of packages priced below half their measured cost</th><th class="num">Share</th></tr>
+    <tr><td>2018, before revision</td><td class="num"><strong>~42%</strong></td></tr>
+    <tr><td>2019, after costing evidence was used to revise them</td><td class="num"><strong>~20%</strong></td></tr>
+  </table>
+  <p class="small" style="margin-top:.3em">In the revision, <strong>61%</strong> of package prices went up and <strong>18%</strong> came down.
+  The evidence was hospital costing across public tertiary hospitals.</p>
+  <p class="claim" style="margin-top:.3em">A price is what someone pays. A cost is what the care uses up.</p>
+  <p class="cite">Prinja, Singh, Rajsekar et al., <em>Applied Health Economics and Health Policy</em>, 2021.</p>
+  <aside class="notes">
+    The hook. Costing is not an accountant's hobby; it moved national reimbursement rates. Ask who in
+    the room has ever been told what a procedure "costs" and later found that figure was a charge,
+    a tender price or a package rate. All three are prices.
+  </aside>
+</section>
+
+<section>
+  <h2>Three steps, every time</h2>
+  <div class="cards c3">
+    <div class="card"><h3>Identify</h3><p class="small">Which resources does the care use? Staff, drugs,
+    consumables, tests, equipment, space, the share of the hospital that keeps the lights on.</p></div>
+    <div class="card"><h3>Measure</h3><p class="small">How much of each, per episode? Minutes, units,
+    days, uses.</p></div>
+    <div class="card"><h3>Value</h3><p class="small">What is each unit worth? Salary per minute,
+    purchase price, annuitised capital, allocated overhead.</p></div>
+  </div>
+  <p class="claim warn" style="margin-top:.5em">Most errors happen at <em>identify</em>: something is
+  simply never counted.</p>
+  <aside class="notes">
+    Block 3A later names these three steps again in the context of framing. Here we practise them.
+    The commonest omissions: capital, shared overheads, and the time of staff who are "already paid for".
+  </aside>
+</section>
+
+<section>
+  <h2>"But the nurse is already paid for"</h2>
+  <p class="lede">An economic cost is the value of what the resource could otherwise have done.</p>
+  <table>
+    <tr><th>Resource</th><th>Financial cost to the budget</th><th>Economic cost</th></tr>
+    <tr><td>Staff time on the new service</td><td>zero extra, if salaried</td><td>the minutes, at salary per minute</td></tr>
+    <tr><td>Donated equipment</td><td>zero</td><td>its market value, annuitised</td></tr>
+    <tr><td>A room that already exists</td><td>zero</td><td>its share of the building</td></tr>
+  </table>
+  <p class="claim" style="margin-top:.3em">Economic evaluation uses economic cost, because the question is
+  what else those minutes could have done.</p>
+  <aside class="notes">
+    This is opportunity cost from Block 1 arriving at ward level. The nurse spending 45 minutes on
+    the new procedure is not spending them somewhere else. That is the cost.
+  </aside>
+</section>
+
+<section>
+  <h2>Two choices about method</h2>
+  <div class="g2x2">
+    <div></div><div class="hd">Bottom up: count what each patient uses</div><div class="hd">Top down: divide a total by the output</div>
+    <div class="rh">Micro<br>costing:<br>every item</div>
+    <div class="c"><strong>Most precise.</strong> Minutes timed, items counted, priced one by one. Slow; can miss shared costs.</div>
+    <div class="c">Department totals split finely by activity. Captures overheads; needs good accounts.</div>
+    <div class="rh">Gross<br>costing:<br>big blocks</div>
+    <div class="c">A few large components per patient: a bed-day, an operation, a course of drugs.</div>
+    <div class="c"><strong>Fastest.</strong> Annual budget ÷ patients. Every patient looks average.</div>
+  </div>
+  <p class="claim" style="margin-top:.45em">Precision where the money is; gross costing for the rest.</p>
+  <aside class="notes">
+    Two separate questions: how finely do you cut (micro versus gross), and which direction do you
+    come from (bottom up versus top down). People conflate them. Most real studies mix all four
+    cells, micro-costing the expensive, variable items and gross-costing the small ones.
+  </aside>
+</section>
+
+<section>
+  <h2>Bottom up and top down, side by side</h2>
+  <div class="cards c2">
+    <div class="card good"><h3>Bottom up</h3>
+      <p class="small">Follow patients. Time the staff, count the items, price each.</p>
+      <p class="small"><strong>Sees</strong> variation between patients.<br>
+      <strong>Misses</strong> anything nobody thought to count: supervision, idle time, overheads.</p></div>
+    <div class="card"><h3>Top down</h3>
+      <p class="small">Start from the department's annual spend. Divide by patients, or bed-days.</p>
+      <p class="small"><strong>Sees</strong> every rupee the department spends.<br>
+      <strong>Misses</strong> that a complex case uses more than a simple one.</p></div>
+  </div>
+  <p class="claim good" style="margin-top:.45em">India's national hospital costing uses both.</p>
+  <p class="small dim">The Cost of Health Services in India study planned a mixed top-down and bottom-up
+  method across 52 public and 40 private hospitals in 13 states.</p>
+  <p class="cite">Prinja, Singh, Guinness, Rajsekar, Bhargava, <em>BMJ Open</em>, 2020.</p>
+  <aside class="notes">
+    Bottom-up totals are usually lower than top-down totals for the same service, because bottom-up
+    misses things. If a paper uses only bottom-up costing and reports a very low cost, ask what was
+    left out.
+  </aside>
+</section>
+
+<section>
+  <h2>Staff time: usually the biggest line</h2>
+  <div class="eq">₹ per minute <span class="op">=</span>
+    <span class="frac"><span class="n">monthly gross salary</span><span class="d">minutes actually available</span></span></div>
+  <p class="eqnote">Available minutes: working days × productive hours × 60. Leave, teaching and admin are not available.</p>
+  <table>
+    <tr><th>Constructed example</th><th class="num">Value</th></tr>
+    <tr><td>Staff nurse, monthly gross</td><td class="num">₹60,000</td></tr>
+    <tr><td>22 days × 6 productive hours × 60</td><td class="num">7,920 min</td></tr>
+    <tr><td>Cost per minute; 45 minutes on the episode</td><td class="num">₹7.58; <strong>₹341</strong></td></tr>
+  </table>
+  <p class="cite">Constructed figures to show the arithmetic, not a real pay scale. The same row is on your worksheet.</p>
+  <aside class="notes">
+    Using all contracted hours rather than productive hours understates the cost per minute. The
+    denominator is where people go wrong, not the numerator.
+  </aside>
+</section>
+
+<section>
+  <h2>Capital: annuitise, never the purchase price</h2>
+  <div class="eq">Equivalent annual cost <span class="op">=</span>
+    <span class="frac"><span class="n">purchase price</span><span class="d">annuity factor (life, 3%)</span></span></div>
+  <table>
+    <tr><th>Constructed example: an ultrasound machine</th><th class="num">Value</th></tr>
+    <tr><td>Price ₹5,00,000; life 10 years; factor at 3%</td><td class="num">8.530</td></tr>
+    <tr><td>Equivalent annual cost</td><td class="num">₹58,617</td></tr>
+    <tr><td>÷ 2,000 scans a year</td><td class="num"><strong>₹29 a scan</strong></td></tr>
+  </table>
+  <p class="small dim">Charging ₹5,00,000 to one year makes that year's patients look absurdly expensive, and
+  every later year's look free.</p>
+  <p class="cite">Constructed figures. Factor table on the worksheet. 3% is the Reference Case discount rate.</p>
+  <aside class="notes">
+    The annuity factor is the present value of one rupee a year for n years at 3%. Nobody needs the
+    derivation today; they need to know that the table exists and that capital belongs in the cost.
+  </aside>
+</section>
+
+<section>
+  <h2>Shared overheads: the costs nobody owns</h2>
+  <svg viewBox="0 0 1160 330" width="1160" height="330" role="img" aria-label="Step-down allocation: overhead centres feed intermediate centres, which feed patient care centres">
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#47525f"/></marker></defs>
+    <g font-size="21">
+      <text x="120" y="26" text-anchor="middle" font-weight="700" fill="#162a6c">Overhead centres</text>
+      <text x="580" y="26" text-anchor="middle" font-weight="700" fill="#162a6c">Intermediate centres</text>
+      <text x="1040" y="26" text-anchor="middle" font-weight="700" fill="#162a6c">Patient care centres</text>
+    </g>
+    <g font-size="21" fill="#10141a">
+      <rect x="10" y="48" width="220" height="56" rx="4" fill="#f4f6f9" stroke="#ccd4dd"/><text x="120" y="83" text-anchor="middle">Administration</text>
+      <rect x="10" y="130" width="220" height="56" rx="4" fill="#f4f6f9" stroke="#ccd4dd"/><text x="120" y="165" text-anchor="middle">Laundry, kitchen</text>
+      <rect x="10" y="212" width="220" height="56" rx="4" fill="#f4f6f9" stroke="#ccd4dd"/><text x="120" y="247" text-anchor="middle">Power, water, building</text>
+      <rect x="470" y="70" width="220" height="56" rx="4" fill="#f4f6f9" stroke="#ccd4dd"/><text x="580" y="105" text-anchor="middle">Laboratory, radiology</text>
+      <rect x="470" y="190" width="220" height="56" rx="4" fill="#f4f6f9" stroke="#ccd4dd"/><text x="580" y="225" text-anchor="middle">Theatre, CSSD</text>
+      <rect x="930" y="70" width="220" height="56" rx="4" fill="rgba(23,104,60,.10)" stroke="rgba(23,104,60,.45)"/><text x="1040" y="105" text-anchor="middle">Wards</text>
+      <rect x="930" y="190" width="220" height="56" rx="4" fill="rgba(23,104,60,.10)" stroke="rgba(23,104,60,.45)"/><text x="1040" y="225" text-anchor="middle">OPD</text>
+    </g>
+    <g stroke="#47525f" stroke-width="2" fill="none" marker-end="url(#ar)">
+      <path d="M232,76 L466,98"/><path d="M232,158 L466,210"/><path d="M232,240 L466,226"/>
+      <path d="M232,90 C600,20 800,40 926,90"/><path d="M232,250 C600,320 800,300 926,236"/>
+      <path d="M692,98 L926,98"/><path d="M692,218 L926,218"/><path d="M692,110 L926,206"/>
+    </g>
+    <text x="580" y="318" text-anchor="middle" font-size="19" fill="#47525f">Each arrow splits a cost by an allocation base: floor area, staff, beds, kg of laundry, tests done</text>
+  </svg>
+  <p class="claim" style="margin-top:.2em">Step down: every cost ends up at a centre that sees patients.</p>
+  <aside class="notes">
+    This is how the national hospital costing study allocates support and indirect service centres to
+    patient care centres, using apportioning statistics. Keep it at this level. The point is that a
+    ward's cost per bed-day includes a slice of the laundry and the administration, and a study that
+    leaves them out is too cheap.
+  </aside>
+</section>
+
+<section>
+  <h2>One allocation, worked</h2>
+  <table>
+    <tr><th>Constructed example: laundry</th><th class="num">Value</th></tr>
+    <tr><td>Hospital laundry, annual cost</td><td class="num">₹12,00,000</td></tr>
+    <tr><td>Your ward's share, by kg of linen</td><td class="num">15%</td></tr>
+    <tr><td>Allocated to your ward</td><td class="num">₹1,80,000</td></tr>
+    <tr><td>÷ 3,000 patient-days a year</td><td class="num"><strong>₹60 a patient-day</strong></td></tr>
+  </table>
+  <p class="small" style="margin-top:.3em">Repeat for each shared service, or, if you cannot, use a stated
+  mark-up <strong>and say where it came from</strong>.</p>
+  <p class="cite">Constructed figures to show the arithmetic.</p>
+  <aside class="notes">
+    For the worksheet they will not know their hospital's laundry budget. That is fine: they should
+    write down the allocation base they would use and a guess, and mark it as the number they are
+    least sure of. That is question (b) on page 2.
+  </aside>
+</section>
+
+<section>
+  <h2>Average cost is not the cost of one more</h2>
+  <p class="lede">Adding ten scans a day to a machine that is idle half the time costs the consumables
+  and the staff minutes. Not another machine.</p>
+  <div class="cards c2">
+    <div class="card"><h3>Average cost</h3><p class="small">Total cost ÷ output. Right for pricing a
+    service and for a programme at full scale.</p></div>
+    <div class="card"><h3>Marginal cost</h3><p class="small">The extra cost of one more unit. Right for
+    a small change at the edge of existing capacity.</p></div>
+  </div>
+  <p class="claim warn" style="margin-top:.45em">Ask which one a paper used, and whether it fits the
+  decision it is informing.</p>
+  <aside class="notes">
+    The reverse error matters too: a scale-up that needs a second machine has a marginal cost far
+    above the average. Capacity constraints decide which is relevant.
+  </aside>
+</section>
+
+<section>
+  <h2>Before you collect: Indian unit costs already exist</h2>
+  <table>
+    <tr><th>You need</th><th>Go to</th></tr>
+    <tr><td>Unit costs of public services, primary to tertiary</td><td><strong>National Health System Cost Database</strong></td></tr>
+    <tr><td>Hospital procedure costs, public and private</td><td><strong>Cost of Health Services in India</strong> study</td></tr>
+    <tr><td>What a curative package is reimbursed at</td><td><strong>PM-JAY package rates</strong>: a price, not a cost</td></tr>
+    <tr><td>Out-of-pocket spending by condition</td><td><strong>National Sample Survey</strong></td></tr>
+    <tr><td>None of these fits</td><td>Primary costing, following the <strong>HTAIn</strong> methods guidance</td></tr>
+  </table>
+  <p class="cite">healtheconomics.pgisph.in/costing_web/ &nbsp;·&nbsp; Prinja et al., <em>PharmacoEconomics Open</em>, 2020; <em>BMJ Open</em>, 2020.</p>
+  <aside class="notes">
+    If the connection allows, open the database for thirty seconds. Then point out that the Reference
+    Case treats PM-JAY as the payer for curative care, so package rates are legitimately used as the
+    cost to the payer in many HTAIn studies. That is a perspective choice, not an error, as long as
+    it is labelled.
+  </aside>
+</section>
+
+<section>
+  <h2>Five costing errors to catch in a paper</h2>
+  <ol>
+    <li><strong>Charges or prices used as costs</strong>, without saying so</li>
+    <li><strong>Capital left out</strong>, or charged in full to one year</li>
+    <li><strong>Overheads left out</strong>. Bottom-up alone, with no allocation</li>
+    <li><strong>Average cost</strong> used for a marginal decision, or the reverse</li>
+    <li><strong>Old costs, new decision</strong>: cost year and currency not stated, or not updated</li>
+  </ol>
+  <p class="claim" style="margin-top:.3em">Every one of them makes the intervention look cheaper, or
+  hides that it is not.</p>
+  <aside class="notes">
+    These are the costing row of the appraisal checklist, principle 5, turned into things to look for.
+    Tell the groups to check their paper for all five at lunch.
+  </aside>
+</section>
+
+<section>
+  <h2>Your turn: the worksheet</h2>
+  <div class="cards c3">
+    <div class="card"><h3>5 min</h3><p class="small">Choose <strong>one episode</strong> your department
+    delivers. Define where it starts and ends. Map the pathway.</p></div>
+    <div class="card"><h3>20 min</h3><p class="small">Fill in staff, items, equipment and overheads.
+    Rough numbers. Mark the ones you are guessing.</p></div>
+    <div class="card"><h3>5 min</h3><p class="small">Add up. Compare with a PM-JAY rate if one exists.
+    Answer the three questions on page 2.</p></div>
+  </div>
+  <p class="claim good" style="margin-top:.45em">The goal is not the right number. It is knowing which
+  number you do not know.</p>
+  <aside class="notes">
+    Same groups as the paper exercise, which are formed by specialty cluster. Each group picks one
+    member's department and costs an episode there. Walk round. The two most useful
+    interventions: "what did you leave out?" and "which line would you measure properly first?"
+    Take three groups' totals and their answer to question (b) in the last five minutes.
+  </aside>
+</section>
+
+<section>
+  <h2>And your paper</h2>
+  <ol>
+    <li>Where did its costs come from: a database, a trial, package rates, the literature?</li>
+    <li>Bottom up, top down, or not stated?</li>
+    <li>Whose costs: the hospital's, the payer's, the patient's?</li>
+    <li>Which of the five errors can you find?</li>
+  </ol>
+  <p class="claim" style="margin-top:.3em">Write it in row 5 of the checklist before lunch.</p>
+  <aside class="notes">
+    A two-minute reminder at the end so the paper groups keep moving. They do this after the
+    worksheet, or over lunch.
+  </aside>
+</section>
+
+<section>
+  <h2>Sources</h2>
+  <ol class="sources two">
+    <li><b>Drummond MF, Sculpher MJ, Claxton K, Stoddart GL, Torrance GW.</b> Methods for the Economic Evaluation of Health Care Programmes. 4th ed. Oxford University Press; 2015. <b>Chapter 7</b>, Cost analysis.</li>
+    <li><b>Sharma D, Prinja S, Aggarwal AK, Rajsekar K, Bahuguna P.</b> Development of the Indian Reference Case for undertaking economic evaluation for health technology assessment. <em>Lancet Reg Health Southeast Asia</em> 2023;16:100241. PMID 37694178</li>
+    <li><b>Prinja S, Singh MP, Rajsekar K, Sachin O, Gedam P, Nagar A, Bhargava B; CHSI Study Group.</b> Translating research to policy: setting provider payment rates for strategic purchasing under India's national publicly financed health insurance scheme. <em>Appl Health Econ Health Policy</em> 2021;19(3):353–70. PMID 33462775</li>
+    <li><b>Prinja S, Singh MP, Guinness L, Rajsekar K, Bhargava B.</b> Establishing reference costs for the health benefit packages under universal health coverage in India: cost of health services in India (CHSI) protocol. <em>BMJ Open</em> 2020;10(7):e035170. PMID 32690737</li>
+    <li><b>Prinja S, Chauhan AS, Bahuguna P, et al.</b> Cost of delivering secondary healthcare through the public sector in India. <em>PharmacoEcon Open</em> 2020;4(2):249–61. PMID 31468323</li>
+    <li><b>National Health System Cost Database for India.</b> PGIMER Chandigarh and Department of Health Research. healtheconomics.pgisph.in/costing_web/</li>
+  </ol>
+  <aside class="notes">
+    Not for reading out. Worked examples on the staff, capital and laundry slides are constructed.
+  </aside>
+</section>
+
+</div></div>
+<script src="../vendor/reveal.js/dist/reveal.js"></script>
+<script src="../vendor/reveal.js/plugin/notes/notes.js"></script>
+<script>
+Reveal.initialize({ hash:true, slideNumber:'c/t', transition:'fade', transitionSpeed:'fast',
+  width:1280, height:720, margin:0, center:false, minScale:0.2, maxScale:2.0,
+  pdfSeparateFragments:false, plugins:[RevealNotes] });
+</script>
+</body>
+</html>

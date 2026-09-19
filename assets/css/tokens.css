@@ -1,0 +1,39 @@
+/* ============================================================
+   Design tokens — one light palette, drawn from the PowerPoint
+   template: navy title band on white, Arial, Office accents for
+   anything that has to mean something.
+
+   Loaded by the landing page, all five decks and all six widgets.
+   ============================================================ */
+
+:root{
+  --bg:#ffffff;
+  --panel:#f4f6f9;
+  --panel-2:#e8edf3;
+  --line:#ccd4dd;
+
+  --ink:#10141a;
+  --ink-dim:#47525f;
+  --ink-faint:#75808d;
+
+  --band:#162a6c;          /* the title band, from the template master */
+  --band-2:#22398a;        /* a step lighter, for section dividers      */
+  --accent:#1b3e8f;        /* headings and labels on white              */
+
+  --good:#17683c;          /* adopt · dominant · full evaluation        */
+  --bad:#a32217;           /* reject · dominated                        */
+  --warn:#8a5a00;          /* caution · sensitivity analysis only       */
+  --thresh:#5b3a92;        /* the threshold line                        */
+
+  --fill-good:rgba(23,104,60,.10);
+  --fill-bad:rgba(163,34,23,.08);
+  --fill-accent:rgba(27,62,143,.09);
+  --edge-good:rgba(23,104,60,.45);
+  --edge-bad:rgba(163,34,23,.45);
+  --edge-accent:rgba(27,62,143,.45);
+  --shadow:rgba(16,20,26,.18);
+
+  --font:Arial,"Helvetica Neue",Helvetica,"Liberation Sans",sans-serif;
+
+  color-scheme:light;
+}

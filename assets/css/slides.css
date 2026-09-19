@@ -1,0 +1,213 @@
+/* ============================================================
+   Deck theme — Introduction to Economic Evaluation in Health
+
+   Built to match the PowerPoint template: white slide, full-bleed
+   navy title band, Arial, black body text. The band is slimmer
+   than the template's 1.45 in so that larger body type still fits.
+
+   Deck geometry is 1280 x 720, i.e. true 16:9 at 96 px per inch,
+   so 1 pt = 1.333 px and the sizes below are real point sizes.
+
+        band title   40 pt        body        28 pt
+        title slide  54 pt        small       22 pt
+        claim        32 pt        table       21 pt
+        lede         30 pt        citation    14 pt   (the floor)
+
+   Requires assets/css/tokens.css to be loaded first.
+   ============================================================ */
+
+.reveal-viewport{ background:var(--bg) }
+.reveal .backgrounds{ background:var(--bg) }
+.reveal .controls{ color:var(--band) }
+.reveal ::selection{ background:var(--fill-accent); color:var(--ink) }
+
+.reveal{
+  font-family:var(--font);
+  font-size:37.3px;          /* 28 pt */
+  color:var(--ink);
+}
+
+/* --- slides sit top-aligned so the band can hug the top edge --- */
+.reveal .slides{ text-align:left }
+.reveal .slides section{
+  height:720px; padding:0 58px 40px; box-sizing:border-box;
+  text-align:left;
+}
+
+/* ============================================================
+   THE BAND. The h2 *is* the band: it bleeds to the slide edges
+   with negative margins equal to the section padding, and grows
+   if a title ever wraps, pushing content down rather than
+   overlapping it.
+   ============================================================ */
+.reveal .slides section > h2{
+  margin:0 -58px 30px; padding:0 58px;
+  min-height:92px; display:flex; align-items:center;
+  background:var(--band); color:#fff;
+  font-family:var(--font); font-weight:700;
+  font-size:1.072em;         /* 40 pt */
+  line-height:1.12; letter-spacing:-.005em;
+  text-transform:none; text-shadow:none;
+}
+
+/* --- title and section slides: no band, centred block --- */
+.reveal section.cover{ display:flex; flex-direction:column; justify-content:center; padding:0 96px }
+.reveal section.cover h1{
+  font-size:1.93em;          /* 54 pt */
+  line-height:1.1; font-weight:700; color:var(--band);
+  margin:0 0 .35em; letter-spacing:-.015em;
+}
+.reveal section.cover .kicker{ color:var(--accent) }
+
+/* --- generic headings --- */
+.reveal h1,.reveal h3,.reveal h4{
+  font-family:var(--font); color:var(--ink);
+  text-transform:none; letter-spacing:-.01em; font-weight:700; text-shadow:none;
+}
+.reveal h3{ font-size:.83em; color:var(--accent); font-weight:700; margin:0 0 .3em }
+.reveal h4{ font-size:.72em; color:var(--ink-dim); font-weight:700;
+  text-transform:uppercase; letter-spacing:.07em; margin:0 0 .3em }
+
+.reveal p{ line-height:1.4; margin:0 0 .5em }
+.reveal p:last-child{ margin-bottom:0 }
+.reveal .center{ text-align:center }
+
+.reveal ul,.reveal ol{ display:block; margin:0 0 .3em 1.0em }
+.reveal li{ margin-bottom:.4em; line-height:1.35 }
+.reveal li::marker{ color:var(--band); font-weight:700 }
+
+.reveal a{ color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line) }
+.reveal strong{ color:var(--ink); font-weight:700 }
+.reveal em{ color:inherit }
+
+.reveal .progress{ color:var(--band); height:4px }
+.reveal .slide-number{ background:transparent; color:var(--ink-faint); font-size:15px }
+
+/* --- text roles --- */
+.reveal .kicker{
+  font-size:.643em;          /* 18 pt */
+  text-transform:uppercase; letter-spacing:.11em;
+  color:var(--accent); font-weight:700; margin-bottom:.7em;
+}
+.reveal .lede{ font-size:1.072em; line-height:1.35 }   /* 30 pt */
+.reveal .dim{ color:var(--ink-dim) }
+.reveal .faint{ color:var(--ink-faint) }
+.reveal .small{ font-size:.786em; line-height:1.4 }    /* 22 pt */
+
+/* --- one claim, stated plainly --- */
+.reveal .claim{
+  font-size:1.145em;         /* 32 pt */
+  font-weight:700; line-height:1.22; letter-spacing:-.01em;
+  border-left:6px solid var(--band); padding:.05em 0 .05em .55em;
+  margin:.45em 0;
+}
+.reveal .claim.warn{ border-left-color:var(--warn) }
+.reveal .claim.good{ border-left-color:var(--good) }
+
+/* --- formulae ---
+   Set in the body face, not a serif italic, so it matches the rest of the
+   deck and stays legible from the back of a lecture hall. Variables are
+   marked with <i>, which the template renders as plain italic Arial. */
+.reveal .eq{
+  background:var(--panel); border:1px solid var(--line);
+  border-left:6px solid var(--accent);
+  padding:.26em .6em; margin:.22em 0;
+  font-size:1.145em;              /* 32 pt */
+  font-weight:700; line-height:1.3; text-align:center;
+  font-variant-numeric:tabular-nums;
+}
+.reveal .eq.sm{ font-size:.93em; font-weight:400 }   /* 26 pt, for a second form */
+.reveal .eq i{ font-style:italic; font-weight:inherit }
+.reveal .eq .op{ font-weight:400; padding:0 .12em }
+.reveal .eq .frac{
+  display:inline-flex; flex-direction:column; vertical-align:middle;
+  text-align:center; margin:0 .18em;
+}
+.reveal .eq .frac .n{ padding:0 .35em .04em }
+.reveal .eq .frac .d{ padding:.04em .35em 0; border-top:2px solid var(--ink) }
+.reveal .eqnote{ font-size:.72em; color:var(--ink-dim); text-align:center; margin:.1em 0 .3em }
+
+/* --- cards --- */
+.reveal .card{
+  background:var(--panel); border:1px solid var(--line);
+  border-left:4px solid var(--band); border-radius:3px;
+  padding:.45em .6em;
+}
+.reveal .card.good{ border-left-color:var(--good) }
+.reveal .card.bad{ border-left-color:var(--bad) }
+.reveal .cards{ display:grid; gap:.45em }
+.reveal .cards.c2{ grid-template-columns:1fr 1fr }
+.reveal .cards.c3{ grid-template-columns:repeat(3,1fr) }
+.reveal .cards.c4{ grid-template-columns:repeat(4,1fr) }
+
+/* --- tables --- */
+.reveal table{ border-collapse:collapse; width:100%; font-size:.751em; margin:.2em 0 }  /* 21 pt */
+.reveal table th{
+  text-align:left; color:#fff; background:var(--band); font-weight:700;
+  padding:.4em .5em; font-size:.92em; letter-spacing:.01em;
+}
+.reveal table td{
+  padding:.4em .5em; border-bottom:1px solid var(--line);
+  vertical-align:top; line-height:1.3;
+}
+.reveal table tbody tr:nth-child(even) td{ background:var(--panel) }
+.reveal table td.num{ text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap }
+.reveal .nocaps{ text-transform:none }
+
+/* --- the six-cell classification grid --- */
+.reveal .grid6{ display:grid; grid-template-columns:auto 1fr 1fr; gap:5px; font-size:.66em }
+.reveal .grid6 .hd{
+  color:#fff; background:var(--band); font-weight:700; font-size:.8em;
+  padding:.35em .5em; align-self:stretch; display:flex; align-items:center;
+}
+.reveal .grid6 .rowhd{
+  color:var(--ink-dim); font-weight:700; padding:.4em .8em .4em 0; font-size:.8em;
+  display:flex; align-items:center; width:6.2em; line-height:1.2;
+}
+.reveal .grid6 .cell{
+  background:var(--panel); border:1px solid var(--line); border-radius:3px;
+  padding:.45em .55em; line-height:1.25;
+}
+.reveal .grid6 .cell .nm{ font-weight:700; display:block; font-size:.92em }
+.reveal .grid6 .cell.full{ background:var(--fill-good); border-color:var(--edge-good) }
+.reveal .grid6 .cell.full .nm{ color:var(--good) }
+
+/* --- citations: trimmed on the slide, listed in full on the last slide --- */
+.reveal .cite{
+  font-size:.50em;           /* 14 pt, the floor */
+  color:var(--ink-faint); line-height:1.4;
+  border-top:1px solid var(--line); padding-top:.5em; margin-top:.7em;
+}
+.reveal .sources{ font-size:.50em; line-height:1.45; color:var(--ink-dim) }
+.reveal .sources.two{ columns:2; column-gap:2.2em }
+.reveal .sources.two li{ break-inside:avoid }
+.reveal .sources li{ margin-bottom:.5em }
+.reveal .sources b{ color:var(--ink) }
+
+/* --- pill --- */
+.reveal .pill{
+  display:inline-block; background:var(--panel-2); border:1px solid var(--line);
+  border-radius:3px; padding:.06em .45em; font-size:.62em; font-weight:700;
+  color:var(--ink-dim); vertical-align:.12em;
+}
+.reveal .pill.good{ color:#fff; background:var(--good); border-color:var(--good) }
+.reveal .pill.bad{ color:#fff; background:var(--bad); border-color:var(--bad) }
+.reveal .pill.warn{ color:#fff; background:var(--warn); border-color:var(--warn) }
+.reveal h2 .pill{ background:rgba(255,255,255,.18); border-color:rgba(255,255,255,.4); color:#fff }
+
+/* --- embedded widget --- */
+.reveal iframe.widget{
+  width:100%; height:520px; border:1px solid var(--line); border-radius:3px; background:#fff;
+}
+
+/* --- a figure worth its own emphasis --- */
+.reveal .stat{ text-align:center }
+.reveal .stat .n{
+  font-size:1.5em; font-weight:700; letter-spacing:-.02em;
+  color:var(--band); line-height:1.05; display:block;
+}
+.reveal .stat .l{ font-size:.6em; color:var(--ink-dim); line-height:1.25; display:block; margin-top:.3em }
+
+.reveal aside.notes{ font-size:16px; line-height:1.5 }
+
+@media print{ .reveal .cite{ color:#555 } }

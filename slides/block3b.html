@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Block 3B: Outcomes, discounting and the ICER</title>
+<link rel="stylesheet" href="../vendor/reveal.js/dist/reveal.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/slides.css">
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<section class="cover">
+  <p class="kicker">Economic Evaluation in Health &nbsp;·&nbsp; Faculty workshop &nbsp;·&nbsp; 14:05</p>
+  <h1>Outcomes, discounting<br>and the ICER</h1>
+  <p class="lede dim">Drummond et al., <em>Methods for the Economic Evaluation of Health Care
+  Programmes</em>, 4th ed., 2015.<br><strong>Chapter 4, pages 77 to 123.</strong></p>
+  <p class="small faint" style="margin-top:1em">Faculty and senior residents &nbsp;·&nbsp; AIIMS Bhopal, 23 September 2026</p>
+  <aside class="notes">
+    3A built the numerator. This block builds the denominator, discounts both, and then does the only
+    arithmetic in the course they will be asked to reproduce by hand.
+  </aside>
+</section>
+
+<section>
+  <h2>By the end of this block</h2>
+  <ol>
+    <li>Explain what a <strong>QALY</strong> is, and where its weights come from</li>
+    <li>Say why a QALY is not a DALY, and why that matters for a league table</li>
+    <li>Justify <strong>discounting</strong> and apply India's 3%</li>
+    <li>Tell an <strong>average</strong> ratio from an <strong>incremental</strong> one</li>
+    <li>Rank several options and find <strong>simple</strong> and <strong>extended dominance</strong></li>
+    <li>Compute an <strong>ICER</strong>, or use net monetary benefit instead</li>
+  </ol>
+  <aside class="notes">
+    Objective 5 separates understanding incremental analysis from having memorised the formula. Every
+    paper in the room depends on it.
+  </aside>
+</section>
+
+<section>
+  <h2><span class="pill">6</span> Measuring health outcomes</h2>
+  <table>
+    <tr><th>Measure</th><th>Captures</th><th>Comparable across</th></tr>
+    <tr><td>Deaths averted, cases detected, mmHg lowered</td><td>one dimension only</td><td>the same outcome only</td></tr>
+    <tr><td>Life-years gained</td><td>length of life</td><td>anything affecting survival</td></tr>
+    <tr><td><strong>QALYs</strong> and DALYs</td><td>length <em>and</em> quality</td><td>any health programme</td></tr>
+  </table>
+  <p class="claim warn" style="margin-top:.3em">Cost per case detected cannot be set against cost per
+  stroke prevented, so you cannot allocate a budget.</p>
+  <p class="claim good">India's recommendation: use <strong>QALYs</strong>.</p>
+  <aside class="notes">
+    Put the problem before the solution. Ask how they would choose between a cataract programme and a
+    hypertension programme using cost per case detected. They cannot, and that discomfort is what the
+    QALY was invented to relieve.
+  </aside>
+</section>
+
+<section>
+  <h2>The QALY, in one sentence</h2>
+  <p class="claim">A year of life in full health is worth 1. A year in a worse state is worth less.
+  Add them up.</p>
+  <p style="margin-top:.5em">The weight, the <strong>utility</strong>, runs from <strong>1 for full
+  health</strong> to <strong>0 for a state as good as being dead</strong>, and can go below zero for
+  states judged worse than death.</p>
+  <p class="lede">Two years at a utility of 0.5 count the same as one year at 1.0.</p>
+  <p class="small dim">That equivalence is the QALY's power and its controversy. It is what lets you
+  compare a cancer programme with a mental health programme. It also makes people uneasy, because the
+  arithmetic treats those two years and that one year as interchangeable.</p>
+  <aside class="notes">
+    Say the controversy out loud rather than hiding it. A room told the QALY is unproblematic stops
+    thinking. A room told exactly where it is contested engages with it properly.
+  </aside>
+</section>
+
+<section>
+  <h2>A QALY is an area. Build one</h2>
+  <iframe class="widget" src="../widgets/qaly-builder/" data-src="../widgets/qaly-builder/" loading="lazy"></iframe>
+  <p class="cite">Drag the corner handles. Also at <strong>widgets/qaly-builder/</strong></p>
+  <aside class="notes">
+    Four minutes. Then run the three presets in order: more years at the same quality, the same years
+    at better quality, fewer years at much better quality. All three produce roughly the same QALY
+    gain. Ask whether a patient would regard them as the same. They would not. That is the limitation,
+    stated by the measure itself.
+  </aside>
+</section>
+
+<section>
+  <h2>Where do the utility weights come from?</h2>
+  <div class="cards c3" style="margin-top:.3em">
+    <div class="card"><h3>Time trade-off</h3><p class="small">How many of your 10 years in this state
+    would you give up to be in full health for the rest?</p></div>
+    <div class="card"><h3>Standard gamble</h3><p class="small">What risk of immediate death would you
+    accept for a certain cure?</p></div>
+    <div class="card"><h3>EQ-5D</h3><p class="small">Describe your health on five dimensions and five
+    levels. A national value set converts that to a number.</p></div>
+  </div>
+  <p class="claim" style="margin-top:.6em">The values come from the <em>general public</em>, not from patients.</p>
+  <p class="small dim">Deliberately so. The public bear the opportunity cost and fund the system.
+  Patients who have adapted to a condition rate it higher than the public do, which would
+  systematically reduce the apparent value of treating it.</p>
+  <aside class="notes">
+    The public versus patient question is a live debate, not a settled matter. Present it as contested.
+    It is the kind of nuance that makes a referee report worth reading.
+  </aside>
+</section>
+
+<section>
+  <h2>India has its own value set. Use it</h2>
+  <p class="small">The DEVINE study produced an EQ-5D-5L value set for India, so utilities no longer
+  have to be borrowed.</p>
+  <p class="claim warn" style="margin-top:.3em">Applying a UK tariff to Indian patients is now an
+  avoidable flaw.</p>
+  <table style="margin-top:.2em">
+    <tr><th>Age group</th><th>What the Reference Case asks for</th></tr>
+    <tr><td>Adults</td><td>EQ-5D-5L with the Indian value set</td></tr>
+    <tr><td>8 to 15 years</td><td>EQ-5D-Y, five-level</td></tr>
+    <tr><td>4 to 15 years, valuation</td><td>the Indian <em>adult</em> value set, until a paediatric one exists</td></tr>
+    <tr><td>Under 4 years</td><td>DALYs permitted, using GBD disability weights</td></tr>
+  </table>
+  <p class="cite">Jyani, Sharma, Prinja, Kar et al., <em>Value in Health</em>, 2022.</p>
+  <aside class="notes">
+    Note the honesty in the Reference Case. It says outright that using adult values for children is a
+    compromise, gives the reason it is the lesser of two evils, and asks for a paediatric value set to
+    be developed. That is what good methodological guidance looks like: it names its own weak points.
+  </aside>
+</section>
+
+<section>
+  <h2>QALYs are not DALYs</h2>
+  <div class="cards c2">
+    <div class="card good"><h3>QALY, gained</h3><p class="small">Health <em>produced</em>.
+    Preference-based weights from 0 to 1, usually from the general public. You maximise it.</p></div>
+    <div class="card bad"><h3>DALY, averted</h3><p class="small">Health <em>lost</em>. Disability weights
+    plus years of life lost against a reference life expectancy. You minimise it.</p></div>
+  </div>
+  <p class="claim warn" style="margin-top:.5em">"ICER per DALY averted is not directly equivalent to ICER
+  per QALY gained."</p>
+  <p class="small dim">Recall Block 2: the Indian league table mixed 70% DALY studies with 30% QALY
+  studies. Now you know why that table cannot be read straight down the column.</p>
+  <aside class="notes">
+    Third time you have raised this: Block 1, Block 2, now with the mechanism. That repetition is
+    deliberate. It is the most durable confusion in this subject for community medicine trainees.
+  </aside>
+</section>
+
+<section>
+  <h2><span class="pill">8</span> Discounting</h2>
+  <p class="lede">A rupee next year is worth less than a rupee today. So, the argument goes, is a QALY.
+  Discounting converts future costs and health into present values, so programmes with different timing
+  can be compared at all.</p>
+  <div class="cards c3" style="margin-top:.4em">
+    <div class="card center"><strong>3%</strong><br><span class="small dim">India, costs and outcomes, beyond one year</span></div>
+    <div class="card center"><strong>0% to 5%</strong><br><span class="small dim">the range to test in sensitivity analysis</span></div>
+    <div class="card center"><strong>undiscounted</strong><br><span class="small dim">report these too, for every scenario</span></div>
+  </div>
+  <p class="claim" style="margin-top:.5em">3% is chosen partly so Indian results can be compared with everyone else's.</p>
+  <aside class="notes">
+    Emphasise that discounting health, not just money, is the contested part. Discounting money is
+    uncontroversial, because money can be invested. Discounting health needs a separate argument, and
+    not everyone accepts it.
+  </aside>
+</section>
+
+<section>
+  <h2>What a discount rate does to prevention</h2>
+  <iframe class="widget" src="../widgets/discounting/" data-src="../widgets/discounting/" loading="lazy"></iframe>
+  <p class="cite">Move the rate and read the two "retained" figures. Also at <strong>widgets/discounting/</strong></p>
+  <aside class="notes">
+    Have them move the rate from 0% to 5%. The cost keeps 100% of its value because it is paid today.
+    The health keeps a fraction, because it arrives decades later. Then ask: is that a fact about the
+    world, or a choice we made? It is a choice, which is the next slide.
+  </aside>
+</section>
+
+<section>
+  <h2>Why discounting health is contested</h2>
+  <div class="cards c2">
+    <div class="card"><h3>The objection</h3><p class="small">Discounting health at the same rate as money
+    disadvantages prevention, and therefore the young, whose benefits arrive furthest in the future.
+    Some argue health should be discounted less, or not at all.</p></div>
+    <div class="card"><h3>The reply</h3><p class="small">If health is discounted less than money, then
+    delaying any programme by a year makes it look better, and you could generate unlimited apparent
+    gain by never starting. That is absurd, so the rates should match.</p></div>
+  </div>
+  <p class="claim warn" style="margin-top:.5em">Neither side has won. State your rate, test it, and
+  report undiscounted results too.</p>
+  <aside class="notes">
+    The delay paradox is an elegant argument and the room usually enjoys it. It is due to Keeler and Cretin. You
+    need not attribute it on the slide, but say it if asked.
+  </aside>
+</section>
+
+<section>
+  <h2>The ICER, written out</h2>
+  <p class="eq">ICER <span class="op">=</span>
+    <span class="frac"><span class="n"><i>C</i><sub>1</sub> <span class="op">−</span> <i>C</i><sub>0</sub></span><span class="d"><i>E</i><sub>1</sub> <span class="op">−</span> <i>E</i><sub>0</sub></span></span>
+    <span class="op">=</span>
+    <span class="frac"><span class="n">Δ<i>C</i></span><span class="d">Δ<i>E</i></span></span>
+  </p>
+  <p class="eqnote">1 is the new option, 0 the comparator. <i>C</i> and <i>E</i> are discounted totals per person.</p>
+  <table>
+    <tr><th>Unit of <i>E</i></th><th>What the ICER is then called</th><th>Read as</th></tr>
+    <tr><td>QALYs gained</td><td>Cost–utility ratio</td><td>₹ per QALY gained</td></tr>
+    <tr><td>DALYs averted</td><td>Cost per DALY averted</td><td>₹ per DALY averted</td></tr>
+    <tr><td>Cases detected, deaths averted</td><td>Cost-effectiveness ratio</td><td>₹ per case, ₹ per death averted</td></tr>
+  </table>
+  <p class="claim warn" style="margin-top:.3em">Same formula. Only the denominator changes.</p>
+  <aside class="notes">
+    Write it on the board as well. Two things to stress. Both terms are differences, so an ICER always
+    belongs to a pair of options and never to one option alone. And the denominator decides what the
+    number means, which is why a cost per QALY and a cost per DALY cannot be compared even though both
+    are rupees over a health unit.
+  </aside>
+</section>
+
+<section>
+  <h2>Three ways it goes wrong</h2>
+  <div class="cards c3">
+    <div class="card bad"><h3>Divide by totals</h3><p class="small">Using <i>C</i><sub>1</sub> ÷
+    <i>E</i><sub>1</sub> instead of the differences. Gives an absurdly small number, as on the next
+    slide.</p></div>
+    <div class="card bad"><h3>Δ<i>E</i> near zero</h3><p class="small">The ratio explodes, or is
+    undefined at exactly zero. The two options may still differ in cost, which matters.</p></div>
+    <div class="card bad"><h3>Sign blindness</h3><p class="small">Δ<i>C</i> ÷ Δ<i>E</i> is the same
+    number whether both are positive or both negative, and those are opposite decisions.</p></div>
+  </div>
+  <p class="small dim" style="margin-top:.3em">A negative ICER is uninterpretable on its own. You have
+  to go back and look at the signs of Δ<i>C</i> and Δ<i>E</i> separately.</p>
+  <p class="claim" style="margin-top:.2em">Net monetary benefit fixes all three. We get to it shortly.</p>
+  <aside class="notes">
+    Plant the flag here and collect it at the NMB slide. These are not exotic failures, they are what
+    the ratio form of the question does to ordinary arithmetic, and all three turn up in print.
+  </aside>
+</section>
+
+<section>
+  <h2>Average is not incremental</h2>
+  <p>Screening with VIA every five years, over a lifetime, discounted at 3%:</p>
+  <table>
+    <tr><th></th><th>Cost per woman</th><th>QALYs</th><th>Ratio</th></tr>
+    <tr><td><strong>Average</strong> ratio</td><td class="num">₹4,600</td><td class="num">22.530</td><td class="num">₹204 per QALY</td></tr>
+    <tr><td><strong>Incremental</strong> ratio, vs no screening</td><td class="num">₹3,400</td><td class="num">0.130</td><td class="num">₹26,154 per QALY</td></tr>
+  </table>
+  <p class="claim warn" style="margin-top:.3em">₹204 per QALY is not a bargain. It is a meaningless number.</p>
+  <p class="small dim">The average ratio divides the programme's cost by her <em>entire remaining
+  lifetime</em> of quality-adjusted life, almost all of which she would have had anyway. Only the
+  incremental ratio asks what we get for the <em>extra</em> money.</p>
+  <p class="cite">Illustrative figures, constructed for teaching.</p>
+  <aside class="notes">
+    A ratio near ₹200 per QALY should trigger disbelief. Teach that instinct: if an ICER looks
+    impossibly good, check whether someone divided by total rather than incremental QALYs.
+  </aside>
+</section>
+
+<section>
+  <h2>Ranking five options</h2>
+  <p class="small dim">Per woman, lifetime, 3% discounting. Ranked by cost, where you always start.</p>
+  <table>
+    <tr><th>Strategy</th><th>Cost</th><th>QALYs</th><th>ΔCost</th><th>ΔQALYs</th><th>ICER</th></tr>
+    <tr><td>No screening</td><td class="num">₹1,200</td><td class="num">22.400</td><td class="num">–</td><td class="num">–</td><td class="num">–</td></tr>
+    <tr><td>VIA every 10 years</td><td class="num">₹3,400</td><td class="num">22.440</td><td class="num">₹2,200</td><td class="num">0.040</td><td class="num">₹55,000</td></tr>
+    <tr><td>VIA every 5 years</td><td class="num">₹4,600</td><td class="num">22.530</td><td class="num">₹1,200</td><td class="num">0.090</td><td class="num">₹13,333</td></tr>
+    <tr><td>Cytology every 5 years</td><td class="num">₹6,800</td><td class="num">22.515</td><td class="num">₹2,200</td><td class="num">−0.015</td><td class="num">–</td></tr>
+    <tr><td>HPV DNA every 5 years</td><td class="num">₹9,100</td><td class="num">22.560</td><td class="num">₹2,300</td><td class="num">0.045</td><td class="num">₹51,111</td></tr>
+  </table>
+  <p class="claim warn" style="margin-top:.3em">Two of these should never be chosen at any threshold. Which two?</p>
+  <p class="cite">Illustrative figures, constructed for teaching.</p>
+  <aside class="notes">
+    Ninety seconds in pairs before revealing. Most rooms find the cytology row quickly: it costs more
+    and delivers fewer QALYs than VIA every five years. Almost nobody finds the other one unaided,
+    which is what makes the next two slides land.
+  </aside>
+</section>
+
+<section>
+  <h2>Simple dominance</h2>
+  <p class="lede"><strong>Cytology every 5 years</strong> costs ₹6,800 for 22.515 QALYs.
+  <strong>VIA every 5 years</strong> costs ₹4,600 for 22.530.</p>
+  <p class="claim warn" style="margin-top:.4em">More expensive <em>and</em> less effective. Strike it out.
+  No threshold can rescue it.</p>
+  <p style="margin-top:.4em">This is the north-west quadrant of the cost-effectiveness plane, met again
+  in a table. Once an option is dominated, remove it and recompute the ICERs below it, because the
+  comparisons have changed.</p>
+  <p class="small dim">Its ICER is not "very large". It is negative and meaningless, which is why the
+  column shows a dash.</p>
+  <aside class="notes">
+    Connect explicitly to the CE plane widget from Block 2. They have seen this quadrant interactively.
+    Here it is as a row in a table, which is how it appears in a real paper.
+  </aside>
+</section>
+
+<section>
+  <h2>Extended dominance, the subtle one</h2>
+  <p class="small">Read the ICER column downwards: <strong>₹55,000</strong> for VIA every 10 years, then
+  <strong>₹13,333</strong> for VIA every 5 years.</p>
+  <p class="claim warn" style="margin:.2em 0">The ICER <em>falls</em> as you move down. That cannot be right.</p>
+  <p class="small">VIA every 10 years is <strong>extendedly dominated</strong>: at any threshold where you
+  would accept it, you would already have accepted the better-value option below it.</p>
+  <table style="margin-top:.2em">
+    <tr><th>After removing both dominated options</th><th>Cost</th><th>QALYs</th><th>ICER</th></tr>
+    <tr><td>No screening</td><td class="num">₹1,200</td><td class="num">22.400</td><td class="num">–</td></tr>
+    <tr><td>VIA every 5 years</td><td class="num">₹4,600</td><td class="num">22.530</td><td class="num">₹26,154</td></tr>
+    <tr><td>HPV DNA every 5 years</td><td class="num">₹9,100</td><td class="num">22.560</td><td class="num">₹1,50,000</td></tr>
+  </table>
+  <p class="claim good" style="margin-top:.15em">Now the ICERs rise as cost rises.</p>
+  <aside class="notes">
+    The diagnostic rule is worth writing on the board. Rank by cost, remove simple dominance, then look
+    for a falling ICER. A falling ICER always means extended dominance. Recompute after each removal.
+  </aside>
+</section>
+
+<section>
+  <h2>So what do we fund?</h2>
+  <table>
+    <tr><th>Strategy</th><th>ICER vs the option below</th><th>At <span class="nocaps">λ</span> ≈ ₹2,12,307</th></tr>
+    <tr><td>VIA every 5 years</td><td class="num">₹26,154</td><td><span class="pill good">accept</span></td></tr>
+    <tr><td>HPV DNA every 5 years</td><td class="num">₹1,50,000</td><td><span class="pill good">accept, and the last that qualifies</span></td></tr>
+  </table>
+  <p class="claim good" style="margin-top:.4em">Climb the frontier one step at a time, for as long as each
+  step costs less than λ per QALY.</p>
+  <p class="small dim">At a lower threshold, say a supply-side estimate of ₹80,000, you would stop at VIA
+  every five years. The question is not "which is best" but "how far up can we afford to go". That is
+  incremental analysis in one sentence.</p>
+  <p class="cite">Illustrative figures. Threshold from Chugh et al., <em>Value in Health</em>, 2026.</p>
+  <aside class="notes">
+    Where Block 2 and Block 3 finally join. Change λ and the answer changes, not the analysis. Make
+    them say which strategy wins at ₹80,000 before you show it.
+  </aside>
+</section>
+
+<section>
+  <h2>The same logic, on the plane</h2>
+  <iframe class="widget" src="../widgets/ce-plane/?lambda=212307" data-src="../widgets/ce-plane/?lambda=212307" loading="lazy"></iframe>
+  <p class="cite">Also at <strong>widgets/ce-plane/</strong></p>
+  <aside class="notes">
+    A short revisit, since they met this in Block 2. The new thing to point at is the net monetary
+    benefit row, which the next slide explains.
+  </aside>
+</section>
+
+<section>
+  <h2>Net monetary benefit, the cleaner form</h2>
+  <p class="eq">NMB <span class="op">=</span> (<span class="nocaps">λ</span> <span class="op">×</span> Δ<i>E</i>) <span class="op">−</span> Δ<i>C</i></p>
+  <p class="eqnote">Value the health gained at the threshold, then subtract what it cost. Both terms
+  in rupees.</p>
+  <p class="claim good" style="margin-top:.3em">Positive means adopt. That is the whole rule.</p>
+  <p class="small dim" style="margin-top:.3em">No division, so nothing explodes when Δ<i>E</i> is small,
+  and the sign carries the meaning that an ICER loses.</p>
+  <p class="small" style="margin-top:.4em">VIA every 5 years, from the table: Δ<i>E</i> = 0.090 QALYs,
+  Δ<i>C</i> = ₹1,200, at India's <span class="nocaps">λ</span> of ₹2,12,307.</p>
+  <p class="eq sm">(2,12,307 <span class="op">×</span> 0.090) <span class="op">−</span> 1,200
+    <span class="op">=</span> <strong>+₹17,908</strong> per woman</p>
+  <aside class="notes">
+    Collect the flag planted at "three ways it goes wrong". Walk the three failures across: no
+    denominator, so no explosion; signs preserved, so dominant and dominated separate cleanly.
+  </aside>
+</section>
+
+<section>
+  <h2>The same decision, three ways</h2>
+  <table>
+    <tr><th>Form</th><th class="nocaps">Formula</th><th>Adopt when</th></tr>
+    <tr><td><strong>ICER</strong></td><td class="nocaps">Δ<i>C</i> ÷ Δ<i>E</i></td><td>ICER &lt; <span class="nocaps">λ</span>, <em>and</em> Δ<i>E</i> &gt; 0</td></tr>
+    <tr><td><strong>Net monetary benefit</strong></td><td class="nocaps">(<span class="nocaps">λ</span> × Δ<i>E</i>) − Δ<i>C</i></td><td>NMB &gt; 0</td></tr>
+    <tr><td><strong>Net health benefit</strong></td><td class="nocaps">Δ<i>E</i> − (Δ<i>C</i> ÷ <span class="nocaps">λ</span>)</td><td>NHB &gt; 0</td></tr>
+  </table>
+  <p class="small" style="margin-top:.3em">NHB is NMB divided by <span class="nocaps">λ</span>, so it says
+  the same thing in QALYs instead of rupees: the health you buy, minus the health displaced elsewhere to
+  pay for it.</p>
+  <p class="claim warn" style="margin-top:.2em">All three agree, but only the ICER needs a side condition.</p>
+  <aside class="notes">
+    Do the arithmetic live for one row of the ranking table. VIA every five years: 0.090 QALYs for
+    ₹1,200 at a threshold of ₹2,12,307 gives an NMB of about ₹18,000, and an NHB of about 0.084 QALYs.
+    Same decision, three currencies. Then note that the side condition on the ICER row is exactly what
+    gets forgotten, and it is what makes a dominated option look acceptable.
+  </aside>
+</section>
+
+<section>
+  <h2>Why NMB, and not the ratio</h2>
+  <table style="margin-top:.2em">
+    <tr><th></th><th>ICER</th><th>Net monetary benefit</th></tr>
+    <tr><td>When ΔE = 0</td><td>undefined</td><td>fine, it is just −ΔC</td></tr>
+    <tr><td>Dominated vs dominant</td><td>both negative, indistinguishable</td><td>opposite signs</td></tr>
+    <tr><td>North-east vs south-west</td><td>same value, opposite meaning</td><td>opposite signs</td></tr>
+    <tr><td>Averaging across simulations</td><td>incoherent</td><td>straightforward</td></tr>
+  </table>
+  <p class="claim good" style="margin-top:.3em">Which is why probabilistic analysis is counted on NMB,
+  not on the ratio.</p>
+  <aside class="notes">
+    NMB is under-taught and removes most of the confusion around ICERs. Give it its own minute. The
+    price is that you must commit to a value of λ up front, which people find uncomfortable. That
+    discomfort is revealing, since using an ICER only hides the same commitment.
+  </aside>
+</section>
+
+<section>
+  <h2>Recap</h2>
+  <ul>
+    <li>A <strong>QALY</strong> is quality times time: an area, not a score. India has its own value set</li>
+    <li>Utilities come from the <strong>general public</strong>, and that is deliberate</li>
+    <li>QALYs and DALYs cannot share a league table</li>
+    <li>Discount both at <strong>3%</strong>, test 0 to 5%, report undiscounted too</li>
+    <li><strong>Average ratios are meaningless.</strong> Only incremental ones answer a decision</li>
+    <li>Rank by cost, remove dominance, then look for a <strong>falling ICER</strong></li>
+  </ul>
+  <aside class="notes">
+    If you are short of time, the two lines that must survive are "average ratios are meaningless" and
+    the falling-ICER rule for extended dominance.
+  </aside>
+</section>
+
+<section>
+  <h2>Sources</h2>
+  <ol class="sources two">
+    <li><b>Drummond MF, Sculpher MJ, Claxton K, Stoddart GL, Torrance GW.</b> Methods for the Economic Evaluation of Health Care Programmes. 4th ed. Oxford University Press; 2015. <b>Chapter 4</b>, pp. 77–123.</li>
+    <li><b>Sharma D, Prinja S, Aggarwal AK, Rajsekar K, Bahuguna P.</b> Development of the Indian Reference Case for undertaking economic evaluation for health technology assessment. <em>Lancet Reg Health Southeast Asia</em> 2023;16:100241. PMID 37694178</li>
+    <li><b>Jyani G, Sharma A, Prinja S, Kar SS, et al.</b> Development of an EQ-5D value set for India using an extended design (DEVINE) study. <em>Value Health</em> 2022;25(7):1218–26. PMID 35779943</li>
+    <li><b>Chugh Y, Jyani G, Kar SS, Rajsekar K, Prinja S, et al.</b> Estimating the willingness-to-pay per quality-adjusted life-year to aid health technology assessment in India. <em>Value Health</em> 2026;29(3):457–66. PMID 41176029</li>
+    <li><b>Chauhan AS, Prinja S, Srinivasan R, et al.</b> Cost effectiveness of strategies for cervical cancer prevention in India. <em>PLoS One</em> 2020;15(9):e0238291. PMID 32870941</li>
+    <li>The five-strategy ranking table is <b>constructed for teaching</b>, built so that simple dominance, extended dominance and a frontier all appear at once. No single published Indian paper shows all three cleanly.</li>
+  </ol>
+  <aside class="notes">
+    Note the last entry. Be explicit about which numbers are real and which are teaching
+    constructions. It models the honesty the day is asking of them.
+  </aside>
+</section>
+
+<section class="cover">
+  <p class="kicker">Faculty workshop &nbsp;·&nbsp; 15:25 &nbsp;·&nbsp; handling uncertainty</p>
+  <h1>Every number in that table<br>was an estimate</h1>
+  <p class="lede dim">One-way and probabilistic sensitivity analysis, the tornado diagram, the cloud, and
+  the cost-effectiveness acceptability curve.</p>
+  <p class="small faint" style="margin-top:1em">The ICER you just computed is a point estimate. The next
+  block is about how much to trust it.</p>
+  <aside class="notes">
+    Deliberately unsettling. They have just done the arithmetic carefully and correctly. Now tell them
+    the answer has a confidence region they have not seen yet.
+  </aside>
+</section>
+
+</div></div>
+<script src="../vendor/reveal.js/dist/reveal.js"></script>
+<script src="../vendor/reveal.js/plugin/notes/notes.js"></script>
+<script>
+Reveal.initialize({ hash:true, slideNumber:'c/t', transition:'fade', transitionSpeed:'fast',
+  width:1280, height:720, margin:0, center:false, minScale:0.2, maxScale:2.0,
+  pdfSeparateFragments:false, plugins:[RevealNotes] });
+</script>
+</body>
+</html>

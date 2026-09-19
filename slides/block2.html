@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Block 2: Making decisions in health care</title>
+<link rel="stylesheet" href="../vendor/reveal.js/dist/reveal.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/slides.css">
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<section class="cover">
+  <p class="kicker">Economic Evaluation in Health &nbsp;·&nbsp; Faculty workshop &nbsp;·&nbsp; 10:40</p>
+  <h1>Making decisions<br>in health care</h1>
+  <p class="lede dim">Drummond et al., <em>Methods for the Economic Evaluation of Health Care
+  Programmes</em>, 4th ed., 2015.<br><strong>Chapter 2, pages 19 to 41.</strong></p>
+  <p class="small faint" style="margin-top:1em">Faculty and senior residents &nbsp;·&nbsp; AIIMS Bhopal, 23 September 2026</p>
+  <aside class="notes">
+    Block 1 taught them to classify. This block is about what a number is worth. Say plainly at the
+    start: an ICER on its own is inert. It becomes a decision only when you set it against something,
+    and this session is about where that something comes from, and how contested it is.
+  </aside>
+</section>
+
+<section>
+  <h2>By the end of this block</h2>
+  <ol>
+    <li>Explain the <strong>budget constraint</strong> and health opportunity cost</li>
+    <li>Tell a <strong>demand-side</strong> threshold from a <strong>supply-side</strong> one</li>
+    <li>State India's <strong>willingness to pay per QALY</strong>, and say what it is not</li>
+    <li>Say why the <strong>1 to 3 times GDP rule</strong> was abandoned by its own authors</li>
+    <li>Describe how <strong>HTAIn</strong> turns a topic into a recommendation</li>
+    <li>Give two reasons a cost-effective intervention might still not be funded</li>
+  </ol>
+  <aside class="notes">
+    Objective 2 is the intellectual core of Chapter 2 and the one they find genuinely surprising: two
+    respectable methods give different thresholds, and the difference decides whether a programme is
+    funded.
+  </aside>
+</section>
+
+<section>
+  <h2>Where Block 1 left off</h2>
+  <p class="lede">Screening with VIA every five years came out at <strong>₹54,881 per QALY gained</strong>.</p>
+  <p class="claim" style="margin-top:.6em">Is that good value?</p>
+  <p class="lede dim" style="margin-top:.6em">Nobody in this room can answer that yet. Neither could the
+  literature, in India, until very recently.</p>
+  <p class="cite">Chauhan, Prinja et al., <em>PLoS One</em>, 2020.</p>
+  <aside class="notes">
+    Take a show of hands: good value, bad value, do not know. Then point out that "do not know" is the
+    only defensible answer, because the question is incomplete. A ratio needs something on the other
+    side of the inequality.
+  </aside>
+</section>
+
+<section>
+  <h2>The threshold, λ</h2>
+  <p class="lede">The most you are willing to pay for one additional unit of health.</p>
+  <p>Adopt if <strong>ICER &lt; λ</strong>. Reject if <strong>ICER &gt; λ</strong>. Arithmetically trivial.</p>
+  <p class="claim warn" style="margin-top:.5em">The whole difficulty of this chapter is: where does λ come from?</p>
+  <p class="small dim">There are two quite different ways of arriving at it. They give different numbers,
+  and the profession has not settled which is right.</p>
+  <aside class="notes">
+    Resist giving them a number yet. If you give a number first they will memorise it and stop
+    thinking. Make them sit with the question for two slides.
+  </aside>
+</section>
+
+<section>
+  <h2>Two answers, from opposite directions</h2>
+  <div class="cards c2" style="margin-top:.3em">
+    <div class="card">
+      <h3>Demand side: willingness to pay</h3>
+      <p class="small">Ask society what a unit of health is <em>worth</em> to it. Survey people, or infer
+      it from what they pay for safety elsewhere.</p>
+      <p class="small dim">Answers: what should we be prepared to spend?</p>
+    </div>
+    <div class="card">
+      <h3>Supply side: health opportunity cost</h3>
+      <p class="small">Ask what health the system actually <em>produces</em> at the margin. With a fixed
+      budget, spending here displaces care there.</p>
+      <p class="small dim">Answers: what can we afford without doing net harm?</p>
+    </div>
+  </div>
+  <p class="claim" style="margin-top:.5em">With a fixed budget, only the supply-side number keeps you
+  from doing net harm.</p>
+  <aside class="notes">
+    Chapter 2's central argument, and Claxton's life's work. Make it concrete: if you adopt something
+    at ₹3 lakh per QALY while the marginal rupee in the NHM buys a QALY for ₹80,000, you have not
+    bought health. You have traded away more than you gained. The programme looks like a success and
+    the population is worse off.
+  </aside>
+</section>
+
+<section>
+  <h2>The rule you were probably taught</h2>
+  <p class="lede">Cost per DALY averted below <strong>1× GDP per capita</strong> is "highly
+  cost-effective". Below <strong>3×</strong> is "cost-effective".</p>
+  <p class="small dim">From the Commission on Macroeconomics and Health and the WHO-CHOICE programme. It
+  spread because it was simple, universal, and needed no country data.</p>
+  <p class="claim warn" style="margin-top:.5em">WHO's own authors have argued it should be retired.</p>
+  <p class="small">It is a demand-side heuristic with no link to any actual health budget. Applying it
+  approves interventions a country cannot fund without displacing more health than it creates.</p>
+  <p class="cite">Bertram et al., <em>Bulletin of the WHO</em>, 2016. Marseille et al., <em>Bulletin of the WHO</em>, 2015.</p>
+  <aside class="notes">
+    Many in the room will have used this rule, in a paper of their own or in work they supervised. Say so
+    without embarrassment: it was standard practice. The point is that the field moved. A paper
+    concluding "cost-effective at 3× GDP per capita" now invites a hard question from a reviewer.
+  </aside>
+</section>
+
+<section>
+  <h2>What supply-side numbers look like</h2>
+  <table>
+    <tr><th>Country</th><th>Estimated threshold</th><th>As % of GDP per capita</th></tr>
+    <tr><td>Malawi</td><td class="num">$3 to $116</td><td class="num">1% to 51%</td></tr>
+    <tr><td>Cambodia</td><td class="num">$44 to $518</td><td class="num">4% to 51%</td></tr>
+    <tr><td>El Salvador</td><td class="num">$422 to $1,967</td><td class="num">11% to 51%</td></tr>
+    <tr><td>Kazakhstan</td><td class="num">$4,485 to $8,018</td><td class="num">32% to 59%</td></tr>
+  </table>
+  <p class="claim warn" style="margin-top:.4em">Their conclusion: routinely used thresholds have been too high.</p>
+  <p class="small dim">Every upper bound sits below 59% of GDP per capita, well under the 1× that the old
+  rule treated as "highly cost-effective".</p>
+  <p class="cite">Woods, Revill, Sculpher, Claxton, <em>Value in Health</em>, 2016.</p>
+  <aside class="notes">
+    That gap between 59% and 300% is the single most consequential unresolved number in global health
+    economics. The authors themselves present these as a first attempt requiring further research,
+    which is worth teaching as well.
+  </aside>
+</section>
+
+<section>
+  <h2>India now has its own estimate</h2>
+  <div class="cards c3" style="margin-top:.3em">
+    <div class="card stat"><span class="n">₹2,12,307</span><span class="l">mean willingness to pay per QALY (US$2,535)</span></div>
+    <div class="card stat"><span class="n">1.0 to 1.52×</span><span class="l">GDP per capita, depending on the health state</span></div>
+    <div class="card stat"><span class="n">5,460</span><span class="l">respondents in 6 states, 21,640 observations</span></div>
+  </div>
+  <p class="small" style="margin-top:.5em">Multistage stratified random sample. Twelve hypothetical health
+  states, time trade-off for the health gain and willingness to pay for its value, discounted at 3%.
+  Across health states the estimate ranged from <strong>₹1,70,414 to ₹2,58,985</strong>.</p>
+  <p class="cite">Chugh, Jyani, Kar, Rajsekar, Prinja et al., <em>Value in Health</em>, 2026.</p>
+  <aside class="notes">
+    The first Indian estimate, from a large PGIMER-led national study with Department of Health
+    Research involvement. Note who is on the author list: the same group wrote the Indian Reference
+    Case, so this is likely to shape HTAIn practice.
+  </aside>
+</section>
+
+<section>
+  <h2>So: is ₹54,881 per QALY good value?</h2>
+  <table>
+    <tr><th>Strategy</th><th>₹ per QALY gained</th><th>Against <span class="nocaps">λ</span> ≈ ₹2,12,307</th></tr>
+    <tr><td>HPV vaccination of adolescent girls</td><td class="num">5,693 to 31,511</td><td><span class="pill good">well below</span></td></tr>
+    <tr><td>Screening with VIA every 5 years</td><td class="num">54,881</td><td><span class="pill good">below</span></td></tr>
+  </table>
+  <p class="claim good" style="margin-top:.4em">Both are cost-effective for India. Vaccination is
+  comfortably the better buy per rupee.</p>
+  <p class="small dim">Which fits the decision taken in February 2026. But notice the dates: the analysis
+  was published in 2020 and the threshold estimate in 2026. Policy did not wait for a number.</p>
+  <p class="cite">ICERs from Chauhan et al., 2020. Threshold from Chugh et al., 2026.</p>
+  <aside class="notes">
+    The satisfying moment of the workshop: Block 1's cliff-hanger resolves. Then immediately complicate
+    it. Decisions get made on the evidence available, not the evidence you wish existed.
+  </aside>
+</section>
+
+<section>
+  <h2>One caveat you must carry</h2>
+  <p class="lede">₹2,12,307 is a <strong>demand-side</strong> number: what a sample of Indians said a
+  QALY is worth to them.</p>
+  <p>It is <em>not</em> an estimate of what the Indian health system gives up at the margin when it
+  spends an extra rupee.</p>
+  <p class="claim warn" style="margin-top:.4em">If the supply-side threshold is lower, judging by
+  willingness to pay will approve things the budget cannot absorb.</p>
+  <p class="small dim">That is not a criticism of the study, which is careful and says what it measured.
+  It is the open question the field is living with. Teach it as open.</p>
+  <aside class="notes">
+    If anyone wants one number to carry away: use ₹2,12,307 as the current reference, cite
+    Chugh 2026, and state the demand-side caveat in one sentence. That is defensible in a committee or
+    a review, and it is honest.
+  </aside>
+</section>
+
+<section>
+  <h2>League tables</h2>
+  <p class="lede">Rank every intervention by cost per QALY, draw a line where the budget runs out, fund
+  everything above it. India now has one: <strong>79 studies</strong>, 2003 to 2019.</p>
+  <p class="claim warn" style="margin-top:.4em">Then read the fine print of that same review.</p>
+  <div class="cards c4" style="margin-top:.4em">
+    <div class="card stat"><span class="n">70%</span><span class="l">reported DALYs, not QALYs</span></div>
+    <div class="card stat"><span class="n">23%</span><span class="l">did not discount at all</span></div>
+    <div class="card stat"><span class="n">73%</span><span class="l">did any sensitivity analysis</span></div>
+    <div class="card stat"><span class="n">18%</span><span class="l">reported budget impact</span></div>
+  </div>
+  <p class="small dim" style="margin-top:.3em">It also needs a comparable evaluation of <em>every</em>
+  competing use of the budget. Nobody has that. What was never studied never appears in the table.</p>
+  <p class="cite">Shah, Singh, Kotwani et al., <em>Frontiers in Public Health</em>, 2022.</p>
+  <aside class="notes">
+    This pays off Block 1's QALY versus DALY warning. Seventy per cent of the table is in one currency
+    of health and thirty per cent in another, and a quarter of the entries are undiscounted. You cannot
+    rank those against each other honestly. Press the completeness point too: the missing rows are the
+    real problem, and they are missing for reasons that correlate with who has research funding.
+  </aside>
+</section>
+
+<section>
+  <h2>A country that publishes its threshold</h2>
+  <p>NICE has used an explicit range since 1999. It is the clearest example anywhere of a threshold you
+  can argue with.</p>
+  <table>
+    <tr><th></th><th>Until March 2026</th><th>From April 2026</th></tr>
+    <tr><td>Standard range</td><td>£20,000 to £30,000 per QALY</td><td><strong>£25,000 to £35,000 per QALY</strong></td></tr>
+  </table>
+  <p class="small" style="margin-top:.4em">Announced 1 December 2025. NICE expects it to allow roughly
+  <strong>3 to 5 additional medicines a year</strong>, from a base where about 91% of appraised medicines
+  are already recommended.</p>
+  <p class="cite">NICE, Changes to NICE's cost-effectiveness thresholds confirmed, 1 December 2025.</p>
+  <aside class="notes">
+    Stress that the mere existence of a published number is the achievement. It can be scrutinised,
+    modelled, and, as here, changed in public. India's equivalent is still implicit.
+  </aside>
+</section>
+
+<section>
+  <h2>Why did it move?</h2>
+  <p class="lede">Not because anyone re-estimated health opportunity cost in the NHS.</p>
+  <p>The stated purpose was to <em>unlock innovation and support the sector</em>, improving the UK's
+  operating environment for the life sciences industry.</p>
+  <p class="claim warn" style="margin-top:.4em">A threshold raised for industrial policy is no longer
+  measuring what the theory says it measures.</p>
+  <p class="small dim">Health economists have said so in print: such changes risk making
+  cost-effectiveness analysis <strong>performative rather than informative</strong>.</p>
+  <p class="cite">Vallejo-Torres, Edney, Espinosa, Karnon, Longo, <em>Applied Health Economics and Health Policy</em>, 2026.</p>
+  <aside class="notes">
+    Discussion slide, three or four minutes. Ask: if raising the threshold means more medicines are
+    approved from a fixed NHS budget, who pays? Patients in services that get squeezed, who are
+    invisible because no committee ever names them. That invisibility is what health opportunity cost
+    is about, and it is why this belongs in Chapter 2 and not in a news round-up.
+  </aside>
+</section>
+
+<section>
+  <h2>Who decides in India</h2>
+  <p class="small"><strong>Health Technology Assessment in India (HTAIn)</strong>, now an attached office
+  of the Department of Health Research, Ministry of Health and Family Welfare.</p>
+  <div class="cards c2" style="margin-top:.4em">
+    <div class="card"><h3>Board</h3><p class="small">Highest decision-making body. Policy-makers,
+    clinicians and government experts. Endorses recommendations.</p></div>
+    <div class="card"><h3>Technical Appraisal Committee</h3><p class="small">Economists, clinicians,
+    researchers, social scientists. Quality assurance and technical stewardship.</p></div>
+    <div class="card"><h3>Secretariat</h3><p class="small">In-house scientists and analysts. Prioritises
+    topics, coordinates, monitors progress.</p></div>
+    <div class="card"><h3>Regional Resource Centres</h3><p class="small">Government institutes across the
+    country that conduct the studies and build capacity in the states. The network keeps growing.</p></div>
+  </div>
+  <aside class="notes">
+    Several of the Regional Resource Centres sit in departments like theirs. Say that out loud. This is
+    a career route, not an abstraction: PGIMER, JIPMER, AIIMS Bhubaneswar and the IIPHs all appear on
+    the author lists we have been citing all morning.
+  </aside>
+</section>
+
+<section>
+  <h2>From a question to a policy</h2>
+  <ol class="small">
+    <li>A <strong>user department</strong>, a programme or a state, submits a priority topic</li>
+    <li>The <strong>Secretariat</strong> prioritises it and takes it to the Technical Appraisal Committee</li>
+    <li>The <strong>Committee</strong> allocates it to a Regional Resource Centre, which writes a proposal</li>
+    <li>The study runs. The <strong>report</strong> goes back to the Committee for approval</li>
+    <li>The <strong>Board</strong> gives final approval</li>
+    <li>Recommendations return to the <strong>user department</strong> for implementation</li>
+  </ol>
+  <p class="claim" style="margin-top:.3em">Any of you can nominate a topic.</p>
+  <aside class="notes">
+    Two things to draw out. The loop closes back at the user department: HTAIn advises, it does not
+    command, and implementation sits with the programme. And topic selection is where the real power
+    lies. Whatever never gets nominated never gets evaluated.
+  </aside>
+</section>
+
+<section>
+  <h2>Cost-effective is not the same as funded</h2>
+  <table>
+    <tr><th>Consideration</th><th>The question it asks</th></tr>
+    <tr><td><strong>Budget impact</strong></td><td>Cost-effective per patient, but can we afford it for everyone at once?</td></tr>
+    <tr><td><strong>Equity</strong></td><td>Who gains and who is left out? Does it widen or narrow a gap?</td></tr>
+    <tr><td><strong>Feasibility</strong></td><td>Cold chain, trained staff, supply, referral pathways. Do they exist?</td></tr>
+    <tr><td><strong>Acceptability</strong></td><td>Will families consent? Will clinicians adopt it?</td></tr>
+    <tr><td><strong>Timing</strong></td><td>Do we act on what we have, or wait for better evidence?</td></tr>
+  </table>
+  <p class="claim" style="margin-top:.3em">The economic evaluation is one input to a decision, never the decision.</p>
+  <p class="cite">Extended cost-effectiveness analysis brings equity into the arithmetic. See Dixit, Prinja, Jyani et al., <em>Lancet Global Health</em>, 2023.</p>
+  <aside class="notes">
+    Drummond makes this point at the end of Chapter 2 and it is easy to skip. Do not. Anyone who
+    believes the ICER decides becomes insufferable in committees and is ignored. Anyone who can say
+    "this is cost-effective, here is the budget impact, and here is who gets left out" are listened to.
+  </aside>
+</section>
+
+<section>
+  <h2>A live case worth arguing about</h2>
+  <p class="small dim">Cost per DALY averted, healthcare perspective, PRIME model, 12-year-old girls in India:</p>
+  <table>
+    <tr><th class="nocaps">Vaccine (types covered)</th><th>Incremental cost per DALY averted</th></tr>
+    <tr><td><strong>Nonavalent</strong>, Gardasil 9 <span class="faint">(6, 11, 16, 18 + 31, 33, 45, 52, 58)</span></td><td class="num">US$ 362.78</td></tr>
+    <tr><td><strong>Quadrivalent</strong>, Gardasil 4 <span class="faint">(6, 11, 16, 18)</span></td><td class="num">US$ 393.16</td></tr>
+    <tr><td><strong>Bivalent</strong>, Cervarix <span class="faint">(16, 18)</span></td><td class="num">US$ 432.24</td></tr>
+  </table>
+  <p class="small" style="margin-top:.3em">Assuming a <strong>constant price per dose</strong>, the
+  nonavalent vaccine dominated both others.</p>
+  <p class="claim warn" style="margin-top:.3em">India launched in February 2026 with a single dose of the quadrivalent.</p>
+  <p class="cite">Arora and Tuffaha, <em>Asia-Pacific Journal of Clinical Oncology</em>, 2024.</p>
+  <aside class="notes">
+    Open the floor before turning the page. Get them to say the word "price" out loud. Nine types for
+    the price of four is exactly the assumption no procurement officer would accept.
+  </aside>
+</section>
+
+<section>
+  <h2>So why not the nonavalent?</h2>
+  <div class="cards c2">
+    <div class="card"><h3>Price is not constant</h3><p class="small">The dominance result assumes every
+    product costs the same per dose. Gardasil 9 does not sell at the Gardasil 4 price. Change that one
+    input and the ranking changes.</p></div>
+    <div class="card"><h3>16 and 18 do most of the damage</h3><p class="small">About 83% of invasive
+    cervical cancer in India is attributable to HPV 16 or 18. The five extra types buy less than the
+    count suggests.</p></div>
+    <div class="card"><h3>Financing</h3><p class="small">A US$ 250 million GAVI partnership, and a
+    negotiated price, attach to a particular product rather than to a valency.</p></div>
+    <div class="card"><h3>Supply at national scale</h3><p class="small">About 1.15 crore girls a year.
+    Guaranteed volume beats a marginally better ICER that cannot be delivered.</p></div>
+  </div>
+  <aside class="notes">
+    Take these two slides together. Start with price, because it is the assumption the paper itself
+    flags, and let them work out that nine types at the four-type price is not a market anyone has seen.
+  </aside>
+</section>
+
+<section>
+  <h2>Three more that mattered</h2>
+  <div class="cards c3">
+    <div class="card"><h3>Domestic manufacturing</h3><p class="small">Cervavac, from the Serum Institute
+    of India, is also quadrivalent. It was still seeking WHO prequalification at launch, a procurement
+    gate rather than a question of value.</p></div>
+    <div class="card"><h3>Budget impact</h3><p class="small">Whether it is affordable this year is a
+    separate test from whether it is cost-effective.</p></div>
+    <div class="card"><h3>Delivery</h3><p class="small">Cold chain, school and session logistics, and a
+    single-dose schedule shape what is actually achievable.</p></div>
+  </div>
+  <p class="claim" style="margin-top:.4em">Every one of these is legitimate, and none of them is in the ICER.</p>
+  <aside class="notes">
+    Land the block here. The ICER was not ignored and it was not wrong. It answered the question it was
+    asked, under an assumption that did not hold, and then these other considerations decided the case.
+    That is what "one input to a decision" means in practice. If someone argues the nonavalent should
+    still have been chosen, that is a good argument to have, and the way to have it is to re-run the
+    analysis at real prices rather than to assert it.
+  </aside>
+</section>
+
+<section>
+  <h2>The threshold, made visible</h2>
+  <iframe class="widget" src="../widgets/ce-plane/?lambda=212307" data-src="../widgets/ce-plane/?lambda=212307" loading="lazy"></iframe>
+  <p class="cite">Preset to India's ₹2,12,307 per QALY. Drag the dot, then drag the threshold and watch the verdicts flip. Also at <strong>widgets/ce-plane/</strong></p>
+  <aside class="notes">
+    Five minutes. Two things to have them try. Park an intervention just below the line, then drag λ
+    down to a plausible supply-side value and watch it become unaffordable. That is the Woods argument
+    made physical. Then the south-west quadrant, where the decision rule reverses. Disinvestment lives
+    there, and almost nobody looks for it.
+  </aside>
+</section>
+
+<section>
+  <h2>Recap</h2>
+  <ul>
+    <li>λ turns an ICER into a decision. Everything hard here is where λ comes from</li>
+    <li><strong>Demand-side</strong> and <strong>supply-side</strong> give different numbers. Only the
+    second respects a fixed budget</li>
+    <li>India's first estimate is <strong>₹2,12,307 per QALY</strong>. Demand-side, so carry the caveat</li>
+    <li>League tables still mix QALYs and DALYs, so they cannot be read straight down</li>
+    <li><strong>HTAIn advises. User departments decide.</strong></li>
+  </ul>
+  <aside class="notes">
+    If you are running late, the two lines that must survive are the demand versus supply distinction,
+    and "cost-effective is not the same as funded".
+  </aside>
+</section>
+
+<section>
+  <h2>Sources</h2>
+  <ol class="sources two">
+    <li><b>Drummond MF, Sculpher MJ, Claxton K, Stoddart GL, Torrance GW.</b> Methods for the Economic Evaluation of Health Care Programmes. 4th ed. Oxford University Press; 2015. <b>Chapter 2</b>, pp. 19–41.</li>
+    <li><b>Chugh Y, Jyani G, Kar SS, Rajsekar K, Prinja S, et al.</b> Estimating the willingness-to-pay per quality-adjusted life-year to aid health technology assessment in India. <em>Value Health</em> 2026;29(3):457–66. PMID 41176029</li>
+    <li><b>Woods B, Revill P, Sculpher M, Claxton K.</b> Country-level cost-effectiveness thresholds: initial estimates and the need for further research. <em>Value Health</em> 2016;19(8):929–35. PMID 27987642</li>
+    <li><b>Bertram MY, Lauer JA, De Joncheere K, et al.</b> Cost-effectiveness thresholds: pros and cons. <em>Bull World Health Organ</em> 2016;94(12):925–30. PMID 27994285</li>
+    <li><b>Marseille E, Larson B, Kazi DS, Kahn JG.</b> Thresholds for the cost-effectiveness of interventions: alternative approaches. <em>Bull World Health Organ</em> 2015;93(2):118–24. PMID 25883405</li>
+    <li><b>Shah K, Singh M, Kotwani P, et al.</b> Comprehensive league table of cost-utility ratios for health policy decisions in India. <em>Front Public Health</em> 2022;10:831254. PMID 36311623</li>
+    <li><b>NICE.</b> Changes to NICE's cost-effectiveness thresholds confirmed. 1 December 2025. nice.org.uk</li>
+    <li><b>Vallejo-Torres L, Edney LC, Espinosa O, Karnon J, Longo F.</b> Politicised changes to the NICE threshold risk making cost-effectiveness analysis performative, not informative. <em>Appl Health Econ Health Policy</em> 2026;24(2):243–6. PMID 41513890</li>
+    <li><b>Dixit J, Prinja S, Jyani G, et al.</b> Efficiency and equity of prevention and control strategies for rheumatic heart disease in India: an extended cost-effectiveness analysis. <em>Lancet Glob Health</em> 2023;11(3):e445–55. PMID 36796988</li>
+    <li><b>Arora S, Tuffaha H.</b> Cost-effectiveness analysis of human papillomavirus vaccines for the prevention of cervical cancer in India. <em>Asia Pac J Clin Oncol</em> 2024;20(1):55–62. PMID 37132538</li>
+    <li><b>Chauhan AS, Prinja S, Srinivasan R, et al.</b> Cost effectiveness of strategies for cervical cancer prevention in India. <em>PLoS One</em> 2020;15(9):e0238291. PMID 32870941</li>
+    <li><b>ICO/IARC HPV Information Centre.</b> Report: India. hpvcentre.net</li>
+    <li><b>Press Information Bureau, Government of India.</b> Cervical cancer vaccination campaign launched. 28 February 2026.</li>
+  </ol>
+  <aside class="notes">
+    Not for reading out. It is here so a photographed slide carries a full reference and the deck
+    stands alone as a document.
+  </aside>
+</section>
+
+<section class="cover">
+  <p class="kicker">Faculty workshop &nbsp;·&nbsp; 12:35 &nbsp;·&nbsp; Drummond 4th ed., Chapter 4</p>
+  <h1>Principles of<br>economic evaluation</h1>
+  <p class="lede dim">How the ICER is actually built. The decision problem, comparators, perspective,
+  time horizon, costing, QALYs, discounting, dominance. Then why that ICER is only a point estimate.</p>
+  <p class="small faint" style="margin-top:1em">Before Block 3: skim the methods of Chauhan 2020 and note
+  its perspective, time horizon and discount rate.</p>
+  <aside class="notes">
+    Set that pre-read explicitly. It is the paper Block 3A uses to teach framing, and they get far more
+    out of it having already looked.
+  </aside>
+</section>
+
+</div></div>
+<script src="../vendor/reveal.js/dist/reveal.js"></script>
+<script src="../vendor/reveal.js/plugin/notes/notes.js"></script>
+<script>
+Reveal.initialize({ hash:true, slideNumber:'c/t', transition:'fade', transitionSpeed:'fast',
+  width:1280, height:720, margin:0, center:false, minScale:0.2, maxScale:2.0,
+  pdfSeparateFragments:false, plugins:[RevealNotes] });
+</script>
+</body>
+</html>
