@@ -36,6 +36,38 @@ short link.
 3. **Facilitator column on the agenda** — deliberately left empty; the convener
    fills the names
 
+**19 Sep 2026: this folder is now a standalone git repository.** The workshop no longer lives inside
+the PG course repo, which is a different course. This folder holds everything needed to run the day and
+works offline: `index.html` (landing page), `slides/` (8 decks), `handouts/`, `widgets/`, `assets/`,
+`vendor/` (reveal.js), plus the brochure, the agenda and their sources in `src/`. One commit on `main`,
+no remote yet. Start from `handouts/faculty-blueprint.md`.
+
+The five teaching blocks were copied from the PG course and **adapted for this audience**: the
+"MD Community Medicine" line became "Faculty and senior residents", cover kickers carry the session
+time instead of a block number, and speaker notes and a few slide lines written for exam-facing
+residents (dissertation, viva, "students") were rewritten for faculty who supervise, sit on committees
+and referee. No teaching content, figure or citation changed. All eight decks pass `src/chk.mjs`.
+
+New for this day: `slides/opening.html`, `costing.html`, `modelling.html`; `handouts/paper-pack.pdf`
+(and the facilitator key), `costing-worksheet.pdf`, `poll-bank.html` + `.xlsx`, `faculty-blueprint.md`.
+The paper pack is generated from `handouts/papers.py` by `build_paperpack.py`.
+
+Citation corrections found while verifying: Gupta is **2022**, not 2021; Srinivasan is **open access**
+(CC BY-NC-ND); the published Comment on it is **2025;72(1):e31305, PMID 39228042**.
+
+**Registration form is live:** <https://forms.gle/Te2jRPjubgbfywmm8>
+Title "Economic Evaluation in Health (23rd Sep 2026)"; collects name,
+designation, department, contact, prior knowledge. The brochure QR encodes this
+short link.
+
+**Still blank on the printed pieces — fill before circulating:**
+
+1. **Venue room** (brochure details bar says only "AIIMS Bhopal, Saket Nagar")
+2. **Contact e-mail** (currently `hta@aiimsbhopal.edu.in` — confirm it is right
+   for a School of Public Health event)
+3. **Facilitator column on the agenda** — deliberately left empty; the convener
+   fills the names
+
 **Built 18 Sep 2026 (second session):** all seven items in §4, in the repo clone, not yet committed
 to git. Start from `handouts/faculty-blueprint.md`, which is the run sheet and lists every new file.
 New decks: `slides/opening.html`, `costing.html`, `modelling.html` (all pass chk.mjs, as do the five
