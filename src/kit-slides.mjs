@@ -11,6 +11,7 @@
 // would be 0.26 and put the floor at 3.6 pt, which is why this is a 2-up.
 import { chromium } from 'playwright';
 import { mkdtempSync, rmSync, readFileSync } from 'fs';
+import { execFileSync } from 'child_process';
 import { tmpdir } from 'os';
 import { join } from 'path';
 
@@ -45,7 +46,7 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
 
 const work = mkdtempSync(join(tmpdir(), 'kit-'));
 const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
-const ctx = await b.newContext({ viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1.6 });
+const ctx = await b.newContext({ viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1.25 });
 const p = await ctx.newPage();
 
 const blocks = [];          // divider pages and slide blocks, in reading order
@@ -65,14 +66,25 @@ for (const [sess, deck, title, dropLast] of DECKS) {
     await p.waitForTimeout(260);
     const file = join(work, `${deck}-${i}.png`);
     await p.screenshot({ path: file });
-    blocks.push({
-      kind: 'slide', sess, n: i + 1,
-      src: 'data:image/png;base64,' + readFileSync(file).toString('base64'),
-    });
+    blocks.push({ kind: 'slide', sess, n: i + 1, file });
   }
   console.log(`  ${deck}: ${last} slides${dropLast ? ' (next-session cover dropped)' : ''}`);
 }
 await ctx.close();
+
+// A slide is flat colour and antialiased text, so a 128-colour palette is
+// indistinguishable in print and cuts the file to about a third. Without this
+// a kit runs past the 20 MB the device bridge will carry.
+execFileSync('python3', ['-c', `
+from PIL import Image
+import pathlib, sys
+for f in sorted(pathlib.Path(sys.argv[1]).glob('*.png')):
+    im = Image.open(f).convert('RGB')
+    im.quantize(colors=128, method=Image.MEDIANCUT, dither=Image.NONE).save(f, optimize=True)
+`, work], { stdio: 'inherit' });
+for (const s of blocks) {
+  if (s.kind === 'slide') s.src = 'data:image/png;base64,' + readFileSync(s.file).toString('base64');
+}
 
 // ---------------------------------------------------------------- pages
 const slideBlock = s => `<div class="blk">
