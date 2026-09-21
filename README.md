@@ -113,6 +113,17 @@ python3 build_polls.py        # poll-bank.html + poll-bank.xlsx
 The brochure and agenda are rebuilt from `src/` (see `src/README.md`). PDFs are printed from the HTML
 at A4; every sheet is sized to one page, so check nothing has spilled off the bottom before printing.
 
+Facilitators who want the notes on paper can generate a handout: two slides to an A4 landscape page,
+each slide on the left with its speaker notes beside it.
+
+```bash
+python3 -m http.server 8766        # from the repo root, in another shell
+node src/notes-pdf.mjs block3a     # writes handouts/notes-block3a.pdf
+```
+
+Those PDFs carry a screenshot of every slide, so they run to about 3 MB each and 22 MB for the day.
+They are generated on demand and `.gitignore`d rather than committed.
+
 The PowerPoint files are generated, not hand-made. After editing a deck, rebuild them:
 
 ```bash
