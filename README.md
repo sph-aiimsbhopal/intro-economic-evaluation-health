@@ -124,6 +124,26 @@ node src/notes-pdf.mjs block3a     # writes handouts/notes-block3a.pdf
 Those PDFs carry a screenshot of every slide, so they run to about 3 MB each and 22 MB for the day.
 They are generated on demand and `.gitignore`d rather than committed.
 
+### The participant kit
+
+A spiral-bound A4 kit, one variant per group, is built from the same sources. It is not committed:
+the PDFs run to about 24 MB each and the reproduced papers are not ours to redistribute through a
+repository.
+
+```bash
+python3 -m http.server 8766          # from the repo root, in another shell
+node src/kit-slides.mjs              # slides 2-up with ruled space, kit/kit-slides.pdf
+python3 src/kit-pages.py             # cover, glossary, QR page, feedback, licences
+node src/pdf.mjs kit/kit-front.html kit/kit-front.pdf    # and kit-back, checklist, reading-list
+python3 src/kit-build.py             # merges eight variants into kit/variants/
+```
+
+Put each group's paper in `handouts/paper pdfs/` first. **Only papers under a Creative Commons
+licence may be bound in**; `kit-build.py` carries the licence for each and prints it on the divider
+sheet before the paper. One of the eight (Uy 2021, *Int J Cardiol*) is subscription-only and is
+deliberately replaced by a citation sheet. Check the licence of any paper you add: Europe PMC's
+`license` field and the Crossref `license` array with `content-version: vor` are the two to agree.
+
 The PowerPoint files are generated, not hand-made. After editing a deck, rebuild them:
 
 ```bash
