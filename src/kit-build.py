@@ -75,6 +75,11 @@ h1 { font-size:24pt; line-height:1.15; color:#162a6c; margin:0 0 6mm; font-weigh
 .lic { font-size:9.5pt; color:#5A6273; border-left:3pt solid #162a6c; padding-left:5mm; margin:0 0 8mm }
 .note { font-size:10pt; color:#222833; max-width:150mm }
 .note b { color:#162a6c }
+
+.page.nt { padding:18mm 18mm 16mm }
+.nt .ntk { font-size:8.5pt; letter-spacing:.14em; text-transform:uppercase; color:#7A8394;
+           display:flex; justify-content:space-between; margin:0 0 4mm }
+.nt .ln { height:8mm; border-bottom:.4pt solid #BFC6D4 }
 """
 
 
@@ -129,6 +134,14 @@ def build_dividers():
         </div>""")
         order.append(f"g{g}")
 
+    for n in range(1, 5):                       # four ruled pages at the back of every kit
+        pages.append(f"""<div class="page nt">
+          <p class="ntk"><span>Notes</span><span>Economic Evaluation in Health &middot; AIIMS Bhopal
+          &middot; 23 September 2026</span></p>
+          {'<div class="ln"></div>' * 31}
+        </div>""")
+        order.append(f"notes{n}")
+
     divider_pdf(pages, KIT / "_dividers.pdf")
     return order
 
@@ -170,6 +183,8 @@ def main():
             for p in pypdf.PdfReader(KIT / "papers" / pdf).pages:
                 w.add_page(p)
         for p in back.pages:                     w.add_page(p)
+        for n in range(1, 5):
+            w.add_page(div.pages[div_page[f"notes{n}"]])
 
         out = OUT / f"kit-group-{g}.pdf"
         with open(out, "wb") as fh:
