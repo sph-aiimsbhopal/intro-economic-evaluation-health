@@ -82,6 +82,7 @@
   table.rev td.no{color:var(--bad);font-weight:700;white-space:nowrap}
   .hidden{display:none}
   .foot{font-size:.68rem;color:var(--ink-faint);margin-top:18px;padding-top:12px;border-top:1px solid var(--line)}
+  .qn{ font-weight:400; opacity:.55; font-size:.85em; margin-left:.4em }
 </style>
 </head>
 <body>
@@ -101,12 +102,12 @@
     </div>
 
     <div class="q" id="q1">
-      <div class="qt"><b>Q1</b>What does the study examine?</div>
+      <div class="qt"><b>Q1</b>What does the study examine? <span class="qn" id="qn1"></span></div>
       <div class="opts" id="o1"></div>
     </div>
 
     <div class="q hidden" id="q2">
-      <div class="qt"><b>Q2</b>Is there a comparison of two or more alternatives?</div>
+      <div class="qt"><b>Q2</b>Is there a comparison of two or more alternatives? <span class="qn" id="qn2"></span></div>
       <div class="opts" id="o2"></div>
     </div>
 
@@ -292,12 +293,24 @@
     $('fb').classList.add('hidden');
     $('grid').classList.add('hidden');
     $('next').classList.add('hidden');
+    const nq = s.type ? 3 : 2;
+    $('qn1').textContent = '(1 of ' + nq + ')';
+    $('qn2').textContent = '(2 of ' + nq + ')';
     buildOpts($('o1'), O1, pick1);
+  }
+
+  // A revealed question can sit below the visible area, especially inside the
+  // 400 px slide iframe, and study 6 is the first with a third question. Without
+  // this the widget looks frozen: no Next button appears until Q3 is answered.
+  function reveal(id){
+    const el = $(id);
+    el.classList.remove('hidden');
+    requestAnimationFrame(() => el.scrollIntoView({ behavior:'auto', block:'nearest' }));
   }
 
   function pick1(v, b, host){
     a1 = v; lock(host, STUDIES[i].q1, v);
-    $('q2').classList.remove('hidden');
+    reveal('q2');
     buildOpts($('o2'), O2, pick2);
   }
 
@@ -307,13 +320,8 @@
     const gotBox = (a1 === s.q1 && a2 === s.q2);
     drawGrid(cellOf(s));
     if(s.type){
-      if(gotBox){
-        $('q3').classList.remove('hidden');
-        buildOpts($('o3'), O3, pick3);
-        return;
-      }
-      // wrong box on a full evaluation: still teach the type, then finish
-      $('q3').classList.remove('hidden');
+      // right box or wrong, a full evaluation still gets its third question
+      reveal('q3');
       buildOpts($('o3'), O3, pick3);
       return;
     }
@@ -335,6 +343,7 @@
     $('fbp').innerHTML = '<strong>' + CELLS[cellOf(s)] + (s.type ? ' &middot; ' + s.type : '') + '.</strong> ' + s.why;
     $('fb').classList.remove('hidden');
     $('next').classList.remove('hidden');
+    requestAnimationFrame(() => $('next').scrollIntoView({ behavior:'auto', block:'nearest' }));
     $('next').textContent = (i === STUDIES.length - 1) ? 'See your score →' : 'Next study →';
   }
 

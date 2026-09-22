@@ -55,7 +55,7 @@ that order, so go by the session number, not the file name.
 |---|---|---|---|---|---|---|---|
 | | 09:30 | 10 | Registration and welcome | none | | | |
 | **1** | 09:40 | 20 | Where economic evidence enters health policy | `slides/opening.html` (12 slides) | | Q1, Q2 | |
-| **2** | 10:00 | 40 | What economic evaluation is, and what it is not | `slides/block1.html` (27 slides) | 12, 13, 21, 23; 14 optional | Q3 to Q5 | |
+| **2** | 10:00 | 40 | What economic evaluation is, and what it is not | `slides/block1.html` (28 slides) | 12, 13, 22, 24; 14 optional | Q3 to Q5 | |
 | **3** | 10:40 | 40 | Framing the question | `slides/block3a.html` (18 slides) | 13; 10 and 11 brisk | Q6 to Q8 | |
 | | 11:20 | 20 | *Tea* | | | | |
 | **4** | 11:40 | 55 | Costing your own service | `slides/costing.html` (17 slides) + worksheet | 4 and 9 brisk (named in Session 3) | Q9 to Q11 | |
@@ -89,7 +89,7 @@ public health programme. Four slides exist to close that gap, using one verified
 | Session | Slide | What it does |
 |---|---|---|
 | 1 | opening 11, "Two examples, side by side" | Names both running examples and says the method does not change with the size of the decision |
-| 2 | block1 24, "The same two questions, on a drug" | Classifies the trastuzumab paper with Drummond's two questions |
+| 2 | block1 25, "The same two questions, on a drug" | Classifies the trastuzumab paper with Drummond's two questions |
 | 3 | block3a 15, "The same framing, on a drug" | Its five framing choices against the Reference Case principles |
 | 5 | block3b 23, "The same arithmetic, on a drug" | Two effectiveness sources, two ICERs a third apart |
 
@@ -109,8 +109,8 @@ Fill in the **Lead** column; the agenda's facilitator column was deliberately le
 |---|---|---|
 | Block 1, 12 and 13 | the six-box grid filled with cervical cancer studies; partial evaluations | Decided cut: the grid in depth. Slide 11 introduces the six boxes; that is enough |
 | Block 1, 14 | classifier widget | Keep if the room has phones out and time allows; otherwise skip |
-| Block 1, 21 | QALYs are not DALYs | Decided cut: the QALY versus DALY argument. Session 5 covers the distinction in one line |
-| Block 1, 23 | why this matters in your job | Rewritten for faculty (committees, supervised work), but it now overlaps the opening deck's "where you come in". Show it only if the opening was cut short |
+| Block 1, 22 | QALYs are not DALYs | Decided cut: the QALY versus DALY argument. Session 5 covers the distinction in one line |
+| Block 1, 24 | where this lands on your desk | Rewritten for faculty (committees, supervised work), but it now overlaps the opening deck's "where you come in". Show it only if the opening was cut short |
 | Block 2, 11 | league tables | Its figures were shown in Session 1. Say "you saw these this morning" and move on |
 | Block 2, 12 and 13 | the NICE threshold change | Good material, but optional at 40 minutes |
 | Block 3A, 10 and 11 | costing in three steps; capital costs | Keep, but brisk. They now set up Session 4 instead of repeating it |

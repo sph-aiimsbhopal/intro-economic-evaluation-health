@@ -266,9 +266,12 @@
 <!-- ==================================================== WIDGET -->
 <section>
   <h2>Your turn</h2>
-  <iframe class="widget" style="height:430px" src="../widgets/classifier/" data-src="../widgets/classifier/" loading="lazy"></iframe>
+  <iframe class="widget" style="height:390px" src="../widgets/classifier/" data-src="../widgets/classifier/" loading="lazy"></iframe>
   <p class="small">Eight real studies, two questions each: does it measure <strong>both</strong> costs and consequences, and does it <strong>compare</strong> alternatives? The widget scores you and says why.</p>
-  <p class="cite">Open it on your phone at <strong>sph-aiimsbhopal.github.io/intro-economic-evaluation-health</strong>, along with five others we will use today.</p>
+  <div class="qrrow">
+    <p class="cite">Open it on your phone at <strong>sph-aiimsbhopal.github.io/intro-economic-evaluation-health</strong>, along with five others we will use today.</p>
+    <img src="../assets/img/qr/classifier.png" alt="QR code linking to this widget">
+  </div>
   <aside class="notes">
     Give them six to eight minutes, in pairs, and let them argue. Walk the room. The two that generate
     most argument are the randomised trial, because they want to call a good study a full evaluation,
@@ -388,6 +391,30 @@
   </aside>
 </section>
 
+<!-- ==================================================== THE ICER, NAMED -->
+<section>
+  <h2>That "₹ per unit" column has a name</h2>
+  <p class="eq">ICER <span class="op">=</span>
+    <span class="frac"><span class="n">extra cost</span><span class="d">extra effect</span></span>
+  </p>
+  <p class="eqnote">The <strong>incremental cost-effectiveness ratio</strong>. Extra compared with the
+  next best alternative, not with nothing.</p>
+  <div class="cards c2" style="margin-top:.3em">
+    <div class="card"><strong>US$662.94 per life saved</strong><br><span class="small dim">Rotavirus, two slides ago</span></div>
+    <div class="card"><strong>₹54,881 per QALY gained</strong><br><span class="small dim">VIA screening, last slide</span></div>
+  </div>
+  <p class="claim warn" style="margin:.35em 0 .1em">An ICER is a statement about <em>two</em> options. No
+  single programme has one of its own.</p>
+  <p class="small dim" style="margin:0">Session 5 computes them, ranks five options, and shows the three ways they go wrong.</p>
+  <aside class="notes">
+    Ninety seconds, no more. The term is used from Session 3 onwards and it should not arrive undefined.
+    The one sentence that must land is the claim line: an ICER belongs to a comparison, not to a
+    programme. Every misuse they will meet today follows from forgetting that. Resist the urge to write
+    the formula with subscripts or to explain dominance; that is Session 5's work and it needs the
+    material.
+  </aside>
+</section>
+
 <!-- ==================================================== QALY vs DALY -->
 <section>
   <h2>A warning: QALYs are not DALYs</h2>
@@ -433,7 +460,7 @@
 
 <!-- ==================================================== RELEVANCE -->
 <section>
-  <h2>Why this matters in your job</h2>
+  <h2>Where this lands on your desk</h2>
   <div class="cards c2">
     <div class="card"><h3>State PIP</h3><p class="small">Every activity proposed displaces another.
     Somebody has to justify the choice.</p></div>

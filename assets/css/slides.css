@@ -200,6 +200,15 @@
   width:100%; height:520px; border:1px solid var(--line); border-radius:3px; background:#fff;
 }
 
+/* widget slide footer: the citation line with the widget's own QR code beside it,
+   so the room can open that widget directly instead of typing the site address */
+.reveal .qrrow{
+  display:flex; align-items:center; gap:18px;
+  border-top:1px solid var(--line); padding-top:.5em; margin-top:.6em;
+}
+.reveal .qrrow .cite{ flex:1 1 auto; border-top:0; padding-top:0; margin-top:0 }
+.reveal .qrrow img{ flex:0 0 52px; width:52px; height:52px; display:block; background:#fff }
+
 /* --- a figure worth its own emphasis --- */
 .reveal .stat{ text-align:center }
 .reveal .stat .n{
